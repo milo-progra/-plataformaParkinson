@@ -11,6 +11,7 @@ urlpatterns = [
     
     path('api/', include('app.urls')),
     path('usuario/', include('usuario.urls')),
+    path('paciente/', include('paciente.urls')),
 
     
     path('post_login/', post_login, name="post_login"),
@@ -84,6 +85,7 @@ urlpatterns = [
     path('vista_f3/<username_paciente_id>', vista_f3, name="vista_f3"),
     path('vista_f4/<username_paciente_id>', vista_f4, name="vista_f4"),
     path('vista_graficos/<username_paciente_id>', vista_graficos, name="vista_graficos"),
+
     path('admin_paciente/', admin_paciente, name="admin_paciente"),
     path('admin_receta_paciente/<username_paciente_id>', admin_receta_paciente, name="admin_receta_paciente"),
     path('admin_familiar/', admin_familiar, name="admin_familiar"),
@@ -96,13 +98,16 @@ urlpatterns = [
     path('grafico_vocalizacion_admin/', grafico_vocalizacion_admin, name="grafico_vocalizacion_admin"),
     path('grafico_audios_admin/', grafico_audios_admin, name="grafico_audios_admin"),
     path('admin_info_fonoaudiologo/<username_fonoaudiologo_id>', admin_info_fonoaudiologo, name="admin_info_fonoaudiologo"),
+
     path('grafico_cantidad_usuarios/', grafico_cantidad_usuarios, name="grafico_cantidad_usuarios"),
     path('grafico_pacientes_comuna/', grafico_pacientes_comuna, name="grafico_pacientes_comuna"),
     path('grafico_neurologo_comuna/', grafico_neurologo_comuna, name="grafico_neurologo_comuna"),
     path('grafico_fonoaudiologo_comuna/', grafico_fonoaudiologo_comuna, name="grafico_fonoaudiologo_comuna"),
     path('grafico_enfermeras_comuna/', grafico_enfermeras_comuna, name="grafico_enfermeras_comuna"),
+
     path('admin_enfermera/', admin_enfermera, name="admin_enfermera"),
     path('admin_info_enfermera/<username_enfermera_id>', admin_info_enfermera, name="admin_info_enfermera"),
+
     path('lista_medicamentos/', lista_medicamentos, name="lista_medicamentos"),
     path('documento/<username_paciente_id>', documento, name="documento"),
     path('editar_medicamento/<id_medicamento>', editar_medicamento, name="editar_medicamento"),
