@@ -4,6 +4,7 @@ from tokenize import blank_re
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from usuario.models import Usuario
+from paciente.models import Diabetes, Hipertension
 
 # Create your models here.
 
@@ -33,21 +34,8 @@ class Comuna(models.Model):
     def __str__(self):
         return self.nombre_comuna
 
-# Modelo para Diabetes
-class Diabetes(models.Model):
-    id_diabetes     = models.AutoField('Id Diabetes', primary_key=True)
-    tipo_diabetes = models.CharField('Tipo Diabetes', max_length=100)
 
-    def __str__(self):
-        return self.tipo_diabetes 
 
-# Modelo para Hipertension
-class Hipertension(models.Model):
-    id_hipertension     = models.AutoField('Id Hipertension', primary_key=True)
-    estado_hipertension = models.CharField('Estado Hipertension', max_length=100)
-
-    def __str__(self):
-        return self.estado_hipertension 
 
 # Modelo para Tipo_farmaco
 class Tipo_farmaco(models.Model):
@@ -84,6 +72,7 @@ class Marca(models.Model):
     def __str__(self):
         return self.marca
 
+
 # Modelo para Recomendacion_consumo
 class Recomendacion_consumo(models.Model):
     id_recomendacion = models.AutoField('Id Recomendacion', primary_key=True)
@@ -107,6 +96,7 @@ class Via_ingesta(models.Model):
 
     def __str__(self):
         return self.via_ingesta
+
 
 # Modelo para Medicamento
 class Medicamento(models.Model):
