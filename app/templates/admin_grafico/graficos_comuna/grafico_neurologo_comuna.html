@@ -1,0 +1,247 @@
+<!DOCTYPE HTML>
+<!--
+	Striped by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Plataforma Voz Parkinson</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/static/css/main.css" />
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
+
+	</head>
+	<body class="is-preload">
+
+		<!-- Content -->
+			<div id="content">
+				
+				<div class="inner"><a href="{% url 'grafico_admin'  %}" style="color: white;"><button>Volver</button></a>
+					
+
+					<!-- Post -->
+						<article class="box post post-excerpt">
+							<header>
+                                <h1>Grafico Neurólogo por Comuna</h1>
+
+								<div id="grafico" style="width: 500px; height: 500px;">
+									<canvas id="myChart" ></canvas>
+								</div>
+							
+								<div>
+									<canvas id="myChart"  style="width: 50px; height: 50px;"></canvas>
+								</div>
+							
+
+
+								<script>
+									
+									// var bg_colour = Math.floor(Math.random() * 16777215).toString(16);
+									// bg_colour = "#" + ("000000" + bg_colour).slice(-6);
+									// console.log(bg_colour)
+
+									var colores = 
+['#92c75e', '#fea1cf', '#1946c4', '#5469d6', '#b965f4', '#86eaac', '#03dc94', '#84c7a6', '#13334c', '#c78749', '#f9d345', '#812579', '#bf2b66', '#69c1e2', '#118e9b', '#1a5d88', '#eff589', '#eb81e0', '#ae2a7d', '#f50a98', '#eddb99', '#cf1862', '#603b01', '#d8606c', '#129ad9', '#15a12f', '#c3a873', '#cc5071', '#2cb239', '#09b4db', '#e6bf6b', '#d41611', '#7e0234', '#7b4696', '#a4e19e', '#551837', '#6fc89f', '#6ff260', '#fecc0c', '#050251', '#4df11f', '#2a0cb5', '#4f9888', '#b4d4b9', '#df8562', '#7f5829', '#9994bd', '#8eac39', '#f33c32', '#9c7e73', '#89acdb', '#ebb265', '#0af710', '#d870c2', '#de04af', '#7e748a', '#ae5670', 
+'#ed46dd', '#2df92e', '#24e257', '#0c8c23', '#1b6245', '#4dfbd6', '#67d0d0', '#832910', '#ce6bc5', '#dadd63', '#527538', '#10bcf0', '#fff7ec', '#974d95', '#054b89', '#f23daa', '#4231b8', '#b11cca', '#18258d', '#64677e', '#2b979b', '#1d2981', '#011fdd', '#fbd688', '#51ad59', '#787129', '#657331', '#2dd68e', '#0101e6', '#bfdf61', '#be9252', '#6657db', '#252af3', '#70f225', '#d3b8a8', '#ad382c', '#f35dbd', '#816176', '#6015ee', '#d35b1d', '#97a491', '#586bcf', '#d164a3', '#1e38c4', '#581f1b', '#fb5d8d', '#ee3d48', '#ef50fb', '#94468b', '#fe7f67', '#c9f4be', '#f595a7', '#fe2ab5', '#357424', '#f1033c', '#aac071', '#b0b486', '#ccab9f', '#dc5235', '#ca70d6', '#7cace5', '#0a0270', '#2fb018', '#e1cb18', '#01824f', '#fbc32a', '#31e25d', '#4ac4d5', '#248d04', '#00b313', '#a35cfc', '#a1415c', '#9e6414', '#87195d', '#d4ecd9', '#e03248', '#073734', '#a8d78a', '#1d186a', '#5beb13', '#8ba519', '#d4dde9', '#493642', '#944ab8', '#028f42', '#4feccd', '#f7d194', '#4d9f79', '#ef9709', '#839a84', '#d248f9', '#5f70d9', '#c055c9', '#44442d', '#9e0d2e', '#e0d4aa', '#94e2e1', '#ffd76a', '#813902', '#31a93e', '#10174c', '#674cb8', '#bc3ddd', '#deaf4d', '#59390d', '#061597', '#7a64b1', '#7b1a65', '#784536', '#a83951', '#db9250', '#8313ef', '#2cfdc5', '#42a1fc', '#469e6a', '#388dec', '#bf92cf', '#94fb4d', '#04d9ef', '#5007aa', '#2f5b58', '#3e8ca5', '#9311c4', '#3537b3', '#7ec327', '#dd4582', '#5177d5', '#3c1e92', '#e934ae', '#a15ef9', '#164c1d', '#888047', '#00be47', '#6882b1', '#feb0b0', '#e6d505', '#a0734d', '#39ed11', '#af5451', '#80f91c', '#00b857', '#8c3733', '#cf07f0', '#38d827', '#4b3029', '#3b589d', '#441300', '#909d37', '#bf065a', '#5c8a2e', '#363e78', '#a206f8', '#51331f', '#6ccb3c', '#d710ad', '#8c185e', '#115ad9', 
+'#42c744', '#cc9676', '#0e9f99', '#c61672', '#3a04c3', '#de7908', '#e7e1fd', '#48557b', '#483977', '#df759f', '#c4aa16', '#6d57e0', '#1e3035', '#1e3b5f', '#2ddda3', '#075f72', '#7dfeef', '#217615', '#f4c4af', '#203211', '#d374d5', '#92b61b', '#41cf68', '#713ee0', '#f1819b', '#a1fcc4', '#7eab79', '#a593e9', '#94a97f', '#85f34b', '#bc47e2', '#6754af', '#d5b1bb', '#dfc2ad', '#c652b1', '#8263d4', '#869d72', '#bbbff7', '#a5d775', '#86ac4e', '#4143e0', '#513147', '#7c9909', '#ca298c', '#7bb942', '#ade0f0', '#15e12a', '#2ac82f', '#a4a14e', '#162ec4', '#87e94f', '#9b85ca', '#c7cc71', '#27d204', '#ae9aac', '#ac6710', '#a8ad0c', '#2044c2', '#2f763a', '#fa5834', '#372736', '#d45ec6', '#827951', '#cd9270', '#f76c41', '#7a17cb', '#f9e257', '#8acfd7', '#00bd4e', '#564040', '#935d0e', '#333f7a', '#0d3e1d', '#aabf2f', '#04b539', '#1ec536', '#d5ea7e', '#586efe', '#3a98e0', '#04aa44', '#fea3cc', '#36c3f0', '#a363ac', '#789edb', '#971845', '#1e1439', '#b42801', '#08c796', '#315398', '#096517', '#66bdad', '#330dbc', '#c6f5a7', '#c1391b', '#a6354a', '#b2254b', '#75a8fe', '#2d6c75', '#053e6a', '#f2f493', '#f3ff1e', '#4be253', '#39eeb7', '#9b8b71', '#db3f55', '#4b1141', '#eadd86', '#e2de5e', '#5fd57b', '#999b4f', '#ada79b', '#cb8c1a', '#981ea0', '#e076df', '#91d150', '#ff4628', '#517868', '#ec7ff5', '#b717f6', '#771085', '#3dd253', '#f4a351', '#59301b', '#e5e557', '#d2e4ee', '#d14667', '#acc293', '#0e4b65', '#00ad70', '#1dbb4e', '#642fda', '#1277a8', '#b8ed2a', '#628764', '#8cebb2', '#c2e79b'];
+
+									const ctx = document.getElementById('myChart').getContext('2d');
+									
+									const myChart = new Chart(ctx, {
+										type: 'doughnut',
+										data: {
+											labels: [{% for clave_dicc, valor_dicc in cantidad_datos_dicc %} '{{clave_dicc}}', {% endfor %} ],
+											datasets: [
+												{
+													label: 'Neurólogos',
+													data: [{% for clave_dicc, valor_dicc in cantidad_datos_dicc %} '{{valor_dicc}}', {% endfor %}],
+													borderColor: 'rgb(0, 0, 0)',
+													backgroundColor: colores
+												},
+											]
+										},
+							
+										options: {
+							
+											plugins: {
+												title: {
+													display: true,
+													text: 'Neurólogos por Comuna'
+												},
+											},
+											responsive: true,
+											
+										}
+									});
+							
+								</script>
+
+
+							</header>
+				
+						</article>
+
+					<!-- Post -->
+						
+
+				</div>
+			</div>
+
+		<!-- Sidebar -->
+			<div id="sidebar">
+
+				<!-- Logo -->
+					<h1 id="logo"><a href="#">Voz Parkinson</a></h1>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul>
+							<li><a href="{% url 'admin_paciente' %}">Pacientes</a></li>
+							<li ><a href="{% url 'preregistro_admin' %}">Preregistros</a></li>
+							<li><a href="{% url 'admin_familiar' %}">Familiares</a></li>
+							<li ><a href="{% url 'admin_neurologo' %}">Neurólogos</a></li>
+							<li ><a href="{% url 'admin_fonoaudiologo' %}">Fonoaudiólogo</a></li>
+							<li><a href="{% url 'admin_enfermera' %}">Enfermera</a></li>
+							<li ><a href="{% url 'admin_medicamento' %}">Medicamentos</a></li>
+							<li  ><a href="{% url 'home_enviar_correo' %}">Envio Correo</a></li>
+                            
+
+							<li  class="current"><a href="{% url 'grafico_admin' %}">Reportes</a></li>
+							<li ><a href="{% url 'documento_admin' %}">Documentos</a></li>
+							<li><a href="/admin">Admin Django</a></li>
+							<li><a href="/api">Api</a></li>
+							<li><a href="{% url 'logout' %}">Cerrar Sesion</a></li>
+
+						</ul>
+					</nav>
+
+				<!-- Search -->
+					<section class="box search">
+						<form method="post" action="#">
+							<input type="text" class="text" name="search" placeholder="Search" />
+						</form>
+					</section>
+
+				<!-- Text -->
+					<section class="box text-style1">
+						<div class="inner">
+							<p>
+								<strong>Striped:</strong> A free and fully responsive HTML5 site
+								template designed by <a href="http://twitter.com/ajlkn">AJ</a> for <a href="http://html5up.net/">HTML5 UP</a>
+							</p>
+						</div>
+					</section>
+
+				<!-- Recent Posts -->
+					<section class="box recent-posts">
+						<header>
+							<h2>Recent Posts</h2>
+						</header>
+						<ul>
+							<li><a href="#">Lorem ipsum dolor</a></li>
+							<li><a href="#">Feugiat nisl aliquam</a></li>
+							<li><a href="#">Sed dolore magna</a></li>
+							<li><a href="#">Malesuada commodo</a></li>
+							<li><a href="#">Ipsum metus nullam</a></li>
+						</ul>
+					</section>
+
+				<!-- Recent Comments -->
+					<section class="box recent-comments">
+						<header>
+							<h2>Recent Comments</h2>
+						</header>
+						<ul>
+							<li>case on <a href="#">Lorem ipsum dolor</a></li>
+							<li>molly on <a href="#">Sed dolore magna</a></li>
+							<li>case on <a href="#">Sed dolore magna</a></li>
+						</ul>
+					</section>
+
+				<!-- Calendar -->
+					<section class="box calendar">
+						<div class="inner">
+							<table>
+								<caption>July 2014</caption>
+								<thead>
+									<tr>
+										<th scope="col" title="Monday">M</th>
+										<th scope="col" title="Tuesday">T</th>
+										<th scope="col" title="Wednesday">W</th>
+										<th scope="col" title="Thursday">T</th>
+										<th scope="col" title="Friday">F</th>
+										<th scope="col" title="Saturday">S</th>
+										<th scope="col" title="Sunday">S</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td colspan="4" class="pad"><span>&nbsp;</span></td>
+										<td><span>1</span></td>
+										<td><span>2</span></td>
+										<td><span>3</span></td>
+									</tr>
+									<tr>
+										<td><span>4</span></td>
+										<td><span>5</span></td>
+										<td><a href="#">6</a></td>
+										<td><span>7</span></td>
+										<td><span>8</span></td>
+										<td><span>9</span></td>
+										<td><a href="#">10</a></td>
+									</tr>
+									<tr>
+										<td><span>11</span></td>
+										<td><span>12</span></td>
+										<td><span>13</span></td>
+										<td class="today"><a href="#">14</a></td>
+										<td><span>15</span></td>
+										<td><span>16</span></td>
+										<td><span>17</span></td>
+									</tr>
+									<tr>
+										<td><span>18</span></td>
+										<td><span>19</span></td>
+										<td><span>20</span></td>
+										<td><span>21</span></td>
+										<td><span>22</span></td>
+										<td><a href="#">23</a></td>
+										<td><span>24</span></td>
+									</tr>
+									<tr>
+										<td><a href="#">25</a></td>
+										<td><span>26</span></td>
+										<td><span>27</span></td>
+										<td><span>28</span></td>
+										<td class="pad" colspan="3"><span>&nbsp;</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</section>
+
+				<!-- Copyright -->
+					<ul id="copyright">
+						<li>&copy; Untitled.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						<!-- <li class="current"><a href="/admin">Login Admin</a></li> -->
+					</ul>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="/static/js/jquery.min.js"></script>
+			<script src="/static/js/browser.min.js"></script>
+			<script src="/static/js/breakpoints.min.js"></script>
+			<script src="/static/js/util.js"></script>
+			<script src="/static/js/main.js"></script>
+
+	</body>
+</html>
+
+
+

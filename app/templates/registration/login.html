@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/static/css/style.css"/>
+	<title>Login Usuario
+	</title>
+</head>
+<body>
+	<section class="form-login">
+		<h5>Ingrese sus credenciales</h5>
+		<form action="" method=post>
+			{% csrf_token %}
+			{{form}}
+		<input class="button_input" type="submit" value="Ingresar">
+		</form>
+		<a href="{% url 'preregistro' %}"><input class="button_input_registro" type="submit" value="Registrar"></a>
+		<a href="{% url 'index' %}"><input class="button_input_volver" type="submit" value="Volver"></a>
+		<p><a href="#">¿Olvidaste tu Contraseña?</a></p>
+	</section>
+</body>
+
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE HTML>
+<!--
+	Striped by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Plataforma Voz Parkinson</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/static/css/main.css" />
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
+
+	</head>
+	<body class="is-preload">
+
+		<!-- Content -->
+			<div id="content">
+				
+				<div class="inner"><a href="{% url 'grafico_admin'  %}" style="color: white;"><button>Volver</button></a>
+					
+
+					<!-- Post -->
+						<article class="box post post-excerpt">
+							<header>
+                                <h1>Grafico Enfermeras por Comuna</h1>
+
+								<div id="grafico" style="width: 500px; height: 500px;">
+									<canvas id="myChart" ></canvas>
+								</div>
+							
+								<div>
+									<canvas id="myChart"  style="width: 50px; height: 50px;"></canvas>
+								</div>
+							
+
+
+								<script>
+									
+									// var bg_colour = Math.floor(Math.random() * 16777215).toString(16);
+									// bg_colour = "#" + ("000000" + bg_colour).slice(-6);
+									// console.log(bg_colour)
+
+									var colores = ['#8d2bbb', '#6744d0', '#c10c09', '#9de044', '#7837d4', '#605785', '#a85292', '#34c969', '#e46cda', '#010dbb', '#1d165f', '#5d8187', '#06c5e0', '#73de73', '#8f0d0c', '#dc35e7', '#b440cd', '#048792', '#b30bbc', '#7dfaa3', '#c1f295', '#5e3aaf', '#d6270e', '#68523e', '#f08e9f', '#471749', '#bcaaa2', '#606530', '#524c51', '#a6f455', '#4f46cb', '#d28d01', '#936dde', '#75119f', '#f2ed43', '#cd3c75', '#13d61c', '#6c5d3f', '#d16db6', '#a7faa2', '#760d20', '#8906c7', '#b6d8fc', '#01b9a5', '#ffd783', '#89c077', '#b7461f', '#13cba9', '#d8d8e9', '#c9d73e', '#4ca620', '#003f72', '#ba53d3', '#69be3a', '#7c1f46', '#b639ea', '#9253b3', 
+'#e7eb27', '#080428', '#ed1fdb', '#be4402', '#286f3c', '#38dc05', '#10d9dd', '#f0e34c', '#4dc0d7', '#f953d0', '#3a2e35', '#5d5a0e', '#f251f8', '#dcedcc', '#e2eb8d', '#db4533', '#5bacbc', '#7d0a1b', '#2416a5', '#8f2f83', '#3298c2', '#f4729a', '#9b2e69', '#f42658', '#5db48b', '#e5aab2', '#ec26b6', '#ca0709', '#c6c0b0', '#c2650f', '#5cc82d', '#a4e2b6', '#37da64', '#2abad9', '#2cb695', '#10f25f', '#af540f', '#0d19d9', '#4fa539', '#7f2cdd', '#bc9d4c', '#7821d2', '#edd94d', '#e6a01b', '#f5fb0b', '#268b95', '#184e53', '#a7f7e9', '#449457', '#c2fca8', '#dca34f', '#a57e46', '#038737', '#972c4b', '#d73b1f', '#4be626', '#d2cf70', '#fc6f27', '#17f86a', '#17964b', '#d90b21', '#4111ef', '#bb89ad', '#e29d2c', '#d77c85', '#a94a2c', '#d11d42', '#546449', '#ee26d4', '#60911d', '#b2b498', '#c25eaf', '#8157f7', '#5c6b6e', '#c5a4d6', '#742a0e', '#d15515', '#1b5acb', '#2e7df8', '#2bdd54', '#b178ee', '#7de50d', '#c929ce', '#8dda3d', '#e67298', '#81ccb6', '#449b00', '#f10451', '#7f6f2c', '#35ce63', '#91777e', '#b0740a', '#06e74e', '#5443e5', '#163559', '#b2b4c9', '#5073e7', '#1bca68', '#ceb8a1', '#d5297d', '#6ed847', '#ab7101', '#f5e8df', '#df7452', '#86fd8c', '#620c4e', '#041d0c', '#3247e6', '#184cde', '#090846', '#df8e6a', '#3160c3', '#bfec84', '#27882c', '#c96d15', '#a45c2d', '#63c4cf', '#60120b', '#66c42f', '#4196ed', '#4b76d7', '#10a2a2', '#79c12c', '#d9f99b', '#e7e049', '#861a7b', '#31da57', '#319c3e', '#d6362d', '#f55112', '#2eebc9', '#b6a77c', '#f15d1c', '#87800f', '#61b7db', '#8d8304', '#985587', '#b4c58f', '#6c1ec8', '#db67c8', '#78c013', '#b5fbfc', '#7ef475', '#ec1360', '#a49a00', '#a1b41f', '#77839d', '#bd11ed', '#7e61db', '#38c1af', '#a26494', '#7a92ca', '#3cb90c', '#5e95ef', '#11a106', '#c52f2f', '#1bf628', 
+'#e6d3e2', '#6c2451', '#8822de', '#809392', '#ce2cc4', '#028b61', '#510b9c', '#6b9b86', '#97be58', '#3a424b', '#3ba43d', '#4f0d59', '#a3068b', '#6abc99', '#2f913e', '#54f763', '#f97011', '#f0f31f', '#f41c5f', '#775034', '#d0bbc6', '#5f7744', '#9bf409', '#9a6cac', '#3c0271', '#c31b72', '#77566e', '#88e5d1', '#a14143', '#e88fdd', '#d40598', '#04ddc2', '#c8eee2', '#1f2cf2', '#da4c98', '#911cb0', '#18e331', '#293720', '#7f1580', '#ab7da4', '#54a819', '#b0e394', '#0d4070', '#d6321c', '#72dedd', '#25cc93', '#83b18d', '#2af248', '#66c988', '#180822', '#1b7b2b', '#f368cc', '#ff9905', '#10afef', '#ca9bd9', '#530a6b', '#5ebe1a', '#893b9a', '#eea60f', '#814afc', '#8480a7', '#5a7470', '#e90385', '#4cdf62', '#e2b932', '#82a0cc', '#8ed588', '#0edd8c', '#13065c', '#937048', '#222f41', '#17c50e', '#bff1a7', '#0f4a11', '#6bfba2', '#8cf32a', '#c8af58', '#6cdf23', '#5f3e4e', '#e06dd0', '#7675bd', '#10d9ef', '#45148f', '#e5de00', '#5bd65e', '#3d0453', '#f57a18', '#f1b696', '#0b5a28', '#55617e', '#d23639', '#cac64e', '#bf8509', '#4425f4', '#45a3ad', '#1e9492', '#0d9b07', '#007389', '#0f18b7', '#c69a2c', '#422338', '#5a06b4', '#bf7a92', '#aa1718', '#74932b', '#63729c', '#6aa87e', '#7b5039', '#d861d0', '#5082bf', '#388a92', '#89ee04', '#77bab6', '#621080', '#5e76a0', '#9dd2a1', '#0d679d', '#984df6', '#7cbcbd', '#920bd7', '#9ddc8e', '#5699b3', '#4632db', '#346c12', '#0e69c6', '#cb8f35', '#107fbf', '#da93a6', '#74b9d8', '#0a2cf1', '#8f9cd7', '#c37c9f', '#b6d217', '#a3ab58', '#9d2844', '#35f70a'];
+
+									const ctx = document.getElementById('myChart').getContext('2d');
+									
+									const myChart = new Chart(ctx, {
+										type: 'doughnut',
+										data: {
+											labels: [{% for clave_dicc, valor_dicc in cantidad_datos_dicc %} '{{clave_dicc}}', {% endfor %} ],
+											datasets: [
+												{
+													label: 'Enfermeras',
+													data: [{% for clave_dicc, valor_dicc in cantidad_datos_dicc %} '{{valor_dicc}}', {% endfor %}],
+													borderColor: 'rgb(0, 0, 0)',
+													backgroundColor: colores
+												},
+											]
+										},
+							
+										options: {
+							
+											plugins: {
+												title: {
+													display: true,
+													text: 'Enfermeras por Comuna'
+												},
+											},
+											responsive: true,
+											
+										}
+									});
+							
+								</script>
+
+
+							</header>
+				
+						</article>
+
+					<!-- Post -->
+						
+
+				</div>
+			</div>
+
+		<!-- Sidebar -->
+			<div id="sidebar">
+
+				<!-- Logo -->
+					<h1 id="logo"><a href="#">Voz Parkinson</a></h1>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul>
+							<li><a href="{% url 'admin_paciente' %}">Pacientes</a></li>
+							<li ><a href="{% url 'preregistro_admin' %}">Preregistros</a></li>
+							<li><a href="{% url 'admin_familiar' %}">Familiares</a></li>
+							<li ><a href="{% url 'admin_neurologo' %}">Neurólogos</a></li>
+							<li ><a href="{% url 'admin_fonoaudiologo' %}">Fonoaudiólogo</a></li>
+							<li><a href="{% url 'admin_enfermera' %}">Enfermera</a></li>
+							<li ><a href="{% url 'admin_medicamento' %}">Medicamentos</a></li>
+							<li  ><a href="{% url 'home_enviar_correo' %}">Envio Correo</a></li>
+                            
+
+							<li  class="current"><a href="{% url 'grafico_admin' %}">Reportes</a></li>	
+							<li ><a href="{% url 'documento_admin' %}">Documentos</a></li>				
+							<li><a href="/admin">Admin Django</a></li>
+							<li><a href="/api">Api</a></li>
+							<li><a href="{% url 'logout' %}">Cerrar Sesion</a></li>
+
+						</ul>
+					</nav>
+
+				<!-- Search -->
+					<section class="box search">
+						<form method="post" action="#">
+							<input type="text" class="text" name="search" placeholder="Search" />
+						</form>
+					</section>
+
+				<!-- Text -->
+					<section class="box text-style1">
+						<div class="inner">
+							<p>
+								<strong>Striped:</strong> A free and fully responsive HTML5 site
+								template designed by <a href="http://twitter.com/ajlkn">AJ</a> for <a href="http://html5up.net/">HTML5 UP</a>
+							</p>
+						</div>
+					</section>
+
+				<!-- Recent Posts -->
+					<section class="box recent-posts">
+						<header>
+							<h2>Recent Posts</h2>
+						</header>
+						<ul>
+							<li><a href="#">Lorem ipsum dolor</a></li>
+							<li><a href="#">Feugiat nisl aliquam</a></li>
+							<li><a href="#">Sed dolore magna</a></li>
+							<li><a href="#">Malesuada commodo</a></li>
+							<li><a href="#">Ipsum metus nullam</a></li>
+						</ul>
+					</section>
+
+				<!-- Recent Comments -->
+					<section class="box recent-comments">
+						<header>
+							<h2>Recent Comments</h2>
+						</header>
+						<ul>
+							<li>case on <a href="#">Lorem ipsum dolor</a></li>
+							<li>molly on <a href="#">Sed dolore magna</a></li>
+							<li>case on <a href="#">Sed dolore magna</a></li>
+						</ul>
+					</section>
+
+				<!-- Calendar -->
+					<section class="box calendar">
+						<div class="inner">
+							<table>
+								<caption>July 2014</caption>
+								<thead>
+									<tr>
+										<th scope="col" title="Monday">M</th>
+										<th scope="col" title="Tuesday">T</th>
+										<th scope="col" title="Wednesday">W</th>
+										<th scope="col" title="Thursday">T</th>
+										<th scope="col" title="Friday">F</th>
+										<th scope="col" title="Saturday">S</th>
+										<th scope="col" title="Sunday">S</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td colspan="4" class="pad"><span>&nbsp;</span></td>
+										<td><span>1</span></td>
+										<td><span>2</span></td>
+										<td><span>3</span></td>
+									</tr>
+									<tr>
+										<td><span>4</span></td>
+										<td><span>5</span></td>
+										<td><a href="#">6</a></td>
+										<td><span>7</span></td>
+										<td><span>8</span></td>
+										<td><span>9</span></td>
+										<td><a href="#">10</a></td>
+									</tr>
+									<tr>
+										<td><span>11</span></td>
+										<td><span>12</span></td>
+										<td><span>13</span></td>
+										<td class="today"><a href="#">14</a></td>
+										<td><span>15</span></td>
+										<td><span>16</span></td>
+										<td><span>17</span></td>
+									</tr>
+									<tr>
+										<td><span>18</span></td>
+										<td><span>19</span></td>
+										<td><span>20</span></td>
+										<td><span>21</span></td>
+										<td><span>22</span></td>
+										<td><a href="#">23</a></td>
+										<td><span>24</span></td>
+									</tr>
+									<tr>
+										<td><a href="#">25</a></td>
+										<td><span>26</span></td>
+										<td><span>27</span></td>
+										<td><span>28</span></td>
+										<td class="pad" colspan="3"><span>&nbsp;</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</section>
+
+				<!-- Copyright -->
+					<ul id="copyright">
+						<li>&copy; Untitled.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						<!-- <li class="current"><a href="/admin">Login Admin</a></li> -->
+					</ul>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="/static/js/jquery.min.js"></script>
+			<script src="/static/js/browser.min.js"></script>
+			<script src="/static/js/breakpoints.min.js"></script>
+			<script src="/static/js/util.js"></script>
+			<script src="/static/js/main.js"></script>
+
+	</body>
+</html>
+
+
+

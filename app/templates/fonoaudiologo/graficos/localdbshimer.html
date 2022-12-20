@@ -1,0 +1,441 @@
+<html lang="en">
+  <head>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="/static/css/main.css" />
+      <title>localdbShimmer_plot</title>
+              <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css" type="text/css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" type="text/css">
+            <link rel="stylesheet" href="https://unpkg.com/@holoviz/panel@0.13.1/dist/css/alerts.css" type="text/css">
+            <link rel="stylesheet" href="https://unpkg.com/@holoviz/panel@0.13.1/dist/css/card.css" type="text/css">
+            <link rel="stylesheet" href="https://unpkg.com/@holoviz/panel@0.13.1/dist/css/dataframe.css" type="text/css">
+            <link rel="stylesheet" href="https://unpkg.com/@holoviz/panel@0.13.1/dist/css/debugger.css" type="text/css">
+            <link rel="stylesheet" href="https://unpkg.com/@holoviz/panel@0.13.1/dist/css/json.css" type="text/css">
+            <link rel="stylesheet" href="https://unpkg.com/@holoviz/panel@0.13.1/dist/css/loading.css" type="text/css">
+            <link rel="stylesheet" href="https://unpkg.com/@holoviz/panel@0.13.1/dist/css/markdown.css" type="text/css">
+            <link rel="stylesheet" href="https://unpkg.com/@holoviz/panel@0.13.1/dist/css/widgets.css" type="text/css">
+            <style>
+                
+            .bk.pn-loading.arcs:before {
+              background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBzdHlsZT0ibWFyZ2luOiBhdXRvOyBiYWNrZ3JvdW5kOiBub25lOyBkaXNwbGF5OiBibG9jazsgc2hhcGUtcmVuZGVyaW5nOiBhdXRvOyIgdmlld0JveD0iMCAwIDEwMCAxMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIj4gIDxjaXJjbGUgY3g9IjUwIiBjeT0iNTAiIHI9IjMyIiBzdHJva2Utd2lkdGg9IjgiIHN0cm9rZT0iI2MzYzNjMyIgc3Ryb2tlLWRhc2hhcnJheT0iNTAuMjY1NDgyNDU3NDM2NjkgNTAuMjY1NDgyNDU3NDM2NjkiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+ICAgIDxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZU5hbWU9InRyYW5zZm9ybSIgdHlwZT0icm90YXRlIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgZHVyPSIxcyIga2V5VGltZXM9IjA7MSIgdmFsdWVzPSIwIDUwIDUwOzM2MCA1MCA1MCI+PC9hbmltYXRlVHJhbnNmb3JtPiAgPC9jaXJjbGU+PC9zdmc+");
+              background-size: auto calc(min(50%, 400px));
+            }
+            
+            </style>
+
+          <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-2.4.3.min.js"></script><script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-gl-2.4.3.min.js"></script><script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.4.3.min.js"></script><script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.4.3.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script><script type="text/javascript" src="https://unpkg.com/@holoviz/panel@0.13.1/dist/panel.min.js"></script><style media="screen">.json-formatter-row {
+  font-family: monospace;
+}
+.json-formatter-row,
+.json-formatter-row a,
+.json-formatter-row a:hover {
+  color: black;
+  text-decoration: none;
+}
+.json-formatter-row .json-formatter-row {
+  margin-left: 1rem;
+}
+.json-formatter-row .json-formatter-children.json-formatter-empty {
+  opacity: 0.5;
+  margin-left: 1rem;
+}
+.json-formatter-row .json-formatter-children.json-formatter-empty:after {
+  display: none;
+}
+.json-formatter-row .json-formatter-children.json-formatter-empty.json-formatter-object:after {
+  content: "No properties";
+}
+.json-formatter-row .json-formatter-children.json-formatter-empty.json-formatter-array:after {
+  content: "[]";
+}
+.json-formatter-row .json-formatter-string,
+.json-formatter-row .json-formatter-stringifiable {
+  color: green;
+  white-space: pre;
+  word-wrap: break-word;
+}
+.json-formatter-row .json-formatter-number {
+  color: blue;
+}
+.json-formatter-row .json-formatter-boolean {
+  color: red;
+}
+.json-formatter-row .json-formatter-null {
+  color: #855A00;
+}
+.json-formatter-row .json-formatter-undefined {
+  color: #ca0b69;
+}
+.json-formatter-row .json-formatter-function {
+  color: #FF20ED;
+}
+.json-formatter-row .json-formatter-date {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.json-formatter-row .json-formatter-url {
+  text-decoration: underline;
+  color: blue;
+  cursor: pointer;
+}
+.json-formatter-row .json-formatter-bracket {
+  color: blue;
+}
+.json-formatter-row .json-formatter-key {
+  color: #00008B;
+  padding-right: 0.2rem;
+}
+.json-formatter-row .json-formatter-toggler-link {
+  cursor: pointer;
+}
+.json-formatter-row .json-formatter-toggler {
+  line-height: 1.2rem;
+  font-size: 0.7rem;
+  vertical-align: middle;
+  opacity: 0.6;
+  cursor: pointer;
+  padding-right: 0.2rem;
+}
+.json-formatter-row .json-formatter-toggler:after {
+  display: inline-block;
+  transition: transform 100ms ease-in;
+  content: "►";
+}
+.json-formatter-row > a > .json-formatter-preview-text {
+  opacity: 0;
+  transition: opacity 0.15s ease-in;
+  font-style: italic;
+}
+.json-formatter-row:hover > a > .json-formatter-preview-text {
+  opacity: 0.6;
+}
+.json-formatter-row.json-formatter-open > .json-formatter-toggler-link .json-formatter-toggler:after {
+  transform: rotate(90deg);
+}
+.json-formatter-row.json-formatter-open > .json-formatter-children:after {
+  display: inline-block;
+}
+.json-formatter-row.json-formatter-open > a > .json-formatter-preview-text {
+  display: none;
+}
+.json-formatter-row.json-formatter-open.json-formatter-empty:after {
+  display: block;
+}
+.json-formatter-dark.json-formatter-row {
+  font-family: monospace;
+}
+.json-formatter-dark.json-formatter-row,
+.json-formatter-dark.json-formatter-row a,
+.json-formatter-dark.json-formatter-row a:hover {
+  color: white;
+  text-decoration: none;
+}
+.json-formatter-dark.json-formatter-row .json-formatter-row {
+  margin-left: 1rem;
+}
+.json-formatter-dark.json-formatter-row .json-formatter-children.json-formatter-empty {
+  opacity: 0.5;
+  margin-left: 1rem;
+}
+.json-formatter-dark.json-formatter-row .json-formatter-children.json-formatter-empty:after {
+  display: none;
+}
+.json-formatter-dark.json-formatter-row .json-formatter-children.json-formatter-empty.json-formatter-object:after {
+  content: "No properties";
+}
+.json-formatter-dark.json-formatter-row .json-formatter-children.json-formatter-empty.json-formatter-array:after {
+  content: "[]";
+}
+.json-formatter-dark.json-formatter-row .json-formatter-string,
+.json-formatter-dark.json-formatter-row .json-formatter-stringifiable {
+  color: #31F031;
+  white-space: pre;
+  word-wrap: break-word;
+}
+.json-formatter-dark.json-formatter-row .json-formatter-number {
+  color: #66C2FF;
+}
+.json-formatter-dark.json-formatter-row .json-formatter-boolean {
+  color: #EC4242;
+}
+.json-formatter-dark.json-formatter-row .json-formatter-null {
+  color: #EEC97D;
+}
+.json-formatter-dark.json-formatter-row .json-formatter-undefined {
+  color: #ef8fbe;
+}
+.json-formatter-dark.json-formatter-row .json-formatter-function {
+  color: #FD48CB;
+}
+.json-formatter-dark.json-formatter-row .json-formatter-date {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+.json-formatter-dark.json-formatter-row .json-formatter-url {
+  text-decoration: underline;
+  color: #027BFF;
+  cursor: pointer;
+}
+.json-formatter-dark.json-formatter-row .json-formatter-bracket {
+  color: #9494FF;
+}
+.json-formatter-dark.json-formatter-row .json-formatter-key {
+  color: #23A0DB;
+  padding-right: 0.2rem;
+}
+.json-formatter-dark.json-formatter-row .json-formatter-toggler-link {
+  cursor: pointer;
+}
+.json-formatter-dark.json-formatter-row .json-formatter-toggler {
+  line-height: 1.2rem;
+  font-size: 0.7rem;
+  vertical-align: middle;
+  opacity: 0.6;
+  cursor: pointer;
+  padding-right: 0.2rem;
+}
+.json-formatter-dark.json-formatter-row .json-formatter-toggler:after {
+  display: inline-block;
+  transition: transform 100ms ease-in;
+  content: "►";
+}
+.json-formatter-dark.json-formatter-row > a > .json-formatter-preview-text {
+  opacity: 0;
+  transition: opacity 0.15s ease-in;
+  font-style: italic;
+}
+.json-formatter-dark.json-formatter-row:hover > a > .json-formatter-preview-text {
+  opacity: 0.6;
+}
+.json-formatter-dark.json-formatter-row.json-formatter-open > .json-formatter-toggler-link .json-formatter-toggler:after {
+  transform: rotate(90deg);
+}
+.json-formatter-dark.json-formatter-row.json-formatter-open > .json-formatter-children:after {
+  display: inline-block;
+}
+.json-formatter-dark.json-formatter-row.json-formatter-open > a > .json-formatter-preview-text {
+  display: none;
+}
+.json-formatter-dark.json-formatter-row.json-formatter-open.json-formatter-empty:after {
+  display: block;
+}
+</style><script type="text/javascript">
+            Bokeh.set_log_level("info");
+        </script>
+  </head>
+  <body class="is-preload">
+
+		<!-- Content -->
+			<div id="content">
+					
+				<div class="inner">
+          {% for paciente in pacientes %}<a href="{% url 'graficos' paciente.username_paciente_id %}" style="color: white;"><button>Volver</button></a>
+          {% endfor %}
+
+					<!-- Post -->
+						<article class="box post post-excerpt">
+							
+							<header>
+                {% for paciente in pacientes %}
+                <h2>Paciente:
+{{ paciente.nombre_paciente}} {{ paciente.apellido_paciente}}</h2>
+{% endfor %}
+
+
+							</header>
+              <div class="bk-root" id="2fb9e84f-c337-4b29-8723-2245b8937a62" data-root-id="2564"></div>
+              <div class="bk-root" id="d33cdd2d-6cfe-4370-9cb9-c65cdcd681ff" data-root-id="2658"></div>
+							
+						</article>					
+                         
+					<!-- Post -->
+
+
+					<!-- Pagination -->
+						
+				</div>
+				
+							
+			</div>
+
+		<!-- Sidebar -->
+			<div id="sidebar">
+
+				<!-- Logo -->
+				<h1 id="logo"><a href="#">Voz Parkinson</a></h1>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul>
+              <li ><a href="{% url 'fonoaudiologo' %}">Inicio Fonoaudiologo</a></li>
+							<li class="current"><a href="{% url 'fonoaudiologo_paciente' %}">Mis Pacientes</a></li>
+							<li><a href="{% url 'logout' %}">Cerrar Sesion</a></li>
+
+						</ul>
+					</nav>
+
+				<!-- Search -->
+					<section class="box search">
+						<form method="post" action="#">
+							<input type="text" class="text" name="search" placeholder="Search" />
+						</form>
+					</section>
+
+				<!-- Text -->
+					<section class="box text-style1">
+						<div class="inner">
+							<p>
+								<strong>Striped:</strong> A free and fully responsive HTML5 site
+								template designed by <a href="http://twitter.com/ajlkn">AJ</a> for <a href="http://html5up.net/">HTML5 UP</a>
+							</p>
+						</div>
+					</section>
+
+				<!-- Recent Posts -->
+					<section class="box recent-posts">
+						<header>
+							<h2>Recent Posts</h2>
+						</header>
+						<ul>
+							<li><a href="#">Lorem ipsum dolor</a></li>
+							<li><a href="#">Feugiat nisl aliquam</a></li>
+							<li><a href="#">Sed dolore magna</a></li>
+							<li><a href="#">Malesuada commodo</a></li>
+							<li><a href="#">Ipsum metus nullam</a></li>
+						</ul>
+					</section>
+
+				<!-- Recent Comments -->
+					<section class="box recent-comments">
+						<header>
+							<h2>Recent Comments</h2>
+						</header>
+						<ul>
+							<li>case on <a href="#">Lorem ipsum dolor</a></li>
+							<li>molly on <a href="#">Sed dolore magna</a></li>
+							<li>case on <a href="#">Sed dolore magna</a></li>
+						</ul>
+					</section>
+
+				<!-- Calendar -->
+					<section class="box calendar">
+						<div class="inner">
+							<table>
+								<caption>July 2014</caption>
+								<thead>
+									<tr>
+										<th scope="col" title="Monday">M</th>
+										<th scope="col" title="Tuesday">T</th>
+										<th scope="col" title="Wednesday">W</th>
+										<th scope="col" title="Thursday">T</th>
+										<th scope="col" title="Friday">F</th>
+										<th scope="col" title="Saturday">S</th>
+										<th scope="col" title="Sunday">S</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td colspan="4" class="pad"><span>&nbsp;</span></td>
+										<td><span>1</span></td>
+										<td><span>2</span></td>
+										<td><span>3</span></td>
+									</tr>
+									<tr>
+										<td><span>4</span></td>
+										<td><span>5</span></td>
+										<td><a href="#">6</a></td>
+										<td><span>7</span></td>
+										<td><span>8</span></td>
+										<td><span>9</span></td>
+										<td><a href="#">10</a></td>
+									</tr>
+									<tr>
+										<td><span>11</span></td>
+										<td><span>12</span></td>
+										<td><span>13</span></td>
+										<td class="today"><a href="#">14</a></td>
+										<td><span>15</span></td>
+										<td><span>16</span></td>
+										<td><span>17</span></td>
+									</tr>
+									<tr>
+										<td><span>18</span></td>
+										<td><span>19</span></td>
+										<td><span>20</span></td>
+										<td><span>21</span></td>
+										<td><span>22</span></td>
+										<td><a href="#">23</a></td>
+										<td><span>24</span></td>
+									</tr>
+									<tr>
+										<td><a href="#">25</a></td>
+										<td><span>26</span></td>
+										<td><span>27</span></td>
+										<td><span>28</span></td>
+										<td class="pad" colspan="3"><span>&nbsp;</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</section>
+
+				<!-- Copyright -->
+					<ul id="copyright">
+						<li>&copy; Untitled.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+
+					</ul>
+
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="/static/js/jquery.min.js"></script>
+			<script src="/static/js/browser.min.js"></script>
+			<script src="/static/js/breakpoints.min.js"></script>
+			<script src="/static/js/util.js"></script>
+			<script src="/static/js/main.js"></script>
+			
+	
+    
+          
+
+      
+          
+
+      
+        <script type="application/json" id="2785">
+          {"c1c3b09c-86c8-4f78-bdb3-880c67a907bb":{"defs":[{"extends":null,"module":null,"name":"ReactiveHTML1","overrides":[],"properties":[]},{"extends":null,"module":null,"name":"FlexBox1","overrides":[],"properties":[{"default":"flex-start","kind":null,"name":"align_content"},{"default":"flex-start","kind":null,"name":"align_items"},{"default":"row","kind":null,"name":"flex_direction"},{"default":"wrap","kind":null,"name":"flex_wrap"},{"default":"flex-start","kind":null,"name":"justify_content"}]},{"extends":null,"module":null,"name":"GridStack1","overrides":[],"properties":[{"default":"warn","kind":null,"name":"mode"},{"default":null,"kind":null,"name":"ncols"},{"default":null,"kind":null,"name":"nrows"},{"default":true,"kind":null,"name":"allow_resize"},{"default":true,"kind":null,"name":"allow_drag"},{"default":[],"kind":null,"name":"state"}]},{"extends":null,"module":null,"name":"click1","overrides":[],"properties":[{"default":"","kind":null,"name":"terminal_output"},{"default":"","kind":null,"name":"debug_name"},{"default":0,"kind":null,"name":"clears"}]},{"extends":null,"module":null,"name":"NotificationAreaBase1","overrides":[],"properties":[{"default":"bottom-right","kind":null,"name":"position"},{"default":0,"kind":null,"name":"_clear"}]},{"extends":null,"module":null,"name":"NotificationArea1","overrides":[],"properties":[{"default":[],"kind":null,"name":"notifications"},{"default":"bottom-right","kind":null,"name":"position"},{"default":0,"kind":null,"name":"_clear"},{"default":[{"background":"#ffc107","icon":{"className":"fas fa-exclamation-triangle","color":"white","tagName":"i"},"type":"warning"},{"background":"#007bff","icon":{"className":"fas fa-info-circle","color":"white","tagName":"i"},"type":"info"}],"kind":null,"name":"types"}]},{"extends":null,"module":null,"name":"Notification","overrides":[],"properties":[{"default":null,"kind":null,"name":"background"},{"default":3000,"kind":null,"name":"duration"},{"default":null,"kind":null,"name":"icon"},{"default":"","kind":null,"name":"message"},{"default":null,"kind":null,"name":"notification_type"},{"default":false,"kind":null,"name":"_destroyed"}]},{"extends":null,"module":null,"name":"TemplateActions1","overrides":[],"properties":[{"default":0,"kind":null,"name":"open_modal"},{"default":0,"kind":null,"name":"close_modal"}]},{"extends":null,"module":null,"name":"MaterialTemplateActions1","overrides":[],"properties":[{"default":0,"kind":null,"name":"open_modal"},{"default":0,"kind":null,"name":"close_modal"}]}],"roots":{"references":[{"attributes":{},"id":"2574","type":"LinearScale"},{"attributes":{"end":20,"reset_end":20,"reset_start":8,"start":8,"tags":[[["hora","hora",null]]]},"id":"2566","type":"Range1d"},{"attributes":{"end":2.0955,"reset_end":2.0955,"reset_start":0.04949999999999999,"start":0.04949999999999999,"tags":[[["localdbShimmer","localdbShimmer",null]]]},"id":"2567","type":"Range1d"},{"attributes":{"background_fill_color":"#000000","below":[{"id":"2578"}],"border_fill_color":"#FFFFFF","center":[{"id":"2581"},{"id":"2585"}],"height":500,"left":[{"id":"2582"}],"margin":[5,5,5,5],"min_border_bottom":10,"min_border_left":10,"min_border_right":10,"min_border_top":10,"outline_line_alpha":0.25,"outline_line_color":"#000000","renderers":[{"id":"2605"}],"sizing_mode":"fixed","title":{"id":"2570"},"toolbar":{"id":"2592"},"width":1200,"x_range":{"id":"2566"},"x_scale":{"id":"2574"},"y_range":{"id":"2567"},"y_scale":{"id":"2576"}},"id":"2569","subtype":"Figure","type":"Plot"},{"attributes":{"callback":null,"renderers":[{"id":"2605"}],"tooltips":[["Usuario","@user"],["Hora Grabaci\u00f3n","@hora"],["Fecha","@date"]]},"id":"2568","type":"HoverTool"},{"attributes":{"bottom_units":"screen","coordinates":null,"fill_alpha":0.5,"fill_color":"lightgrey","group":null,"left_units":"screen","level":"overlay","line_alpha":1.0,"line_color":"black","line_dash":[4,4],"line_width":2,"right_units":"screen","syncable":false,"top_units":"screen"},"id":"2591","type":"BoxAnnotation"},{"attributes":{"axis_label":"hora","axis_label_standoff":10,"axis_label_text_color":"#000000","axis_label_text_font":"Helvetica","axis_label_text_font_size":"1.25em","axis_label_text_font_style":"normal","axis_line_alpha":0,"axis_line_color":"#000000","coordinates":null,"formatter":{"id":"2609"},"group":null,"major_label_policy":{"id":"2610"},"major_label_text_color":"#000000","major_label_text_font":"Helvetica","major_label_text_font_size":"1.025em","major_tick_line_alpha":0,"major_tick_line_color":"#000000","minor_tick_line_alpha":0,"minor_tick_line_color":"#000000","ticker":{"id":"2579"}},"id":"2578","type":"LinearAxis"},{"attributes":{"data":{"date":["2022-10-29 13-06-05","2022-09-24 10-01-21","2022-11-04 16-40-41","2022-09-05 14-01-24","2022-09-03 13-03-00","2022-11-03 09-29-31","2022-10-21 19-01-39","2022-10-17 19-01-38","2022-09-06 10-01-25","2022-10-18 15-02-32","2022-09-24 13-01-23","2022-10-25 16-01-17","2022-10-28 13-01-30","2022-09-09 18-06-40","2022-10-07 14-46-50","2022-11-05 21-59-31","2022-10-23 15-06-57","2022-09-20 09-04-45","2022-09-09 19-01-13","2022-10-22 15-01-23","2022-10-07 13-14-10","2022-10-30 21-01-29","2022-09-13 09-03-37","2022-10-11 10-01-45","2022-09-07 11-01-48","2022-10-21 16-01-55","2022-09-11 13-01-33","2022-10-24 09-01-32","2022-09-12 09-02-44","2022-09-12 18-01-30","2022-10-24 15-02-40","2022-10-26 12-04-37","2022-09-02 17-01-02","2022-10-17 22-01-13","2022-10-22 13-01-11","2022-10-13 09-02-05","2022-10-25 10-14-18","2022-10-20 22-04-50","2022-09-03 09-01-44","2022-09-04 09-07-44","2022-10-17 09-02-03","2022-11-02 10-01-53","2022-11-06 12-02-20","2022-11-06 09-23-25","2022-09-09 15-01-56","2022-09-26 18-30-07","2022-09-02 18-02-05","2022-09-15 13-17-32","2022-11-01 21-00-46","2022-10-10 18-01-39","2022-09-24 14-01-23","2022-11-04 09-05-22","2022-10-18 21-00-52","2022-09-23 18-07-47","2022-11-04 10-01-04","2022-10-16 17-01-13","2022-09-16 09-02-38","2022-10-14 13-01-09","2022-09-12 17-01-38","2022-09-17 14-02-33","2022-09-16 14-01-27","2022-09-17 10-02-15","2022-09-18 09-02-03","2022-10-16 14-01-15","2022-10-29 15-02-24","2022-09-21 09-01-24","2022-09-12 13-04-21","2022-10-26 13-01-03","2022-09-15 10-01-53","2022-10-19 22-02-26","2022-10-23 12-03-43","2022-10-05 14-02-01","2022-10-24 12-01-32","2022-10-21 22-01-26","2022-09-25 10-17-00","2022-10-22 21-00-51","2022-11-06 13-04-12","2022-10-21 10-02-39","2022-09-23 09-02-53","2022-11-01 10-06-04","2022-09-08 11-02-47","2022-10-27 19-08-48","2022-09-23 10-01-40","2022-09-13 18-01-27","2022-10-27 18-01-18","2022-10-13 13-01-34","2022-10-16 19-19-31","2022-10-17 17-40-08","2022-10-26 22-03-14","2022-10-15 10-40-30","2022-10-15 18-02-52","2022-09-06 18-06-47","2022-10-14 10-03-01","2022-10-23 13-10-26","2022-10-16 13-07-28","2022-10-31 19-01-31","2022-10-11 18-01-08","2022-10-15 17-00-53","2022-10-30 19-01-02","2022-10-30 13-01-51","2022-11-05 10-00-50","2022-09-02 13-00-56","2022-10-06 17-51-39","2022-09-25 09-02-27","2022-10-05 13-02-24","2022-10-05 09-01-33","2022-09-18 18-02-20","2022-09-21 18-05-04","2022-10-27 10-11-09","2022-10-15 14-01-25","2022-11-03 19-01-29","2022-09-19 18-01-02","2022-10-22 16-01-20","2022-10-18 18-01-32","2022-09-25 18-29-08","2022-10-05 18-27-22","2022-09-23 14-01-04","2022-10-26 11-08-28","2022-10-23 22-02-58","2022-10-28 18-01-14","2022-10-22 18-33-42","2022-09-20 17-01-37","2022-09-15 14-01-26","2022-10-31 15-01-08","2022-10-07 18-01-10","2022-10-29 10-01-19","2022-09-03 14-01-27","2022-10-16 09-02-09","2022-09-22 17-01-39","2022-09-15 18-01-32","2022-09-16 10-01-00","2022-10-19 12-01-24","2022-10-30 22-00-59","2022-09-13 14-00-58","2022-11-02 21-01-42","2022-10-08 13-01-43","2022-09-14 13-01-44","2022-10-20 19-01-20","2022-09-14 09-01-53","2022-10-19 21-01-09","2022-09-20 14-02-10","2022-11-05 22-01-24","2022-09-01 12-38-56","2022-09-16 18-09-05","2022-10-29 19-02-30","2022-09-22 10-03-09","2022-10-27 16-01-25","2022-10-05 09-23-36","2022-10-23 18-06-01","2022-10-10 11-17-26","2022-10-26 16-00-57","2022-09-11 14-02-10","2022-09-18 17-03-19","2022-10-21 21-04-15","2022-11-03 10-01-14","2022-09-06 11-01-03","2022-09-04 18-01-07","2022-11-02 22-22-34","2022-10-27 13-03-34","2022-10-17 13-01-09","2022-09-19 14-01-42","2022-09-03 10-01-15","2022-09-20 13-02-07","2022-11-02 18-03-11","2022-10-20 18-01-31","2022-09-07 10-01-46","2022-09-26 17-01-23","2022-09-06 15-01-50","2022-10-31 12-01-09","2022-09-17 13-01-24","2022-10-13 18-15-25","2022-10-05 10-49-33","2022-09-09 10-04-34","2022-10-28 10-02-24","2022-10-28 21-01-01","2022-09-11 17-01-20","2022-10-26 21-01-02","2022-10-21 15-01-10","2022-10-15 09-01-54","2022-10-15 13-01-16","2022-10-30 12-02-03","2022-11-01 18-35-39","2022-09-17 18-09-28","2022-10-08 17-01-30","2022-10-30 09-04-01","2022-10-13 14-01-21","2022-09-26 14-20-24","2022-09-25 16-41-35","2022-11-03 21-01-11","2022-10-14 14-01-54","2022-10-09 13-01-20","2022-10-21 09-04-47","2022-09-08 19-01-41","2022-09-24 18-01-40","2022-10-19 18-01-14","2022-09-09 11-01-29","2022-10-08 18-03-17","2022-10-27 15-03-34","2022-09-10 14-01-25","2022-10-21 12-01-12","2022-10-13 10-01-25","2022-10-14 18-01-20","2022-09-08 10-01-36","2022-10-25 22-01-44","2022-09-20 10-01-34","2022-11-05 19-01-33","2022-10-30 15-01-10","2022-09-24 09-16-15","2022-10-20 16-01-01","2022-10-09 10-06-37","2022-11-03 12-20-57","2022-11-02 19-14-58","2022-10-08 10-03-28","2022-10-23 09-01-27","2022-10-29 12-03-53","2022-09-01 18-08-33","2022-11-05 09-10-14","2022-10-18 09-01-36","2022-11-01 19-07-03","2022-10-20 09-02-17","2022-10-10 14-01-04","2022-09-22 15-52-57","2022-09-23 13-01-28","2022-10-30 18-01-06","2022-10-19 13-01-09","2022-10-27 12-01-07","2022-10-26 15-12-35","2022-10-24 22-01-47","2022-09-05 18-01-13","2022-10-19 10-01-58","2022-09-04 13-01-41","2022-10-09 17-02-19","2022-10-21 13-10-24","2022-10-29 16-01-19","2022-09-10 18-02-57","2022-11-05 12-01-22","2022-09-22 13-09-33","2022-10-24 10-01-25","2022-09-02 10-01-23","2022-09-04 14-01-02","2022-09-16 17-00-53","2022-09-11 10-04-00","2022-09-26 10-01-35","2022-09-10 10-01-31","2022-11-04 19-02-47","2022-10-18 19-01-12","2022-11-01 12-01-15","2022-10-31 10-03-02","2022-10-10 17-10-09","2022-10-17 14-01-43","2022-10-19 15-04-09","2022-10-23 16-01-36","2022-10-19 09-03-37","2022-09-18 13-03-53","2022-10-30 10-07-50","2022-09-02 14-00-54","2022-09-16 13-01-35","2022-10-24 18-02-17","2022-10-07 10-03-04","2022-09-06 14-01-27","2022-11-04 18-00-49","2022-10-25 09-06-55","2022-09-08 18-21-08","2022-09-13 10-43-19","2022-09-07 15-07-11","2022-09-10 19-01-40","2022-09-15 09-07-21","2022-09-01 17-01-49","2022-10-09 09-10-48","2022-09-04 17-01-30","2022-09-09 14-02-11","2022-10-21 18-01-24","2022-09-13 17-01-45","2022-11-05 18-01-32","2022-10-13 17-00-55","2022-10-06 10-01-36","2022-10-25 15-02-48","2022-09-03 18-00-57","2022-10-31 13-01-34","2022-10-10 13-26-08","2022-10-18 13-43-35","2022-10-28 22-01-35","2022-10-25 12-21-49","2022-10-14 09-01-20","2022-10-20 10-01-38","2022-10-20 15-01-02","2022-10-06 09-03-02","2022-10-06 18-01-14","2022-09-05 10-02-09","2022-09-14 10-01-58","2022-10-29 22-04-50","2022-09-22 09-03-36","2022-10-31 22-01-07","2022-09-19 17-02-44","2022-10-25 19-02-41","2022-09-12 10-25-06","2022-10-26 09-02-50","2022-10-27 21-03-58","2022-09-17 09-02-16","2022-09-05 13-58-18","2022-10-28 09-02-34","2022-09-06 19-01-24","2022-09-22 18-01-51","2022-10-19 19-01-02","2022-09-08 14-01-54","2022-10-24 16-01-53","2022-09-23 17-01-52","2022-10-25 13-01-19","2022-09-05 19-53-57","2022-10-16 10-01-09","2022-11-03 16-06-47","2022-10-17 10-17-05","2022-10-18 22-01-30","2022-11-01 09-13-49","2022-10-07 09-03-44","2022-09-03 17-11-06","2022-11-06 10-01-00","2022-10-18 12-30-24","2022-09-20 18-01-31","2022-10-14 17-01-03","2022-11-03 13-41-28","2022-09-11 18-01-24","2022-10-29 09-38-12","2022-09-10 11-15-53","2022-09-13 13-01-42","2022-10-09 14-02-07","2022-10-22 19-01-40","2022-09-04 10-01-14","2022-10-17 21-01-15","2022-10-28 19-01-07","2022-11-01 22-01-15","2022-09-19 10-02-01","2022-10-31 18-01-09","2022-10-25 18-01-48","2022-10-23 19-01-12","2022-11-03 15-08-48","2022-10-20 12-01-30","2022-10-08 14-01-39","2022-10-26 19-25-15","2022-11-02 09-02-05","2022-09-18 10-01-08","2022-09-07 14-01-37","2022-11-03 18-05-08","2022-09-25 17-01-35","2022-09-19 09-04-20","2022-10-11 09-03-56","2022-09-19 13-01-53","2022-10-31 16-01-04","2022-09-26 09-02-19","2022-10-18 16-00-57","2022-10-11 17-01-25","2022-10-06 13-01-33"],"hora":[13,10,16,14,13,9,19,19,10,15,13,16,13,18,14,21,15,9,19,15,13,21,9,10,11,16,13,9,9,18,15,12,17,22,13,9,10,22,9,9,9,10,12,9,15,18,18,13,21,18,14,9,21,18,10,17,9,13,17,14,14,10,9,14,15,9,13,13,10,22,12,14,12,22,10,21,13,10,9,10,11,19,10,18,18,13,19,17,22,10,18,18,10,13,13,19,18,17,19,13,10,13,17,9,13,9,18,18,10,14,19,18,16,18,18,18,14,11,22,18,18,17,14,15,18,10,14,9,17,18,10,12,22,14,21,13,13,19,9,21,14,22,12,18,19,10,16,9,18,11,16,14,17,21,10,11,18,22,13,13,14,10,13,18,18,10,17,15,12,13,18,10,10,10,21,17,21,15,9,13,12,18,18,17,9,14,14,16,21,14,13,9,19,18,18,11,18,15,14,12,10,18,10,22,10,19,15,9,16,10,12,19,10,9,12,18,9,9,19,9,14,15,13,18,13,12,15,22,18,10,13,17,13,16,18,12,13,10,10,14,17,10,10,10,19,19,12,10,17,14,15,16,9,13,10,14,13,18,10,14,18,9,18,10,15,19,9,17,9,17,14,18,17,18,17,10,15,18,13,13,13,22,12,9,10,15,9,18,10,10,22,9,22,17,19,10,9,21,9,13,9,19,18,19,14,16,17,13,19,10,16,10,22,9,9,17,10,12,18,17,13,18,9,11,13,14,19,10,21,19,22,10,18,18,19,15,12,14,19,9,10,14,18,17,9,9,13,16,9,16,17,13],"localdbShimmer":{"__ndarray__":"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","dtype":"float64","order":"little","shape":[352]},"user":["Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras","Aida Contreras"]},"selected":{"id":"2600"},"selection_policy":{"id":"2639"}},"id":"2599","type":"ColumnDataSource"},{"attributes":{},"id":"2576","type":"LinearScale"},{"attributes":{},"id":"2613","type":"AllLabels"},{"attributes":{"axis":{"id":"2578"},"coordinates":null,"grid_line_alpha":0.25,"grid_line_color":"#E0E0E0","group":null,"ticker":{"id":"2579"}},"id":"2581","type":"Grid"},{"attributes":{},"id":"2587","type":"PanTool"},{"attributes":{},"id":"2610","type":"AllLabels"},{"attributes":{"children":[{"id":"2644"},{"id":"2645"},{"id":"2647"}],"margin":[0,0,0,0],"name":"Column04353"},"id":"2643","type":"Column"},{"attributes":{"coordinates":null,"group":null,"text":"Variabilidad Temporal [localdbShimmer]","text_color":"#000000","text_font":"Helvetica","text_font_size":"1.15em"},"id":"2570","type":"Title"},{"attributes":{"children":[{"id":"2565"},{"id":"2569"},{"id":"2642"},{"id":"2643"}],"margin":[0,0,0,0],"name":"Row04338","tags":["embedded"]},"id":"2564","type":"Row"},{"attributes":{},"id":"2579","type":"BasicTicker"},{"attributes":{"tools":[{"id":"2568"},{"id":"2586"},{"id":"2587"},{"id":"2588"},{"id":"2589"},{"id":"2590"}]},"id":"2592","type":"Toolbar"},{"attributes":{"axis_label":"localdbShimmer","axis_label_standoff":10,"axis_label_text_color":"#000000","axis_label_text_font":"Helvetica","axis_label_text_font_size":"1.25em","axis_label_text_font_style":"normal","axis_line_alpha":0,"axis_line_color":"#000000","coordinates":null,"formatter":{"id":"2612"},"group":null,"major_label_policy":{"id":"2613"},"major_label_text_color":"#000000","major_label_text_font":"Helvetica","major_label_text_font_size":"1.025em","major_tick_line_alpha":0,"major_tick_line_color":"#000000","minor_tick_line_alpha":0,"minor_tick_line_color":"#000000","ticker":{"id":"2583"}},"id":"2582","type":"LinearAxis"},{"attributes":{"axis":{"id":"2582"},"coordinates":null,"dimension":1,"grid_line_alpha":0.25,"grid_line_color":"#E0E0E0","group":null,"ticker":{"id":"2583"}},"id":"2585","type":"Grid"},{"attributes":{},"id":"2639","type":"UnionRenderers"},{"attributes":{},"id":"2583","type":"BasicTicker"},{"attributes":{},"id":"2600","type":"Selection"},{"attributes":{},"id":"2588","type":"WheelZoomTool"},{"attributes":{"fill_color":{"value":"#30a2da"},"hatch_color":{"value":"#30a2da"},"line_color":{"value":"#30a2da"},"size":{"value":2.449489742783178},"x":{"field":"hora"},"y":{"field":"localdbShimmer"}},"id":"2602","type":"Scatter"},{"attributes":{"children":[{"id":"2646"}],"css_classes":["panel-widget-box"],"margin":[5,5,5,5],"name":"WidgetBox04339"},"id":"2645","type":"Column"},{"attributes":{},"id":"2586","type":"SaveTool"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#30a2da"},"hatch_alpha":{"value":0.1},"hatch_color":{"value":"#30a2da"},"line_alpha":{"value":0.1},"line_color":{"value":"#30a2da"},"size":{"value":2.449489742783178},"x":{"field":"hora"},"y":{"field":"localdbShimmer"}},"id":"2603","type":"Scatter"},{"attributes":{"margin":[5,5,5,5],"name":"VSpacer04351","sizing_mode":"stretch_height"},"id":"2644","type":"Spacer"},{"attributes":{},"id":"2612","type":"BasicTickFormatter"},{"attributes":{"coordinates":null,"data_source":{"id":"2599"},"glyph":{"id":"2602"},"group":null,"hover_glyph":null,"muted_glyph":{"id":"2604"},"nonselection_glyph":{"id":"2603"},"selection_glyph":{"id":"2607"},"view":{"id":"2606"}},"id":"2605","type":"GlyphRenderer"},{"attributes":{"overlay":{"id":"2591"}},"id":"2589","type":"BoxZoomTool"},{"attributes":{},"id":"2609","type":"BasicTickFormatter"},{"attributes":{"source":{"id":"2599"}},"id":"2606","type":"CDSView"},{"attributes":{},"id":"2590","type":"ResetTool"},{"attributes":{"fill_alpha":{"value":0.2},"fill_color":{"value":"#30a2da"},"hatch_alpha":{"value":0.2},"hatch_color":{"value":"#30a2da"},"line_alpha":{"value":0.2},"line_color":{"value":"#30a2da"},"size":{"value":2.449489742783178},"x":{"field":"hora"},"y":{"field":"localdbShimmer"}},"id":"2604","type":"Scatter"},{"attributes":{"margin":[5,5,5,5],"name":"VSpacer04352","sizing_mode":"stretch_height"},"id":"2647","type":"Spacer"},{"attributes":{"state":{"Aida Contreras":{"content":"{\"events\": [{\"cols\": null, \"column_source\": {\"id\": \"2599\"}, \"kind\": \"ColumnDataChanged\", \"new\": {\"date\": [\"2022-10-29 13-06-05\", \"2022-09-24 10-01-21\", \"2022-11-04 16-40-41\", \"2022-09-05 14-01-24\", \"2022-09-03 13-03-00\", \"2022-11-03 09-29-31\", \"2022-10-21 19-01-39\", \"2022-10-17 19-01-38\", \"2022-09-06 10-01-25\", \"2022-10-18 15-02-32\", \"2022-09-24 13-01-23\", \"2022-10-25 16-01-17\", \"2022-10-28 13-01-30\", \"2022-09-09 18-06-40\", \"2022-10-07 14-46-50\", \"2022-11-05 21-59-31\", \"2022-10-23 15-06-57\", \"2022-09-20 09-04-45\", \"2022-09-09 19-01-13\", \"2022-10-22 15-01-23\", \"2022-10-07 13-14-10\", \"2022-10-30 21-01-29\", \"2022-09-13 09-03-37\", \"2022-10-11 10-01-45\", \"2022-09-07 11-01-48\", \"2022-10-21 16-01-55\", \"2022-09-11 13-01-33\", \"2022-10-24 09-01-32\", \"2022-09-12 09-02-44\", \"2022-09-12 18-01-30\", \"2022-10-24 15-02-40\", \"2022-10-26 12-04-37\", \"2022-09-02 17-01-02\", \"2022-10-17 22-01-13\", \"2022-10-22 13-01-11\", \"2022-10-13 09-02-05\", \"2022-10-25 10-14-18\", \"2022-10-20 22-04-50\", \"2022-09-03 09-01-44\", \"2022-09-04 09-07-44\", \"2022-10-17 09-02-03\", \"2022-11-02 10-01-53\", \"2022-11-06 12-02-20\", \"2022-11-06 09-23-25\", \"2022-09-09 15-01-56\", \"2022-09-26 18-30-07\", \"2022-09-02 18-02-05\", \"2022-09-15 13-17-32\", \"2022-11-01 21-00-46\", \"2022-10-10 18-01-39\", \"2022-09-24 14-01-23\", \"2022-11-04 09-05-22\", \"2022-10-18 21-00-52\", \"2022-09-23 18-07-47\", \"2022-11-04 10-01-04\", \"2022-10-16 17-01-13\", \"2022-09-16 09-02-38\", \"2022-10-14 13-01-09\", \"2022-09-12 17-01-38\", \"2022-09-17 14-02-33\", \"2022-09-16 14-01-27\", \"2022-09-17 10-02-15\", \"2022-09-18 09-02-03\", \"2022-10-16 14-01-15\", \"2022-10-29 15-02-24\", \"2022-09-21 09-01-24\", \"2022-09-12 13-04-21\", \"2022-10-26 13-01-03\", \"2022-09-15 10-01-53\", \"2022-10-19 22-02-26\", \"2022-10-23 12-03-43\", \"2022-10-05 14-02-01\", \"2022-10-24 12-01-32\", \"2022-10-21 22-01-26\", \"2022-09-25 10-17-00\", \"2022-10-22 21-00-51\", \"2022-11-06 13-04-12\", \"2022-10-21 10-02-39\", \"2022-09-23 09-02-53\", \"2022-11-01 10-06-04\", \"2022-09-08 11-02-47\", \"2022-10-27 19-08-48\", \"2022-09-23 10-01-40\", \"2022-09-13 18-01-27\", \"2022-10-27 18-01-18\", \"2022-10-13 13-01-34\", \"2022-10-16 19-19-31\", \"2022-10-17 17-40-08\", \"2022-10-26 22-03-14\", \"2022-10-15 10-40-30\", \"2022-10-15 18-02-52\", \"2022-09-06 18-06-47\", \"2022-10-14 10-03-01\", \"2022-10-23 13-10-26\", \"2022-10-16 13-07-28\", \"2022-10-31 19-01-31\", \"2022-10-11 18-01-08\", \"2022-10-15 17-00-53\", \"2022-10-30 19-01-02\", \"2022-10-30 13-01-51\", \"2022-11-05 10-00-50\", \"2022-09-02 13-00-56\", \"2022-10-06 17-51-39\", \"2022-09-25 09-02-27\", \"2022-10-05 13-02-24\", \"2022-10-05 09-01-33\", \"2022-09-18 18-02-20\", \"2022-09-21 18-05-04\", \"2022-10-27 10-11-09\", \"2022-10-15 14-01-25\", \"2022-11-03 19-01-29\", \"2022-09-19 18-01-02\", \"2022-10-22 16-01-20\", \"2022-10-18 18-01-32\", \"2022-09-25 18-29-08\", \"2022-10-05 18-27-22\", \"2022-09-23 14-01-04\", \"2022-10-26 11-08-28\", \"2022-10-23 22-02-58\", \"2022-10-28 18-01-14\", \"2022-10-22 18-33-42\", \"2022-09-20 17-01-37\", \"2022-09-15 14-01-26\", \"2022-10-31 15-01-08\", \"2022-10-07 18-01-10\", \"2022-10-29 10-01-19\", \"2022-09-03 14-01-27\", \"2022-10-16 09-02-09\", \"2022-09-22 17-01-39\", \"2022-09-15 18-01-32\", \"2022-09-16 10-01-00\", \"2022-10-19 12-01-24\", \"2022-10-30 22-00-59\", \"2022-09-13 14-00-58\", \"2022-11-02 21-01-42\", \"2022-10-08 13-01-43\", \"2022-09-14 13-01-44\", \"2022-10-20 19-01-20\", \"2022-09-14 09-01-53\", \"2022-10-19 21-01-09\", \"2022-09-20 14-02-10\", \"2022-11-05 22-01-24\", \"2022-09-01 12-38-56\", \"2022-09-16 18-09-05\", \"2022-10-29 19-02-30\", \"2022-09-22 10-03-09\", \"2022-10-27 16-01-25\", \"2022-10-05 09-23-36\", \"2022-10-23 18-06-01\", \"2022-10-10 11-17-26\", \"2022-10-26 16-00-57\", \"2022-09-11 14-02-10\", \"2022-09-18 17-03-19\", \"2022-10-21 21-04-15\", \"2022-11-03 10-01-14\", \"2022-09-06 11-01-03\", \"2022-09-04 18-01-07\", \"2022-11-02 22-22-34\", \"2022-10-27 13-03-34\", \"2022-10-17 13-01-09\", \"2022-09-19 14-01-42\", \"2022-09-03 10-01-15\", \"2022-09-20 13-02-07\", \"2022-11-02 18-03-11\", \"2022-10-20 18-01-31\", \"2022-09-07 10-01-46\", \"2022-09-26 17-01-23\", \"2022-09-06 15-01-50\", \"2022-10-31 12-01-09\", \"2022-09-17 13-01-24\", \"2022-10-13 18-15-25\", \"2022-10-05 10-49-33\", \"2022-09-09 10-04-34\", \"2022-10-28 10-02-24\", \"2022-10-28 21-01-01\", \"2022-09-11 17-01-20\", \"2022-10-26 21-01-02\", \"2022-10-21 15-01-10\", \"2022-10-15 09-01-54\", \"2022-10-15 13-01-16\", \"2022-10-30 12-02-03\", \"2022-11-01 18-35-39\", \"2022-09-17 18-09-28\", \"2022-10-08 17-01-30\", \"2022-10-30 09-04-01\", \"2022-10-13 14-01-21\", \"2022-09-26 14-20-24\", \"2022-09-25 16-41-35\", \"2022-11-03 21-01-11\", \"2022-10-14 14-01-54\", \"2022-10-09 13-01-20\", \"2022-10-21 09-04-47\", \"2022-09-08 19-01-41\", \"2022-09-24 18-01-40\", \"2022-10-19 18-01-14\", \"2022-09-09 11-01-29\", \"2022-10-08 18-03-17\", \"2022-10-27 15-03-34\", \"2022-09-10 14-01-25\", \"2022-10-21 12-01-12\", \"2022-10-13 10-01-25\", \"2022-10-14 18-01-20\", \"2022-09-08 10-01-36\", \"2022-10-25 22-01-44\", \"2022-09-20 10-01-34\", \"2022-11-05 19-01-33\", \"2022-10-30 15-01-10\", \"2022-09-24 09-16-15\", \"2022-10-20 16-01-01\", \"2022-10-09 10-06-37\", \"2022-11-03 12-20-57\", \"2022-11-02 19-14-58\", \"2022-10-08 10-03-28\", \"2022-10-23 09-01-27\", \"2022-10-29 12-03-53\", \"2022-09-01 18-08-33\", \"2022-11-05 09-10-14\", \"2022-10-18 09-01-36\", \"2022-11-01 19-07-03\", \"2022-10-20 09-02-17\", \"2022-10-10 14-01-04\", \"2022-09-22 15-52-57\", \"2022-09-23 13-01-28\", \"2022-10-30 18-01-06\", \"2022-10-19 13-01-09\", \"2022-10-27 12-01-07\", \"2022-10-26 15-12-35\", \"2022-10-24 22-01-47\", \"2022-09-05 18-01-13\", \"2022-10-19 10-01-58\", \"2022-09-04 13-01-41\", \"2022-10-09 17-02-19\", \"2022-10-21 13-10-24\", \"2022-10-29 16-01-19\", \"2022-09-10 18-02-57\", \"2022-11-05 12-01-22\", \"2022-09-22 13-09-33\", \"2022-10-24 10-01-25\", \"2022-09-02 10-01-23\", \"2022-09-04 14-01-02\", \"2022-09-16 17-00-53\", \"2022-09-11 10-04-00\", \"2022-09-26 10-01-35\", \"2022-09-10 10-01-31\", \"2022-11-04 19-02-47\", \"2022-10-18 19-01-12\", \"2022-11-01 12-01-15\", \"2022-10-31 10-03-02\", \"2022-10-10 17-10-09\", \"2022-10-17 14-01-43\", \"2022-10-19 15-04-09\", \"2022-10-23 16-01-36\", \"2022-10-19 09-03-37\", \"2022-09-18 13-03-53\", \"2022-10-30 10-07-50\", \"2022-09-02 14-00-54\", \"2022-09-16 13-01-35\", \"2022-10-24 18-02-17\", \"2022-10-07 10-03-04\", \"2022-09-06 14-01-27\", \"2022-11-04 18-00-49\", \"2022-10-25 09-06-55\", \"2022-09-08 18-21-08\", \"2022-09-13 10-43-19\", \"2022-09-07 15-07-11\", \"2022-09-10 19-01-40\", \"2022-09-15 09-07-21\", \"2022-09-01 17-01-49\", \"2022-10-09 09-10-48\", \"2022-09-04 17-01-30\", \"2022-09-09 14-02-11\", \"2022-10-21 18-01-24\", \"2022-09-13 17-01-45\", \"2022-11-05 18-01-32\", \"2022-10-13 17-00-55\", \"2022-10-06 10-01-36\", \"2022-10-25 15-02-48\", \"2022-09-03 18-00-57\", \"2022-10-31 13-01-34\", \"2022-10-10 13-26-08\", \"2022-10-18 13-43-35\", \"2022-10-28 22-01-35\", \"2022-10-25 12-21-49\", \"2022-10-14 09-01-20\", \"2022-10-20 10-01-38\", \"2022-10-20 15-01-02\", \"2022-10-06 09-03-02\", \"2022-10-06 18-01-14\", \"2022-09-05 10-02-09\", \"2022-09-14 10-01-58\", \"2022-10-29 22-04-50\", \"2022-09-22 09-03-36\", \"2022-10-31 22-01-07\", \"2022-09-19 17-02-44\", \"2022-10-25 19-02-41\", \"2022-09-12 10-25-06\", \"2022-10-26 09-02-50\", \"2022-10-27 21-03-58\", \"2022-09-17 09-02-16\", \"2022-09-05 13-58-18\", \"2022-10-28 09-02-34\", \"2022-09-06 19-01-24\", \"2022-09-22 18-01-51\", \"2022-10-19 19-01-02\", \"2022-09-08 14-01-54\", \"2022-10-24 16-01-53\", \"2022-09-23 17-01-52\", \"2022-10-25 13-01-19\", \"2022-09-05 19-53-57\", \"2022-10-16 10-01-09\", \"2022-11-03 16-06-47\", \"2022-10-17 10-17-05\", \"2022-10-18 22-01-30\", \"2022-11-01 09-13-49\", \"2022-10-07 09-03-44\", \"2022-09-03 17-11-06\", \"2022-11-06 10-01-00\", \"2022-10-18 12-30-24\", \"2022-09-20 18-01-31\", \"2022-10-14 17-01-03\", \"2022-11-03 13-41-28\", \"2022-09-11 18-01-24\", \"2022-10-29 09-38-12\", \"2022-09-10 11-15-53\", \"2022-09-13 13-01-42\", \"2022-10-09 14-02-07\", \"2022-10-22 19-01-40\", \"2022-09-04 10-01-14\", \"2022-10-17 21-01-15\", \"2022-10-28 19-01-07\", \"2022-11-01 22-01-15\", \"2022-09-19 10-02-01\", \"2022-10-31 18-01-09\", \"2022-10-25 18-01-48\", \"2022-10-23 19-01-12\", \"2022-11-03 15-08-48\", \"2022-10-20 12-01-30\", \"2022-10-08 14-01-39\", \"2022-10-26 19-25-15\", \"2022-11-02 09-02-05\", \"2022-09-18 10-01-08\", \"2022-09-07 14-01-37\", \"2022-11-03 18-05-08\", \"2022-09-25 17-01-35\", \"2022-09-19 09-04-20\", \"2022-10-11 09-03-56\", \"2022-09-19 13-01-53\", \"2022-10-31 16-01-04\", \"2022-09-26 09-02-19\", \"2022-10-18 16-00-57\", \"2022-10-11 17-01-25\", \"2022-10-06 13-01-33\"], \"hora\": [13, 10, 16, 14, 13, 9, 19, 19, 10, 15, 13, 16, 13, 18, 14, 21, 15, 9, 19, 15, 13, 21, 9, 10, 11, 16, 13, 9, 9, 18, 15, 12, 17, 22, 13, 9, 10, 22, 9, 9, 9, 10, 12, 9, 15, 18, 18, 13, 21, 18, 14, 9, 21, 18, 10, 17, 9, 13, 17, 14, 14, 10, 9, 14, 15, 9, 13, 13, 10, 22, 12, 14, 12, 22, 10, 21, 13, 10, 9, 10, 11, 19, 10, 18, 18, 13, 19, 17, 22, 10, 18, 18, 10, 13, 13, 19, 18, 17, 19, 13, 10, 13, 17, 9, 13, 9, 18, 18, 10, 14, 19, 18, 16, 18, 18, 18, 14, 11, 22, 18, 18, 17, 14, 15, 18, 10, 14, 9, 17, 18, 10, 12, 22, 14, 21, 13, 13, 19, 9, 21, 14, 22, 12, 18, 19, 10, 16, 9, 18, 11, 16, 14, 17, 21, 10, 11, 18, 22, 13, 13, 14, 10, 13, 18, 18, 10, 17, 15, 12, 13, 18, 10, 10, 10, 21, 17, 21, 15, 9, 13, 12, 18, 18, 17, 9, 14, 14, 16, 21, 14, 13, 9, 19, 18, 18, 11, 18, 15, 14, 12, 10, 18, 10, 22, 10, 19, 15, 9, 16, 10, 12, 19, 10, 9, 12, 18, 9, 9, 19, 9, 14, 15, 13, 18, 13, 12, 15, 22, 18, 10, 13, 17, 13, 16, 18, 12, 13, 10, 10, 14, 17, 10, 10, 10, 19, 19, 12, 10, 17, 14, 15, 16, 9, 13, 10, 14, 13, 18, 10, 14, 18, 9, 18, 10, 15, 19, 9, 17, 9, 17, 14, 18, 17, 18, 17, 10, 15, 18, 13, 13, 13, 22, 12, 9, 10, 15, 9, 18, 10, 10, 22, 9, 22, 17, 19, 10, 9, 21, 9, 13, 9, 19, 18, 19, 14, 16, 17, 13, 19, 10, 16, 10, 22, 9, 9, 17, 10, 12, 18, 17, 13, 18, 9, 11, 13, 14, 19, 10, 21, 19, 22, 10, 18, 18, 19, 15, 12, 14, 19, 9, 10, 14, 18, 17, 9, 9, 13, 16, 9, 16, 17, 13], \"localdbShimmer\": {\"__ndarray__\": \"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\", \"dtype\": \"float64\", \"order\": \"little\", \"shape\": [352]}, \"user\": [\"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\", \"Aida Contreras\"]}}], \"references\": []}","header":"{\"msgid\": \"2724\", \"msgtype\": \"PATCH-DOC\"}","metadata":"{}"},"Daniela Calder\u00f3n":{"content":"{\"events\": [{\"cols\": null, \"column_source\": {\"id\": \"2599\"}, \"kind\": \"ColumnDataChanged\", \"new\": {\"date\": [\"2022-08-30 17-05-48\", \"2022-10-14 12-01-45\", \"2022-08-24 11-15-56\", \"2022-08-13 09-47-11\", \"2022-08-21 10-44-12\", \"2022-09-15 09-29-30\", \"2022-10-15 12-48-29\", \"2022-08-13 18-32-48\", \"2022-09-21 13-10-27\", \"2022-08-24 12-22-14\", \"2022-08-26 21-20-28\", \"2022-08-21 18-10-06\", \"2022-08-21 12-44-38\", \"2022-09-16 13-02-02\", \"2022-10-15 17-20-00\", \"2022-08-29 11-08-47\", \"2022-09-21 11-01-22\", \"2022-09-13 10-34-54\", \"2022-09-17 12-39-34\", \"2022-10-06 18-22-53\", \"2022-10-05 09-30-42\", \"2022-08-18 17-02-05\", \"2022-08-18 12-20-49\", \"2022-08-16 11-08-35\", \"2022-08-26 12-15-11\", \"2022-10-20 13-48-07\", \"2022-08-20 10-22-04\", \"2022-10-22 17-01-23\", \"2022-10-19 18-43-34\", \"2022-08-14 12-12-59\", \"2022-09-05 19-01-01\", \"2022-10-21 13-03-48\", \"2022-08-19 14-33-54\", \"2022-08-26 17-45-36\", \"2022-08-24 09-26-06\", \"2022-10-15 11-37-37\", \"2022-10-05 18-01-52\", \"2022-09-15 18-01-49\", \"2022-08-29 20-10-24\", \"2022-08-23 11-43-38\", \"2022-08-13 17-38-48\", \"2022-10-23 16-36-19\", \"2022-08-30 09-56-06\", \"2022-10-05 11-01-29\", \"2022-10-20 19-59-43\", \"2022-09-05 18-58-14\", \"2022-08-25 18-07-39\", \"2022-10-07 11-28-39\", \"2022-08-18 11-07-34\", \"2022-10-14 17-13-23\", \"2022-10-10 17-21-14\", \"2022-08-22 18-01-25\", \"2022-08-25 11-07-04\", \"2022-08-29 10-32-52\", \"2022-10-05 17-06-51\", \"2022-08-19 19-23-04\", \"2022-09-13 13-05-52\", \"2022-08-16 17-10-35\", \"2022-09-02 12-44-16\", \"2022-10-07 12-51-34\", \"2022-08-19 11-41-26\", \"2022-08-27 17-43-40\", \"2022-08-27 12-28-17\", \"2022-10-07 18-15-50\", \"2022-08-24 18-29-09\", \"2022-10-14 11-01-31\", \"2022-08-28 19-04-36\", \"2022-10-10 11-38-27\", \"2022-08-21 17-03-34\", \"2022-09-16 18-05-33\", \"2022-10-13 22-54-22\", \"2022-08-22 12-04-03\", \"2022-10-08 12-07-22\", \"2022-10-06 12-03-05\", \"2022-08-19 17-33-35\", \"2022-08-13 11-06-38\", \"2022-08-13 08-43-41\", \"2022-09-09 12-08-36\", \"2022-08-29 15-25-38\", \"2022-10-06 17-13-52\", \"2022-10-17 13-04-33\", \"2022-10-22 19-33-39\", \"2022-08-23 18-08-45\", \"2022-10-15 19-10-43\", \"2022-10-21 18-19-50\", \"2022-08-19 09-57-32\", \"2022-09-04 12-01-07\", \"2022-08-19 08-48-12\", \"2022-08-16 12-54-06\", \"2022-09-13 17-01-09\", \"2022-10-16 18-01-05\", \"2022-08-18 18-01-43\", \"2022-09-15 17-13-31\", \"2022-08-23 17-09-01\", \"2022-09-04 18-33-31\", \"2022-08-14 18-43-27\", \"2022-08-20 18-04-18\", \"2022-10-04 20-06-10\", \"2022-10-21 12-40-59\", \"2022-10-18 20-11-12\", \"2022-10-24 13-21-51\", \"2022-08-23 12-07-31\", \"2022-08-28 13-59-51\", \"2022-09-05 12-12-34\", \"2022-08-12 18-15-39\", \"2022-08-23 09-50-35\", \"2022-09-17 11-10-59\", \"2022-08-20 09-12-49\", \"2022-08-16 18-57-53\", \"2022-08-20 11-06-30\", \"2022-08-20 17-25-00\", \"2022-10-06 11-32-36\", \"2022-08-13 12-25-47\", \"2022-09-15 11-12-30\", \"2022-09-04 17-34-48\", \"2022-10-09 18-08-52\", \"2022-10-19 14-17-38\", \"2022-10-05 12-01-03\", \"2022-08-28 17-08-10\", \"2022-10-17 22-22-14\", \"2022-10-20 09-28-47\", \"2022-08-25 14-54-14\", \"2022-08-20 13-39-15\", \"2022-08-30 12-29-31\", \"2022-08-30 19-47-52\", \"2022-10-07 17-06-09\", \"2022-10-13 12-01-28\"], \"hora\": [17, 12, 11, 9, 10, 9, 12, 18, 13, 12, 21, 18, 12, 13, 17, 11, 11, 10, 12, 18, 9, 17, 12, 11, 12, 13, 10, 17, 18, 12, 19, 13, 14, 17, 9, 11, 18, 18, 20, 11, 17, 16, 9, 11, 19, 18, 18, 11, 11, 17, 17, 18, 11, 10, 17, 19, 13, 17, 12, 12, 11, 17, 12, 18, 18, 11, 19, 11, 17, 18, 22, 12, 12, 12, 17, 11, 8, 12, 15, 17, 13, 19, 18, 19, 18, 9, 12, 8, 12, 17, 18, 18, 17, 17, 18, 18, 18, 20, 12, 20, 13, 12, 13, 12, 18, 9, 11, 9, 18, 11, 17, 11, 12, 11, 17, 18, 14, 12, 17, 22, 9, 14, 13, 12, 19, 17, 12], \"localdbShimmer\": {\"__ndarray__\": \"uB6F61G41j9t5/up8dLdPzEIrBxaZOM/eekmMQis4D/fT42XbhLnP2ZmZmZmZuI/JQaBlUOL6D/ZzvdT46XnP83MzMzMzNw/IbByaJHt3D8xCKwcWmTbP7gehetRuNY/UI2XbhKD2D8hsHJoke3UP7ByaJHtfOM/16NwPQrX4z8K16NwPQrxP1pkO99Pjd8/AiuHFtnO1z8IrBxaZDvjP0w3iUFg5eA/okW28/3U4D97FK5H4XrgPxkEVg4tsuE/0SLb+X5q1D9mZmZmZmbmP+xRuB6F69k/PzVeukkM2j8lBoGVQ4vcPy2yne+nxts/mpmZmZmZ6T8pXI/C9SjUP1K4HoXrUeA/XI/C9Shc3z8EVg4tsp3xPyGwcmiR7eQ/lkOLbOf72T+e76fGSzflPw4tsp3vp+I/9P3UeOkm2T8j2/l+arzcP6wcWmQ7398/ukkMAiuH3j/LoUW28/3kP28Sg8DKoeU/GQRWDi2y6T+LbOf7qfHaP+58PzVeuuU/I9v5fmq85D+mm8QgsHLgPxBYObTIdt4/1XjpJjEI5D8rhxbZzvfbP9Ei2/l+atw/WDm0yHa+3z/TTWIQWDncP9ejcD0K19s/ukkMAiuH3j8QWDm0yHbeP8dLN4lBYNU/zczMzMzM3D9U46WbxCDYP30/NV66Sdw/EoPAyqFF1j+JQWDl0CLbP6wcWmQ7398/tMh2vp8a3z89CtejcD3SP+58PzVeutk/vp8aL90k4j/P91PjpZvkP57vp8ZLN9k/001iEFg55D89CtejcD3iP+58PzVeuuE/XI/C9Shc1z9aZDvfT43jP6jGSzeJQdg/AiuHFtnO1z9SuB6F61HoPwRWDi2ynd8/TmIQWDm05D99PzVeuknUPylcj8L1KOA/kxgEVg4t4j93vp8aL93oP2Q730+Nl+Y/gZVDi2zn5z9g5dAi2/neP4GVQ4ts59s/L90kBoGV6z+HFtnO91PbPxkEVg4tstU/exSuR+F61D8GgZVDi2znP1K4HoXrUeQ/SOF6FK5H4T/wp8ZLN4nhPxSuR+F6FN4/nMQgsHJo2T/fT42XbhLbP42XbhKDwNI/ke18PzVe2j8xCKwcWmTjP6RwPQrXo/A/WDm0yHa+1z/l0CLb+X7aP3e+nxov3eA/bef7qfHS3T8ZBFYOLbLdP5MYBFYOLfA/3SQGgZVD0z+iRbbz/dTgPz81XrpJDNo/hxbZzvdT2z9Ei2zn+6nZP83MzMzMzNQ/+FPjpZvE0D8pXI/C9SjgP9V46SYxCNw/7FG4HoXr0T8K16NwPQrrP8l2vp8aL+E/XI/C9Shc3z/l0CLb+X7iP3e+nxov3eQ/KVyPwvUo3D8=\", \"dtype\": \"float64\", \"order\": \"little\", \"shape\": [127]}, \"user\": [\"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\", \"Daniela Calder\\u00f3n\"]}}], \"references\": []}","header":"{\"msgid\": \"2715\", \"msgtype\": \"PATCH-DOC\"}","metadata":"{}"},"Eugenia Lizama":{"content":"{\"events\": [{\"cols\": null, \"column_source\": {\"id\": \"2599\"}, \"kind\": \"ColumnDataChanged\", \"new\": {\"date\": [\"2022-10-23 18-01-10\", \"2022-10-24 17-00-39\", \"2022-10-31 10-01-25\", \"2022-10-19 17-00-48\", \"2022-10-31 09-02-25\", \"2022-10-14 18-20-36\", \"2022-10-17 09-01-16\", \"2022-10-26 18-00-58\", \"2022-10-20 10-01-55\", \"2022-11-04 17-00-54\", \"2022-11-01 18-33-59\", \"2022-10-23 17-01-25\", \"2022-11-02 18-13-37\", \"2022-10-28 09-06-34\", \"2022-10-30 17-00-46\", \"2022-10-19 18-19-55\", \"2022-10-22 18-01-29\", \"2022-10-27 10-13-21\", \"2022-11-04 18-01-14\", \"2022-10-13 17-35-48\", \"2022-10-15 18-00-50\", \"2022-10-25 18-27-43\", \"2022-10-13 19-27-58\", \"2022-11-01 09-31-36\", \"2022-10-29 10-01-30\", \"2022-10-15 17-09-13\", \"2022-10-21 17-01-28\", \"2022-10-30 10-00-35\", \"2022-10-23 16-47-33\", \"2022-10-16 18-00-54\", \"2022-10-17 17-01-00\", \"2022-10-24 10-01-37\", \"2022-10-30 09-01-20\", \"2022-10-29 09-00-51\", \"2022-10-15 10-01-08\", \"2022-10-18 18-00-32\", \"2022-11-02 10-00-51\", \"2022-10-19 09-01-09\", \"2022-10-30 18-00-51\", \"2022-10-16 10-03-03\", \"2022-10-22 17-06-52\", \"2022-10-27 18-02-06\", \"2022-10-20 18-01-17\", \"2022-10-14 09-01-08\", \"2022-11-03 10-00-55\", \"2022-10-28 18-00-59\", \"2022-11-03 18-31-26\", \"2022-10-14 10-02-10\", \"2022-10-20 17-11-10\", \"2022-10-14 15-02-38\", \"2022-10-25 09-01-17\", \"2022-11-03 09-05-56\", \"2022-10-17 10-01-35\", \"2022-10-26 11-20-57\", \"2022-10-16 10-01-20\", \"2022-10-31 17-00-49\", \"2022-10-31 18-26-17\", \"2022-10-26 17-08-53\", \"2022-10-14 08-07-14\", \"2022-11-01 10-01-35\", \"2022-10-17 18-01-34\", \"2022-10-18 18-00-51\", \"2022-10-19 10-01-07\", \"2022-10-22 10-00-40\", \"2022-10-24 18-45-01\", \"2022-10-28 17-01-00\", \"2022-10-20 09-01-20\", \"2022-10-23 10-00-54\", \"2022-11-02 09-00-39\", \"2022-10-21 18-01-12\", \"2022-10-29 18-01-06\", \"2022-11-01 17-26-51\", \"2022-11-02 17-01-37\", \"2022-10-16 09-01-33\", \"2022-10-18 10-01-21\", \"2022-11-04 15-17-09\", \"2022-11-04 18-22-01\", \"2022-10-21 10-01-24\", \"2022-10-27 17-01-27\", \"2022-10-18 17-00-47\", \"2022-10-21 09-01-40\", \"2022-10-24 09-00-56\", \"2022-10-18 09-01-24\", \"2022-10-29 17-02-13\", \"2022-10-26 09-01-13\", \"2022-10-25 10-01-41\", \"2022-10-15 09-01-43\", \"2022-10-14 17-20-58\", \"2022-10-28 10-01-05\", \"2022-10-22 09-03-39\", \"2022-10-16 17-01-24\", \"2022-10-23 09-01-14\"], \"hora\": [18, 17, 10, 17, 9, 18, 9, 18, 10, 17, 18, 17, 18, 9, 17, 18, 18, 10, 18, 17, 18, 18, 19, 9, 10, 17, 17, 10, 16, 18, 17, 10, 9, 9, 10, 18, 10, 9, 18, 10, 17, 18, 18, 9, 10, 18, 18, 10, 17, 15, 9, 9, 10, 11, 10, 17, 18, 17, 8, 10, 18, 18, 10, 10, 18, 17, 9, 10, 9, 18, 18, 17, 17, 9, 10, 15, 18, 10, 17, 17, 9, 9, 9, 17, 9, 10, 9, 17, 10, 9, 17, 9], \"localdbShimmer\": {\"__ndarray__\": \"iUFg5dAi0z8UrkfhehTWP/LSTWIQWNE/okW28/3U0D9mZmZmZmbWP8uhRbbz/dw/HVpkO99P1T9kO99PjZfePzvfT42XbtI/PQrXo3A90j/2KFyPwvXQP+Olm8QgsNo/ke18PzVe0j9zaJHtfD/VPwwCK4cW2dY/KVyPwvUozD9vEoPAyqHVP+xRuB6F69E/dZMYBFYO1T+uR+F6FK7fP1TjpZvEINg/XI/C9Shc1z+8dJMYBFbWP3Noke18P9U/I9v5fmq81D8OLbKd76fWP1TjpZvEIOA/c2iR7Xw/3T8OLbKd76feP5qZmZmZmdk/DAIrhxbZ1j/y0k1iEFjZP1YOLbKd79c/MzMzMzMz4z+DwMqhRbbbP5HtfD81XvA/rBxaZDvf3z8zMzMzMzPTPz81XrpJDNI/6SYxCKwc0j/4U+Olm8TYPy/dJAaBldM/Gy/dJAaB1T8xCKwcWmTzP+kmMQisHNo/N4lBYOXQ0j8lBoGVQ4vUP/p+arx0k9A/CKwcWmQ71z+8dJMYBFbePwwCK4cW2dY/TDeJQWDl0D8QWDm0yHbWPxSuR+F6FN4/UrgehetR9j/sUbgehevlP9v5fmq8dNM/ZDvfT42Xzj/sUbgehevtPzm0yHa+n+I/UrgehetR6D+kcD0K16PgP1g5tMh2vtc/AAAAAAAA0D8zMzMzMzPbP90kBoGVQ+M/nu+nxks34T8zMzMzMzPTPxSuR+F6FM4/QmDl0CLb2T9YObTIdr7XPyGwcmiR7dw/NV66SQwC0z9MN4lBYOXgP05iEFg5tNg/MQisHFpk7z/ByqFFtvPhP9V46SYxCNQ/4XoUrkfh2j/Jdr6fGi/NP05iEFg5tNg/ppvEILBy0D/fT42XbhLbP8/3U+Olm9Q/IbByaJHtzD8MAiuHFtnWPx1aZDvfT+E/16NwPQrX0z+e76fGSzfRP8/3U+Olm9Q/Di2yne+n3j/Jdr6fGi/hPw==\", \"dtype\": \"float64\", \"order\": \"little\", \"shape\": [92]}, \"user\": [\"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\", \"Eugenia Lizama\"]}}], \"references\": []}","header":"{\"msgid\": \"2706\", \"msgtype\": \"PATCH-DOC\"}","metadata":"{}"},"JOMAX Contacto":{"content":"{\"events\": [{\"cols\": null, \"column_source\": {\"id\": \"2599\"}, \"kind\": \"ColumnDataChanged\", \"new\": {\"date\": [\"2022-09-05 19-00-38\", \"2022-08-18 23-50-03\", \"2022-08-04 12-58-03\", \"2022-08-03 17-00-41\", \"2022-09-05 15-01-25\", \"2022-09-01 12-41-03\", \"2022-09-09 14-10-32\", \"2022-09-01 12-30-56\", \"2022-08-10 19-09-15\", \"2022-08-23 15-08-46\", \"2022-08-12 18-01-03\", \"2022-08-27 22-19-59\", \"2022-08-17 19-49-07\", \"2022-08-05 16-55-55\", \"2022-09-12 11-38-22\", \"2022-08-12 22-32-04\", \"2022-08-06 13-07-42\", \"2022-08-10 15-01-19\", \"2022-08-30 20-19-58\", \"2022-08-25 19-01-37\", \"2022-09-27 18-17-14\", \"2022-08-29 12-16-54\", \"2022-08-24 14-29-48\", \"2022-08-08 17-49-49\", \"2022-08-04 14-23-37\", \"2022-08-07 18-01-10\", \"2022-08-05 12-55-59\", \"2022-08-10 10-15-44\", \"2022-10-13 11-45-22\", \"2022-08-18 17-54-52\", \"2022-08-18 14-01-56\", \"2022-09-04 18-12-36\", \"2022-08-19 20-57-42\", \"2022-08-27 11-32-14\", \"2022-08-05 10-23-13\", \"2022-08-24 13-33-05\", \"2022-08-10 11-59-04\"], \"hora\": [19, 23, 12, 17, 15, 12, 14, 12, 19, 15, 18, 22, 19, 16, 11, 22, 13, 15, 20, 19, 18, 12, 14, 17, 14, 18, 12, 10, 11, 17, 14, 18, 20, 11, 10, 13, 11], \"localdbShimmer\": {\"__ndarray__\": \"2c73U+Ol0z+8dJMYBFbeP76fGi/dJN4/hxbZzvdT4z83iUFg5dDaP2iR7Xw/NeI/7FG4HoXr2T/sUbgehevRPx+F61G4HtU/WDm0yHa+1z8CK4cW2c7XP4lBYOXQIts/j8L1KFyP2j9oke18PzXeP42XbhKDwNI/MQisHFpk2z/2KFyPwvXgP1K4HoXrUeQ/wcqhRbbzzT8Sg8DKoUXWPwwCK4cW2dY/pHA9Ctej2D/VeOkmMQjoPw4tsp3vp9Y/1XjpJjEI4D8pXI/C9SjUP90kBoGVQ9s/30+Nl24S0z/P91PjpZvcPycxCKwcWuA/9P3UeOkm2T+yne+nxkvXP0w3iUFg5dg/Vg4tsp3v3z/Xo3A9CtfTP8uhRbbz/eA/zczMzMzM3D8=\", \"dtype\": \"float64\", \"order\": \"little\", \"shape\": [37]}, \"user\": [\"JOMAX Contacto\", \"JOMAX Contacto\", \"JOMAX Contacto\", \"JOMAX Contacto\", \"JOMAX Contacto\", \"JOMAX Contacto\", \"JOMAX Contacto\", \"JOMAX Contacto\", \"JOMAX Contacto\", \"JOMAX Contacto\", \"JOMAX Contacto\", \"JOMAX Contacto\", \"JOMAX Contacto\", \"JOMAX Contacto\", \"JOMAX Contacto\", \"JOMAX Contacto\", \"JOMAX Contacto\", \"JOMAX Contacto\", \"JOMAX Contacto\", \"JOMAX Contacto\", \"JOMAX Contacto\", \"JOMAX Contacto\", \"JOMAX Contacto\", \"JOMAX Contacto\", \"JOMAX Contacto\", \"JOMAX Contacto\", \"JOMAX Contacto\", \"JOMAX Contacto\", \"JOMAX Contacto\", \"JOMAX Contacto\", \"JOMAX Contacto\", \"JOMAX Contacto\", \"JOMAX Contacto\", \"JOMAX Contacto\", \"JOMAX Contacto\", \"JOMAX Contacto\", \"JOMAX Contacto\"]}}], \"references\": []}","header":"{\"msgid\": \"2697\", \"msgtype\": \"PATCH-DOC\"}","metadata":"{}"},"sergio lucero":{"content":"{\"events\": [{\"cols\": null, \"column_source\": {\"id\": \"2599\"}, \"kind\": \"ColumnDataChanged\", \"new\": {\"date\": [\"2022-08-05 15-01-10\", \"2022-10-25 19-00-15\", \"2022-10-24 03-51-01\", \"2022-08-30 15-56-57\", \"2022-10-25 11-52-16\", \"2022-08-29 21-42-15\", \"2022-10-13 08-09-56\", \"2022-10-02 09-05-38\", \"2022-08-29 22-49-50\", \"2022-08-02 23-16-21\", \"2022-08-05 11-07-21\", \"2022-10-25 11-51-48\", \"2022-08-05 15-01-28\", \"2022-08-29 22-44-14\", \"2022-10-25 11-52-02\", \"2022-08-05 12-56-08\", \"2022-10-09 22-39-50\", \"2022-08-30 15-43-46\", \"2022-08-30 01-07-25\", \"2022-09-04 14-23-20\", \"2022-10-24 03-56-10\", \"2022-10-25 18-24-22\", \"2022-10-24 03-38-56\", \"2022-10-25 18-10-15\", \"2022-08-30 01-09-47\", \"2022-08-05 11-38-46\", \"2022-08-11 11-01-34\", \"2022-09-01 17-35-09\", \"2022-10-24 03-37-26\", \"2022-10-25 18-08-34\", \"2022-08-03 17-00-51\", \"2022-08-03 17-00-56\", \"2022-08-30 00-52-26\", \"2022-08-04 13-40-47\", \"2022-08-12 13-13-58\", \"2022-10-24 03-34-47\", \"2022-08-03 22-43-37\", \"2022-08-02 23-55-47\", \"2022-08-30 01-10-08\", \"2022-08-05 11-01-38\", \"2022-10-18 16-20-16\", \"2022-08-30 00-51-33\", \"2022-08-24 17-22-09\", \"2022-10-25 11-52-39\", \"2022-08-03 22-41-06\", \"2022-08-04 22-12-15\", \"2022-08-02 21-44-45\", \"2022-10-21 11-26-50\", \"2022-10-25 18-39-41\", \"2022-08-03 22-46-06\", \"2022-08-02 23-14-00\", \"2022-10-04 11-55-33\", \"2022-10-25 11-52-55\"], \"hora\": [15, 19, 3, 15, 11, 21, 8, 9, 22, 23, 11, 11, 15, 22, 11, 12, 22, 15, 1, 14, 3, 18, 3, 18, 1, 11, 11, 17, 3, 18, 17, 17, 0, 13, 13, 3, 22, 23, 1, 11, 16, 0, 17, 11, 22, 22, 21, 11, 18, 22, 23, 11, 11], \"localdbShimmer\": {\"__ndarray__\": \"6SYxCKwc9j8EVg4tsp3jP8dLN4lBYPk/okW28/3U8D8rhxbZzvfbPzvfT42Xbvg/qMZLN4lB5D9qvHSTGAT4P3sUrkfheuw/ZmZmZmZm7j/D9Shcj8LdPyGwcmiR7dQ/zczMzMzM/j/fT42XbhLnP28Sg8DKodU/30+Nl24S5z9QjZduEoP0P+F6FK5H4fI/46WbxCCw2j8rhxbZzvfTPxBYObTIdv4/mpmZmZmZ8z8tsp3vp8bxP6wcWmQ73+8/ZmZmZmZm4j/P91PjpZvkP4GVQ4ts5+s/SOF6FK5H9z+mm8QgsHL6P9Ei2/l+atw/rkfhehSu+T+iRbbz/dT8P1pkO99PjfM/8tJNYhBY5T+TGARWDi3iP/Cnxks3idk/1XjpJjEI8j/P91PjpZvUP6jGSzeJQeg/okW28/3U6D9I4XoUrkfxPwrXo3A9Ct8/EoPAyqFF1j8QWDm0yHbWP8l2vp8aL/E/8KfGSzeJ0T8IrBxaZDv1P9V46SYxCOA/H4XrUbge6T8AAAAAAADyPxSuR+F6FOI/qvHSTWIQ4D97FK5H4XrgPw==\", \"dtype\": \"float64\", \"order\": \"little\", \"shape\": [53]}, \"user\": [\"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\", \"sergio lucero\"]}}], \"references\": []}","header":"{\"msgid\": \"2688\", \"msgtype\": \"PATCH-DOC\"}","metadata":"{}"}},"values":["Aida Contreras"],"widgets":{"2646":0}},"id":"2658","type":"panel.models.state.State"},{"attributes":{"angle":{"value":0.0},"fill_alpha":{"value":1.0},"fill_color":{"value":"#30a2da"},"hatch_alpha":{"value":1.0},"hatch_color":{"value":"#30a2da"},"hatch_scale":{"value":12.0},"hatch_weight":{"value":1.0},"line_alpha":{"value":1.0},"line_cap":{"value":"butt"},"line_color":{"value":"#30a2da"},"line_dash":{"value":[]},"line_dash_offset":{"value":0},"line_join":{"value":"bevel"},"line_width":{"value":1},"marker":{"value":"circle"},"size":{"value":2.449489742783178},"x":{"field":"hora"},"y":{"field":"localdbShimmer"}},"id":"2607","type":"Scatter"},{"attributes":{"js_property_callbacks":{"change:value":[{"id":"2659"}]},"margin":[20,20,20,20],"min_width":250,"options":["Aida Contreras","Daniela Calder\u00f3n","Eugenia Lizama","JOMAX Contacto","sergio lucero"],"title":"user","value":"Aida Contreras","width":250},"id":"2646","type":"panel.models.widgets.CustomSelect"},{"attributes":{"code":"\nvar state = null\nfor (var root of cb_obj.document.roots()) {\n  if (root.id == '2658') {\n    state = root;\n    break;\n  }\n}\nif (!state) { return; }\nstate.set_state(cb_obj, cb_obj.value)\n"},"id":"2659","type":"CustomJS"},{"attributes":{"margin":[5,5,5,5],"name":"HSpacer04355","sizing_mode":"stretch_width"},"id":"2642","type":"Spacer"},{"attributes":{"margin":[5,5,5,5],"name":"HSpacer04354","sizing_mode":"stretch_width"},"id":"2565","type":"Spacer"}],"root_ids":["2564","2658"]},"title":"Bokeh Application","version":"2.4.3"}}
+        </script>
+        <script type="text/javascript">
+          (function() {
+            const fn = function() {
+              Bokeh.safely(function() {
+                (function(root) {
+                  function embed_document(root) {
+                  const docs_json = document.getElementById('2785').textContent;
+                  const render_items = [{"docid":"c1c3b09c-86c8-4f78-bdb3-880c67a907bb","root_ids":["2564","2658"],"roots":{"2564":"2fb9e84f-c337-4b29-8723-2245b8937a62","2658":"d33cdd2d-6cfe-4370-9cb9-c65cdcd681ff"}}];
+                  root.Bokeh.embed.embed_items(docs_json, render_items);
+                  }
+                  if (root.Bokeh !== undefined) {
+                    embed_document(root);
+                  } else {
+                    let attempts = 0;
+                    const timer = setInterval(function(root) {
+                      if (root.Bokeh !== undefined) {
+                        clearInterval(timer);
+                        embed_document(root);
+                      } else {
+                        attempts++;
+                        if (attempts > 100) {
+                          clearInterval(timer);
+                          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+                        }
+                      }
+                    }, 10, root)
+                  }
+                })(window);
+              });
+            };
+            if (document.readyState != "loading") fn();
+            else document.addEventListener("DOMContentLoaded", fn);
+          })();
+        </script>
+  
+</body></html>

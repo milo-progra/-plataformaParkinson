@@ -1,0 +1,328 @@
+<!DOCTYPE HTML>
+<!--
+	Striped by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Plataforma Voz Parkinson</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/static/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Content -->
+			<div id="content">
+				<div class="inner">
+
+					<!-- Post -->
+						<article class="box post post-excerpt">
+							<header>
+								<h2>Registro Paciente</h2>
+								<br>
+								<table>	
+									<tr>
+										<th>Nombre Paciente</th>
+										<th>Apellido Paciente</th>
+										<th>Rut Paciente</th>
+										<th>Teléfono Paciente</th>
+										<th>Email Paciente</th>
+										<th>Neurologo Paciente</th>
+										<th>Fecha Registro</th>
+	
+										
+										
+									</tr>{% for preregistro in preregistros %}
+									<tr>
+										<td>
+											<p>{{preregistro.nombre_paciente}}</p>
+										</td>
+										<td>
+											<p>{{preregistro.apellido_paciente}}</p>
+										</td>
+										<td>
+											<p>{{preregistro.rut_paciente}}</p>
+										</td>
+										<td>
+											<p>{{preregistro.telefono_paciente}}</p>
+										</td>
+										<td>
+											<p>{{preregistro.email_paciente}}</p>
+										</td>
+										<td>
+											<p>{{preregistro.neurologo.nombre_neurologo}} {{preregistro.neurologo.apellido_neurologo}}</p>
+										</td>
+										<td>
+											<p>{{preregistro.timestamp}}</p>
+										</td>
+									   
+										
+										
+									</tr>{% endfor %}
+								</table>
+
+								
+								<br>
+                                
+
+
+								<form action="" method="post">
+									{%csrf_token%}
+									<label for="">Id Paciente</label><br>
+									<input type="number" name="id" value="{{id_paciente}}" readonly><br>
+									<br>
+
+
+									<label for="cars">Usuario Paciente (Seleccione)</label>
+
+									<select id="id_username_paciente" name="username_paciente" required>
+										{% for usuario in usuario %}
+									<option value="{{usuario.id}}">{{usuario.username}}, {{usuario.tipo_usuario.nombre_tipo_usuario}}</option>
+										{% endfor %}
+									</select><br>
+
+
+									<label for="">Rut Paciente</label>
+									{% for preregistro in preregistros %}
+									<input type="text" name="rut_paciente" value="{{preregistro.rut_paciente}}" maxlength="10" required readonly>
+									{% endfor %} <br>
+
+									
+									<label for="">Nombre Paciente</label>
+									{% for preregistro in preregistros %}
+									<input type="text" name="nombre_paciente" value="{{preregistro.nombre_paciente}}" required readonly>
+									{% endfor %} <br>
+
+
+									<label for="">Apellido Paciente</label>
+									{% for preregistro in preregistros %}
+									<input type="text" name="apellido_paciente"  value="{{preregistro.apellido_paciente}}" required readonly>
+									{% endfor %} <br>
+
+
+									<label for="">Diabetes (Seleccione)</label>
+
+									<select id="diabetes" name="diabetes" required>
+										{% for diabetes in diabete %}
+									<option value="{{diabetes.id_diabetes}}">{{diabetes.tipo_diabetes}}</option>
+										{% endfor %}
+									</select> <br>
+
+
+
+									<label for="">Hipertension (Seleccione)</label>
+
+									<select id="hipertension" name="hipertension" required>
+										{% for hipertension in hipertensio %}
+									<option value="{{hipertension.id_hipertension}}">{{hipertension.estado_hipertension}}</option>
+										{% endfor %}
+									</select> <br>
+
+
+									<label for="">Direccion Paciente</label>
+									<input type="text" name="direccion_paciente" required> <br>
+
+
+									<label for="">Comuna (Seleccione)</label>
+
+									<select id="comuna" name="comuna" required>
+										{% for comuna in comunas %}
+									<option value="{{comuna.id_comuna}}">{{comuna.nombre_comuna}}</option>
+										{% endfor %}
+									</select> <br>
+
+									<label for="">Email Paciente</label>
+									{% for preregistro in preregistros %}
+									<input type="email" name="email_paciente"  value="{{preregistro.email_paciente}}" required readonly>
+									{% endfor %} <br>
+
+									<label for="">Telefono Paciente</label><br>
+									{% for preregistro in preregistros %}
+									<input type="number" name="telefono_paciente" value="{{preregistro.telefono_paciente}}" readonly>
+									{% endfor %} <br>
+
+									<br>
+									<label for="">Whatsaap Paciente</label><br>
+									{% for preregistro in preregistros %}
+									<input type="number" name="whatsaap_paciente" value="{{preregistro.telefono_paciente}}" required readonly>
+									{% endfor %} <br>
+
+									<br>
+									<label for="">Celular Paciente</label><br>
+									{% for preregistro in preregistros %}
+									<input type="number" name="celular_paciente" value="{{preregistro.telefono_paciente}}" required readonly>
+									{% endfor %} <br>
+									<br>
+
+									<label for="">Telegram Paciente</label>
+									<input type="text" name="telegram_paciente" > <br>
+
+									<button type="submit">Enviar</button>
+								</form>
+
+
+
+<!-- <label for="cars">Choose a car:</label>
+									<select id="cars">
+										{% for usuario in usuario %}
+									<option value="{{usuario.username}}">{{usuario.username}}</option>
+										{% endfor %}
+									</select> -->
+
+
+
+
+
+							</header>
+														
+						</article>
+
+					<!-- Post -->
+						
+
+				</div>
+			</div>
+
+		<!-- Sidebar -->
+			<div id="sidebar">
+
+				<!-- Logo -->
+					<h1 id="logo"><a href="#">Voz Parkinson</a></h1>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul>
+							<li><a href="{% url 'enfermera' %}">Inicio Enfermera</a></li>
+							<li><a href="{% url 'enfermera_paciente' %}">Mis Pacientes</a></li>
+							<li><a href="{% url 'lista_medicamentos' %}">Medicamentos</a></li>
+							<li  ><a href="{% url 'preregistros' %}">Preregistro</a></li>
+							
+							<li><a href="{% url 'logout' %}">Cerrar Sesion</a></li>
+
+						</ul>
+					</nav>
+
+				<!-- Search -->
+					<section class="box search">
+						<form method="post" action="#">
+							<input type="text" class="text" name="search" placeholder="Search" />
+						</form>
+					</section>
+
+				<!-- Text -->
+					<section class="box text-style1">
+						<div class="inner">
+							<p>
+								<strong>Striped:</strong> A free and fully responsive HTML5 site
+								template designed by <a href="http://twitter.com/ajlkn">AJ</a> for <a href="http://html5up.net/">HTML5 UP</a>
+							</p>
+						</div>
+					</section>
+
+				<!-- Recent Posts -->
+					<section class="box recent-posts">
+						<header>
+							<h2>Recent Posts</h2>
+						</header>
+						<ul>
+							<li><a href="#">Lorem ipsum dolor</a></li>
+							<li><a href="#">Feugiat nisl aliquam</a></li>
+							<li><a href="#">Sed dolore magna</a></li>
+							<li><a href="#">Malesuada commodo</a></li>
+							<li><a href="#">Ipsum metus nullam</a></li>
+						</ul>
+					</section>
+
+				<!-- Recent Comments -->
+					<section class="box recent-comments">
+						<header>
+							<h2>Recent Comments</h2>
+						</header>
+						<ul>
+							<li>case on <a href="#">Lorem ipsum dolor</a></li>
+							<li>molly on <a href="#">Sed dolore magna</a></li>
+							<li>case on <a href="#">Sed dolore magna</a></li>
+						</ul>
+					</section>
+
+				<!-- Calendar -->
+					<section class="box calendar">
+						<div class="inner">
+							<table>
+								<caption>July 2014</caption>
+								<thead>
+									<tr>
+										<th scope="col" title="Monday">M</th>
+										<th scope="col" title="Tuesday">T</th>
+										<th scope="col" title="Wednesday">W</th>
+										<th scope="col" title="Thursday">T</th>
+										<th scope="col" title="Friday">F</th>
+										<th scope="col" title="Saturday">S</th>
+										<th scope="col" title="Sunday">S</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td colspan="4" class="pad"><span>&nbsp;</span></td>
+										<td><span>1</span></td>
+										<td><span>2</span></td>
+										<td><span>3</span></td>
+									</tr>
+									<tr>
+										<td><span>4</span></td>
+										<td><span>5</span></td>
+										<td><a href="#">6</a></td>
+										<td><span>7</span></td>
+										<td><span>8</span></td>
+										<td><span>9</span></td>
+										<td><a href="#">10</a></td>
+									</tr>
+									<tr>
+										<td><span>11</span></td>
+										<td><span>12</span></td>
+										<td><span>13</span></td>
+										<td class="today"><a href="#">14</a></td>
+										<td><span>15</span></td>
+										<td><span>16</span></td>
+										<td><span>17</span></td>
+									</tr>
+									<tr>
+										<td><span>18</span></td>
+										<td><span>19</span></td>
+										<td><span>20</span></td>
+										<td><span>21</span></td>
+										<td><span>22</span></td>
+										<td><a href="#">23</a></td>
+										<td><span>24</span></td>
+									</tr>
+									<tr>
+										<td><a href="#">25</a></td>
+										<td><span>26</span></td>
+										<td><span>27</span></td>
+										<td><span>28</span></td>
+										<td class="pad" colspan="3"><span>&nbsp;</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</section>
+
+				<!-- Copyright -->
+					<ul id="copyright">
+						<li>&copy; Untitled.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						<!-- <li class="current"><a href="/admin">Login Admin</a></li> -->
+					</ul>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="/static/js/jquery.min.js"></script>
+			<script src="/static/js/browser.min.js"></script>
+			<script src="/static/js/breakpoints.min.js"></script>
+			<script src="/static/js/util.js"></script>
+			<script src="/static/js/main.js"></script>
+
+	</body>
+</html>
