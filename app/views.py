@@ -257,20 +257,6 @@ def admin_medicamento(request):
     medicamentos=Medicamento.objects.all()
     return render(request, 'admin_medicamento/admin_medicamento.html',{'medicamentos':medicamentos})
 
-#preregistro del paciente
-def registro(request):
-    data= {
-        'form':FormPreregistro()
-    }
-    if request.method == 'POST':
-        formulario=FormPreregistro(data=request.POST)
-        if formulario.is_valid():
-            formulario.save()
-            
-            messages.success(request, "Gracias por su inscripción")
-            return redirect(to="index")
-        data['form']=formulario
-    return render(request,'registration/registro.html',data)
 
 #registro del usuario preregistrado
 def registro_usuario(request,id):

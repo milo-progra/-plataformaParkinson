@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app',
-    'rest_framework'
+    'rest_framework',
+    'usuario'
 ]
 
 MIDDLEWARE = [
@@ -165,7 +166,7 @@ REST_FRAMEWORK = {
 LOGIN_REDIRECT_URL='/post_login/'
 LOGOUT_REDIRECT_URL ='/'
 
-AUTH_USER_MODEL = 'app.Usuario'
+AUTH_USER_MODEL = 'usuario.Usuario'
 
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend" 
