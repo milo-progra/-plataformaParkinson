@@ -1,16 +1,14 @@
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
+
 from app.models import *
 
-from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
 #Vista de pacientes
 class AdminPaciente(admin.ModelAdmin):
     list_display = ('nombre_paciente', 'id_paciente', 'rut_paciente', 'telegram_paciente')
 
 # Register your models here.
-admin.site.register(Usuario, BaseUserAdmin)
-admin.site.register(Tipo_Usuario)
+
 admin.site.register(Receta)
 admin.site.register(Region)
 admin.site.register(Provincia)
