@@ -89,9 +89,9 @@ WSGI_APPLICATION = 'sitioweb.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'plataforma',
+        'NAME': 'parkinson_bd',
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': 'admin',
         'HOST': 'localhost',
         'PORT': '3306',
     }
