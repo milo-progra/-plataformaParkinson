@@ -2,9 +2,6 @@ import datetime
 from datetime import date
 from datetime import datetime
 from django.shortcuts import render,redirect, get_object_or_404
-from app import *
-from .models import *
-from .forms import *
 from django.views import View
 from django.http import HttpResponse
 import pandas as pd
@@ -15,6 +12,11 @@ from django.core.mail import send_mail
 from django.views.generic.base import TemplateView
 from openpyxl import Workbook
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Fill, Side
+
+from app import *
+from .models import *
+from .forms import *
+from usuario.models import Tipo_Usuario
 
 
 #index de la pagina principal con la fecha actual
@@ -252,10 +254,7 @@ def admin_info_fonoaudiologo(request,username_fonoaudiologo_id):
     fonoaudiologo_pacientes=Fonoaudiologo_paciente.objects.all().filter(username_fonoaudiologo_id=username_fonoaudiologo_id)
     return render(request, 'admin_fonoaudiologo/admin_info_fonoaudiologo.html',{'fonoaudiologos':fonoaudiologos,'fonoaudiologo_pacientes':fonoaudiologo_pacientes})
 
-#vista de los medicamentos en el sistema visto por admin
-def admin_medicamento(request):
-    medicamentos=Medicamento.objects.all()
-    return render(request, 'admin_medicamento/admin_medicamento.html',{'medicamentos':medicamentos})
+
 
 
 #registro del usuario preregistrado
@@ -567,20 +566,10 @@ def agregar_receta(request,username_paciente_id):
         form=FormReceta()
     return render(request, 'enfermera/form_receta.html', {'form':form,'pacientes':pacientes})
 
-#listado medicamentos
-def lista_medicamentos(request):
-    medicamentos = Medicamento.objects.all()
-    return render(request, 'enfermera/lista_medicamentos.html',{'medicamentos':medicamentos})
 
-#editar medicamento
-def editar_medicamento(request, id_medicamento):
-    medicamento = Medicamento.objects.get(id_medicamento=id_medicamento)
-    medicamentos = Medicamento.objects.all().filter(id_medicamento=id_medicamento)
-    formulario = FormMedicamento(request.POST or None,  instance=medicamento)
-    if formulario.is_valid() and request.POST:
-        formulario.save()
-        return redirect('admin_medicamento')
-    return render(request, 'admin_medicamento/editar_medicamento.html', {'formulario': formulario, 'medicamentos': medicamentos})
+
+
+
 
 #informacion del paciente vista como neurologo desde admin
 def neurologo_info_paciente_vista(request,username_paciente_id):
