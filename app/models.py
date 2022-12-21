@@ -4,8 +4,9 @@ from tokenize import blank_re
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from usuario.models import Usuario
-from paciente.models import Diabetes, Hipertension, Animo
+from paciente.models import Diabetes, Hipertension, Animo, Familiar, Paciente
 from medico_y_enfermera.models import Institucion
+from medicamento.models import Tipo_farmaco, Forma_farmaceutica, Recomendacion_consumo, Marca, Via_ingesta, Laboratorio, Dosis
 
 # Create your models here.
 
@@ -34,69 +35,6 @@ class Comuna(models.Model):
         
     def __str__(self):
         return self.nombre_comuna
-
-
-
-
-# Modelo para Tipo_farmaco
-class Tipo_farmaco(models.Model):
-    id_tipo_farmaco     = models.AutoField('Id Tipo Farmaco', primary_key=True)
-    tipo_farmaco = models.CharField('Tipo Farmaco', max_length=100)
-    descripcion_tipo_farmaco = models.CharField('Descripcion Tipo Farmaco', max_length=400)
-
-    def __str__(self):
-        return self.tipo_farmaco
-
-# Modelo para Forma_farmaceutica
-class Forma_farmaceutica(models.Model):
-    id_forma_farmaceutica    = models.AutoField('Id Forma Farmaceutica', primary_key=True)
-    forma_farmaceutica = models.CharField('Forma Farmaceutica', max_length=100)
-
-    def __str__(self):
-        return self.forma_farmaceutica 
-
-# Modelo para Dosis
-class Dosis(models.Model):
-    id_dosis     = models.AutoField('Id Dosis', primary_key=True)
-    cantidad_dosis = models.DecimalField('Cantidad Dosis', max_digits=3, decimal_places=2)
-    descripcion = models.CharField('Descripcion', max_length=5)
-
-
-    def __str__(self):
-        return str(self.cantidad_dosis)+' - '+ str(self.descripcion)
-
-# Modelo para Marca
-class Marca(models.Model):
-    id_marca     = models.AutoField('Id Marca', primary_key=True)
-    marca = models.CharField('Marca', max_length=100)
-
-    def __str__(self):
-        return self.marca
-
-
-# Modelo para Recomendacion_consumo
-class Recomendacion_consumo(models.Model):
-    id_recomendacion = models.AutoField('Id Recomendacion', primary_key=True)
-    recomendacion = models.CharField('Recomendacion', max_length=100)
-
-    def __str__(self):
-        return self.recomendacion
-
-# Modelo para Laboratorio
-class Laboratorio(models.Model):
-    id_laboratorio = models.AutoField('Id Laboratorio', primary_key=True)
-    laboratorio = models.CharField('Laboratorio', max_length=100)
-
-    def __str__(self):
-        return self.laboratorio
-
-# Modelo para Via_ingesta
-class Via_ingesta(models.Model):
-    id_via_ingesta = models.AutoField('Id Via Ingesta', primary_key=True)
-    via_ingesta = models.CharField('Via Ingesta', max_length=100)
-
-    def __str__(self):
-        return self.via_ingesta
 
 
 # Modelo para Medicamento
@@ -131,7 +69,7 @@ class Neurologo(models.Model):
     apellido_neurologo  = models.CharField('Apellido Neurologo', max_length=100)
     direccion_neurologo = models.CharField('Direccion Neurologo', max_length=100)
     institucion = models.ForeignKey(Institucion, on_delete=models.CASCADE, verbose_name="Institucion", null=True)
-    comuna = models.ForeignKey(Comuna, on_delete=models.CASCADE, verbose_name="Comuna", null=True)
+    comuna = models.ForeignKey(Comuna, on_delete=models.CASCADE, null=True)
     email_neurologo     = models.CharField('Email Neurologo', max_length=100)
     telefono_neurologo  = models.CharField('Telefono Neurologo', max_length=9, null=True, blank=True)
     whatsaap_neurologo  = models.CharField('Whatsaap Neurologo', max_length=9) 
@@ -142,43 +80,8 @@ class Neurologo(models.Model):
     def __str__(self):
         return self.nombre_neurologo + ' ' + str(self.apellido_neurologo) 
  
-# Modelo para Familiar
-class Familiar(models.Model):
-    id_familiar         = models.IntegerField('Id Familiar')
-    username_familiar   = models.OneToOneField(Usuario,on_delete=models.CASCADE, null=False, blank=False, primary_key=True)
-    rut_familiar        = models.CharField('Rut Familiar', max_length=10)
-    nombre_familiar     = models.CharField('Nombre Familiar', max_length=100)
-    apellido_familiar   = models.CharField('Apellido Familiar', max_length=100)
-    direccion_familiar  = models.CharField('Direccion Familiar', max_length=100)
-    comuna = models.ForeignKey(Comuna, on_delete=models.CASCADE, verbose_name="Comuna", null=True)
-    email_familiar      = models.CharField('Email Familiar', max_length=100)
-    telefono_familiar   = models.CharField('Telefono Familiar', max_length=9, null=True, blank=True)
-    whatsaap_familiar   = models.CharField('Whatsaap Familiar', max_length=9)
-    celular_familiar    = models.CharField('Celular Familiar', max_length=9)
-    telegram_familiar   = models.CharField('Telegram Familiar', max_length=100, null=True, blank=True)
-    
-    def __str__(self):
-        return self.nombre_familiar + ' ' + str(self.apellido_familiar) 
 
-# Modelo para Paciente
-class Paciente(models.Model):
-    id_paciente          = models.IntegerField('Id Paciente')
-    username_paciente    = models.OneToOneField(Usuario,on_delete=models.CASCADE, null=False, blank=False, primary_key=True)
-    rut_paciente         = models.CharField('Rut Paciente', max_length=10)
-    nombre_paciente      = models.CharField('Nombre Paciente', max_length=100)
-    apellido_paciente    = models.CharField('Apellido Paciente', max_length=100)
-    diabetes             = models.ForeignKey(Diabetes, on_delete=models.CASCADE, verbose_name="Diabetes", null=True)
-    hipertension         = models.ForeignKey(Hipertension, on_delete=models.CASCADE, verbose_name="Hipertension", null=True)
-    direccion_paciente   = models.CharField('Direccion Paciente', max_length=100)
-    comuna = models.ForeignKey(Comuna, on_delete=models.CASCADE, verbose_name="Comuna", null=True)
-    email_paciente       = models.EmailField('Email Paciente', max_length=100)
-    telefono_paciente    = models.CharField('Telefono Paciente', max_length=9, null=True, blank=True)
-    whatsaap_paciente    = models.CharField('Whatsaap Paciente', max_length=9)
-    celular_paciente     = models.CharField('Celular Paciente', max_length=9)
-    telegram_paciente    = models.CharField('Telegram Paciente', max_length=100, null=True, blank=True)
 
-    def __str__(self):
-        return self.nombre_paciente + ' ' + str(self.apellido_paciente) 
 
 # Modelo para Enfermera
 class Enfermera(models.Model):
@@ -188,7 +91,7 @@ class Enfermera(models.Model):
     nombre_enfermera      = models.CharField('Nombre Enfermera', max_length=100)
     apellido_enfermera    = models.CharField('Apellido Enfermera', max_length=100)
     direccion_enfermera   = models.CharField('Direccion Enfermera', max_length=100)
-    comuna = models.ForeignKey(Comuna, on_delete=models.CASCADE, verbose_name="Comuna", null=True)
+    comuna      = models.ForeignKey(Comuna, on_delete=models.CASCADE, verbose_name="Comuna", null=True)
     email_enfermera       = models.EmailField('Email Enfermera', max_length=100)
     telefono_enfermera    = models.CharField('Telefono Enfermera', max_length=9, null=True, blank=True)
     whatsaap_enfermera    = models.CharField('Whatsaap Enfermera', max_length=9)
