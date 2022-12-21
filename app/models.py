@@ -4,7 +4,8 @@ from tokenize import blank_re
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from usuario.models import Usuario
-from paciente.models import Diabetes, Hipertension
+from paciente.models import Diabetes, Hipertension, Animo
+from medico_y_enfermera.models import Institucion
 
 # Create your models here.
 
@@ -120,14 +121,6 @@ class Medicamento(models.Model):
 
 
 
-# Modelo para Institucion
-class Institucion(models.Model): 
-    nombre_institucion = models.CharField('Nombre Institución', max_length=100)
-    comuna = models.ForeignKey(Comuna, on_delete=models.CASCADE, verbose_name="Comuna", null=True)
-    descripcion = models.CharField('Descripción Institución',max_length=2000)
- 
-    def __str__(self): 
-        return self.nombre_institucion +'/'+ str(self.comuna)
 
 # Modelo para Neurologo
 class Neurologo(models.Model):
@@ -163,8 +156,7 @@ class Familiar(models.Model):
     whatsaap_familiar   = models.CharField('Whatsaap Familiar', max_length=9)
     celular_familiar    = models.CharField('Celular Familiar', max_length=9)
     telegram_familiar   = models.CharField('Telegram Familiar', max_length=100, null=True, blank=True)
-
-
+    
     def __str__(self):
         return self.nombre_familiar + ' ' + str(self.apellido_familiar) 
 
@@ -314,7 +306,6 @@ class Estado_monitoreo(models.Model):
 
 # Modelo para Automonitoreo
 class Automonitoreo(models.Model):
-
     id_monitoreo  = models.AutoField('id Monitoreo', primary_key=True)
     fecha_automonitoreo = models.DateTimeField('Fecha Monitoreo', auto_now_add=True)
     estado_monitoreo = models.ForeignKey(Estado_monitoreo, on_delete=models.CASCADE, verbose_name="Estado_monitoreo", null=True)
@@ -326,14 +317,7 @@ class Automonitoreo(models.Model):
     class Meta:
         ordering = ['-fecha_automonitoreo']
 
-# Modelo para Animo
-class Animo(models.Model):
-    id_Animo = models.AutoField('Id Animo', primary_key=True)
-    valor_animo = models.IntegerField('Valor Animo')
-    nombre_animo    = models.CharField('Nombre Animo', max_length=50, null=True, blank=True)
-    #codigo_emoticon = models.CharField('Codigo Emoticon', max_length=50, null=True, blank=True)
-    def __str__(self):
-        return self.nombre_animo 
+ 
         
 # Modelo para Estado_animo
 class Estado_animo(models.Model):
@@ -467,8 +451,6 @@ class Preregistro(models.Model):
     email_paciente       = models.EmailField('Email paciente', max_length=100)
     neurologo     = models.ForeignKey(Neurologo, on_delete=models.CASCADE, verbose_name="Neurologo de Referencia", null=True)
     timestamp = models.DateTimeField('Fecha Prere4gistro', auto_now_add=True, null=True, blank=True)
-
-    
 
     def __str__(self):
         return self.nombre_paciente
