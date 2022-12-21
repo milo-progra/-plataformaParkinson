@@ -139,26 +139,14 @@ def neurologo_info_paciente(request,username_paciente_id):
     automonitoreo=Automonitoreo.objects.all().filter(username_paciente_id=username_paciente_id)
     return render(request, 'neurologo/neurologo_info_paciente.html',{'automonitoreo':automonitoreo,'estado_animos':estado_animos,'receta':receta,'familiar_pacientes':familiar_pacientes,'pacientes':pacientes,'neurologo_pacientes':neurologo_pacientes})
 
+
 #vista del index de fonoaudiologo 
 def fonoaudiologo(request):
     tipo_usuarios=Tipo_Usuario.objects.all().filter(id_tipo_usuario=request.user.tipo_usuario_id)
     fonoaudiologos=Fonoaudiologo.objects.all().filter(id_fonoaudiologo=1)
     return render(request, 'fonoaudiologo/fonoaudiologo.html',{'tipo_usuarios':tipo_usuarios,'fonoaudiologo':fonoaudiologos})
 
-#vista de los pacientes del fonoaudiologo logueado
-def fonoaudiologo_paciente(request):
-    fonoaudiologo_pacientes=Fonoaudiologo_paciente.objects.all().filter(username_fonoaudiologo=request.user.id)
-    return render(request, 'fonoaudiologo/fonoaudiologo_paciente.html',{'fonoaudiologo_pacientes':fonoaudiologo_pacientes})
 
-#informacion del paciente seleccionado por el fonoaudiologo
-def fonoaudiologo_info_paciente(request,username_paciente_id):
-    pacientes=Paciente.objects.all().filter(username_paciente=username_paciente_id)
-    fonoaudiologo_pacientes=Fonoaudiologo_paciente.objects.all().filter(username_paciente_id=username_paciente_id)
-    familiar_pacientes=Familiar_paciente.objects.all().filter(username_paciente_id=username_paciente_id)
-    receta=Receta.objects.all().filter(username_paciente_id=username_paciente_id)
-    estado_animos = Estado_animo.objects.all().filter(username_paciente_id=username_paciente_id)
-    automonitoreo=Automonitoreo.objects.all().filter(username_paciente_id=username_paciente_id)
-    return render(request, 'fonoaudiologo/fonoaudiologo_info_paciente.html',{'automonitoreo':automonitoreo,'estado_animos':estado_animos,'receta':receta,'familiar_pacientes':familiar_pacientes,'pacientes':pacientes,'fonoaudiologo_pacientes':fonoaudiologo_pacientes})
 
 #informacion del paciente seleccionado por el fonoaudiologo desde admin
 def fonoaudiologo_vista_info_paciente(request,username_paciente_id):
@@ -169,6 +157,8 @@ def fonoaudiologo_vista_info_paciente(request,username_paciente_id):
     estado_animos = Estado_animo.objects.all().filter(username_paciente_id=username_paciente_id)
     automonitoreo=Automonitoreo.objects.all().filter(username_paciente_id=username_paciente_id)
     return render(request, 'admin_paciente/vistas_fonoaudiologo/vista_fonoaudiologo.html',{'automonitoreo':automonitoreo,'estado_animos':estado_animos,'receta':receta,'familiar_pacientes':familiar_pacientes,'pacientes':pacientes,'fonoaudiologo_pacientes':fonoaudiologo_pacientes})
+
+
 
 #recetas del paciente
 def receta(request):

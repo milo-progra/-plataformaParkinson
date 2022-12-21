@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
-from app.views import EnviarCorreoView, HomeCorreosView, Registro_pacienteView, ReporteAudios,admin_enfermera, admin_familiar, admin_fonoaudiologo, admin_info_enfermera, admin_info_familiar, admin_info_fonoaudiologo,  admin_info_neurologo,  admin_neurologo, admin_paciente, admin_receta_paciente, agregar_bitacora, agregar_receta, apq11shimmer, apq3shimmer, aqpq5shimer, audio, audio_paciente, automonitoreo_form, chart_animo, chart_automonitoreo, chart_vista_animo, chart_vista_automonitoreo, ddashimmer, ddpjitter, documento, documento_admin, editar_comentario, editar_comentario_bitacora, editar_comentario_intensidad, editar_receta, eliminar_receta, enf_pac, enfermera, enfermera_info_paciente, enfermera_paciente, enfermera_vista_info_paciente, estado_animo_form, f0, f0dev, f1, f2, f3, f4, familiar, familiar_info_paciente, familiar_paciente, fonoaudiologo, fonoaudiologo_info_paciente, fonoaudiologo_paciente, fonoaudiologo_vista_info_paciente, grafico_admin, grafico_audios_admin, grafico_cantidad_usuarios, grafico_enfermeras_comuna, grafico_fonoaudiologo_comuna, grafico_intensidad_admin, grafico_neurologo_comuna, grafico_pacientes_comuna, grafico_vocalizacion_admin, graficos, index, intensidad, intensidad_paciente, localabsolutejitter, localdbshimer, localshimer, modificar_audio, modificar_audio_fonoaudiologo, neu_pac, neurologo, neurologo_info_paciente, neurologo_info_paciente_vista, neurologo_paciente, post_login, ppq5jitter, preregistro_admin, preregistros, rapjitter, receta,  registro_usuario, telegram, terapias_fono, vista_apq11shimmer, vista_apq3shimmer, vista_aqpq5shimer, vista_audio_paciente, vista_ddashimmer, vista_ddpjitter, vista_f0, vista_f0dev, vista_f1, vista_f2, vista_f3, vista_f4, vista_graficos, vista_intensidad, vista_localabsolutejitter, vista_localdbshimer, vista_localshimer, vista_ppq5jitter, vista_rapjitter, vista_vocalizacion, vocalizacion, vocalizacion_paciente
+from app.views import EnviarCorreoView, HomeCorreosView, Registro_pacienteView, ReporteAudios,admin_enfermera, admin_familiar, admin_fonoaudiologo, admin_info_enfermera, admin_info_familiar, admin_info_fonoaudiologo,  admin_info_neurologo,  admin_neurologo, admin_paciente, admin_receta_paciente, agregar_bitacora, agregar_receta, apq11shimmer, apq3shimmer, aqpq5shimer, audio, audio_paciente, automonitoreo_form, chart_animo, chart_automonitoreo, chart_vista_animo, chart_vista_automonitoreo, ddashimmer, ddpjitter, documento, documento_admin, editar_comentario, editar_comentario_bitacora, editar_comentario_intensidad, editar_receta, eliminar_receta, enf_pac, enfermera, enfermera_info_paciente, enfermera_paciente, enfermera_vista_info_paciente, estado_animo_form, f0, f0dev, f1, f2, f3, f4, familiar, familiar_info_paciente, familiar_paciente, fonoaudiologo, fonoaudiologo_vista_info_paciente, grafico_admin, grafico_audios_admin, grafico_cantidad_usuarios, grafico_enfermeras_comuna, grafico_fonoaudiologo_comuna, grafico_intensidad_admin, grafico_neurologo_comuna, grafico_pacientes_comuna, grafico_vocalizacion_admin, graficos, index, intensidad, intensidad_paciente, localabsolutejitter, localdbshimer, localshimer, modificar_audio, modificar_audio_fonoaudiologo, neu_pac, neurologo, neurologo_info_paciente, neurologo_info_paciente_vista, neurologo_paciente, post_login, ppq5jitter, preregistro_admin, preregistros, rapjitter, receta,  registro_usuario, telegram, terapias_fono, vista_apq11shimmer, vista_apq3shimmer, vista_aqpq5shimer, vista_audio_paciente, vista_ddashimmer, vista_ddpjitter, vista_f0, vista_f0dev, vista_f1, vista_f2, vista_f3, vista_f4, vista_graficos, vista_intensidad, vista_localabsolutejitter, vista_localdbshimer, vista_localshimer, vista_ppq5jitter, vista_rapjitter, vista_vocalizacion, vocalizacion, vocalizacion_paciente
 
 
 urlpatterns = [
@@ -14,6 +14,7 @@ urlpatterns = [
     path('usuario/', include('usuario.urls')),
     path('paciente/', include('paciente.urls')),
     path('medicamento/', include('medicamento.urls')),
+    path('fonoaudiologo/', include('fonoaudiologo.urls')),
 
     
     path('post_login/', post_login, name="post_login"),
@@ -50,8 +51,8 @@ urlpatterns = [
     path('vista_intensidad/<username_paciente_id>', vista_intensidad, name="vista_intensidad"),
     path('fonoaudiologo/', fonoaudiologo, name="fonoaudiologo"),
     path('terapias_fono/', terapias_fono, name="terapias_fono"),
-    path('fonoaudiologo_paciente/', fonoaudiologo_paciente, name="fonoaudiologo_paciente"),
-    path('fonoaudiologo_info_paciente/<username_paciente_id>' , fonoaudiologo_info_paciente, name="fonoaudiologo_info_paciente"),
+
+    
     path('fonoaudiologo_vista_info_paciente/<username_paciente_id>' , fonoaudiologo_vista_info_paciente, name="fonoaudiologo_vista_info_paciente"),
     path('f0/<username_paciente_id>', f0, name="f0"),
     path('f0dev/<username_paciente_id>', f0dev, name="f0dev"),
