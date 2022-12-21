@@ -27,8 +27,8 @@ admin.site.register(Estado_monitoreo)
 admin.site.register(Automonitoreo)
 
 admin.site.register(Estado_animo)
-admin.site.register(Fonoaudiologo_paciente)
-admin.site.register(Fonoaudiologo)
+
+
 admin.site.register(Audio)
 admin.site.register(Vocalizacion)
 admin.site.register(Intensidad)
