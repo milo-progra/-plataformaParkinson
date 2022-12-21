@@ -31,7 +31,7 @@ admin.site.register(Familiar_paciente)
 admin.site.register(Neurologo_paciente)
 admin.site.register(Estado_monitoreo)
 admin.site.register(Automonitoreo)
-admin.site.register(Animo)
+
 admin.site.register(Estado_animo)
 admin.site.register(Fonoaudiologo_paciente)
 admin.site.register(Fonoaudiologo)
@@ -46,7 +46,7 @@ admin.site.register(Paciente_Documento)
 admin.site.register(Preregistro)
 admin.site.register(Enfermera_neurologo)
 admin.site.register(RegistroCorreos)
-admin.site.register(Institucion)
+
 
 
 

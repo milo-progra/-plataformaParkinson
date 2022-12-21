@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'app',
     'rest_framework',
     'usuario',
-    'paciente'
+    'paciente',
+    'medico_y_enfermera',
 ]
 
 MIDDLEWARE = [
