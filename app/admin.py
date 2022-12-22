@@ -29,9 +29,8 @@ admin.site.register(Automonitoreo)
 admin.site.register(Estado_animo)
 
 
-admin.site.register(Audio)
-admin.site.register(Vocalizacion)
-admin.site.register(Intensidad)
+
+
 admin.site.register(Enfermera)
 admin.site.register(Enfermera_paciente)
 admin.site.register(Bitacora)

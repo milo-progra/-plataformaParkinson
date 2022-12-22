@@ -6,7 +6,8 @@ from usuario.models import Usuario
 from paciente.models import Diabetes, Hipertension, Animo, Familiar, Paciente
 from medico_y_enfermera.models import Institucion
 from medicamento.models import Dosis, Medicamento
-from fonoaudiologo.models import Fonoaudiologo
+from fonoaudiologo.models import  Audio, Vocalizacion, Intensidad
+
 
 # Create your models here.
 
@@ -98,65 +99,9 @@ class Bitacora (models.Model):
     class Meta:
         ordering = ['-timestamp']
 
-# Modelo para Audio
-class Audio (models.Model):
-    username_paciente=models.ForeignKey(Paciente, on_delete=models.CASCADE, verbose_name="Paciente", null=True)
-    timestamp= models.DateTimeField('Fecha Monitoreo', auto_now_add=True)
-    url_archivo_audio=models.FileField(upload_to='audios/')
-    jitter_ppq5=models.IntegerField('jitter ppq5', null=True)
-    jitter_rap=models.IntegerField('jitter rap', null=True)
-    maximum_pitch=models.IntegerField('maximum pitch', null=True)   
-    error_jitter_ppq5=models.IntegerField('error jitter ppq5', null=True)
-    error_jitter_rap=models.IntegerField('error jitter rap', null=True)
-    error_maximum_pitch=models.IntegerField('error maximum pitch', null=True)
 
-    jitter_ppq5_IA          =       models.IntegerField('jitter ppq5', null=True)
-    jitter_rap_IA           =       models.IntegerField('jitter rap', null=True)
-    maximum_pitch_IA        =       models.IntegerField('maximum pitch', null=True)   
-    error_jitter_ppq5_IA    =       models.IntegerField('error jitter ppq5', null=True)
-    error_jitter_rap_IA     =       models.IntegerField('error jitter rap', null=True)
-    error_maximum_pitch_IA  =       models.IntegerField('error maximum pitch', null=True)
 
-    def __str__(self):
-        return str(self.username_paciente)+ ' / ' + str(self.timestamp)+ ' / ' + str(self.url_archivo_audio)+ ' / ' + str(self.jitter_ppq5)+ ' / ' + str(self.jitter_rap)+ ' / ' + str(self.maximum_pitch)+ ' / ' + str(self.error_jitter_ppq5)+ ' / ' + str(self.error_jitter_rap)+ ' / ' + str(self.error_maximum_pitch)
-           
-    class Meta:
-        ordering = ['-timestamp']
 
-# Modelo para Vocalizacion
-class Vocalizacion (models.Model):
-    username_paciente=models.ForeignKey(Paciente, on_delete=models.CASCADE, verbose_name="Paciente", null=True)
-    timestamp= models.DateTimeField('Fecha Monitoreo', auto_now_add=True)
-    url_archivo_vocalizacion=models.FileField(upload_to='vocalizacion/')
-    duracion=models.IntegerField('Duracion', null=True)
-    bpminute=models.IntegerField('BPM Beats Per Minute ', null=True)
-    bpmeasure=models.IntegerField('Beats Per Measure', null=True)   
-    comentario=models.CharField( 'Comentarios',max_length=500, null=True)
-    
-    
-    def __str__(self):
-        return str(self.username_paciente)+ ' / ' + str(self.timestamp)+ ' / ' + str(self.url_archivo_vocalizacion)+ ' / ' + str(self.duracion)+ ' / ' + str(self.bpminute)+ ' / ' + str(self.bpmeasure)+ ' / ' + str(self.comentario)
-           
-    class Meta:
-        ordering = ['-timestamp']
-
-# Modelo para Intensidad
-class Intensidad (models.Model):
-    username_paciente=models.ForeignKey(Paciente, on_delete=models.CASCADE, verbose_name="Paciente", null=True)
-    timestamp= models.DateTimeField('Fecha Monitoreo', auto_now_add=True)
-    url_archivo_intensidad=models.FileField(upload_to='intensidad/')
-    intensidad=models.IntegerField('Intensidad', null=True)
-    mindb=models.IntegerField('Min dB', null=True)
-    maxdb=models.IntegerField('Max dB', null=True)   
-    comentario=models.CharField( 'Comentarios',max_length=500, null=True)
-    
-    
-    def __str__(self):
-        return str(self.username_paciente)+ ' / ' + str(self.timestamp)+ ' / ' + str(self.url_archivo_intensidad
-        )+ ' / ' + str(self.intensidad)+ ' / ' + str(self.mindb)+ ' / ' + str(self.maxdb)+ ' / ' + str(self.comentario)
-           
-    class Meta:
-        ordering = ['-timestamp']
 
 # Modelo para Estado_monitoreo
 class Estado_monitoreo(models.Model):
