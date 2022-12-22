@@ -17,6 +17,7 @@ from app import *
 from .models import *
 from .forms import *
 from usuario.models import Tipo_Usuario
+from fonoaudiologo.models import Fonoaudiologo
 
 
 #index de la pagina principal con la fecha actual
@@ -441,17 +442,9 @@ def audio(request,username_paciente_id):
     pacientes=Paciente.objects.all().filter(username_paciente_id=username_paciente_id)
     return render(request, 'pacientes/audio.html',{'audios':audios,'pacientes':pacientes})
 
-#audios del paciente en vista fonoaudiologo
-def audio_paciente(request,username_paciente_id):
-    audios=Audio.objects.all().filter(username_paciente_id=username_paciente_id)
-    pacientes=Paciente.objects.all().filter(username_paciente_id=username_paciente_id)
-    return render(request, 'fonoaudiologo/audio_paciente.html',{'audios':audios,'pacientes':pacientes})
 
-#Vocalicaciones del paciente
-def vocalizacion(request,username_paciente_id):
-    vocalizacion=Vocalizacion.objects.all().filter(username_paciente_id=username_paciente_id)
-    pacientes=Paciente.objects.all().filter(username_paciente_id=username_paciente_id)
-    return render(request, 'fonoaudiologo/vocalizacion.html',{'vocalizacion':vocalizacion,'pacientes':pacientes})
+
+
 
 #vocalizaciones 
 def vocalizacion_paciente(request,username_paciente_id):
@@ -459,11 +452,7 @@ def vocalizacion_paciente(request,username_paciente_id):
     pacientes=Paciente.objects.all().filter(username_paciente_id=username_paciente_id)
     return render(request, 'pacientes/vocalizacion.html',{'vocalizacion':vocalizacion,'pacientes':pacientes})
 
-#intensidad del paciente
-def intensidad(request,username_paciente_id):
-    intensidad=Intensidad.objects.all().filter(username_paciente_id=username_paciente_id)
-    pacientes=Paciente.objects.all().filter(username_paciente_id=username_paciente_id)
-    return render(request, 'fonoaudiologo/intensidad.html',{'intensidad':intensidad,'pacientes':pacientes})
+
 
 #intensidades
 def intensidad_paciente(request,username_paciente_id):
