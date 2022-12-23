@@ -1,8 +1,9 @@
 
 
 //////////////////////////////////////////////////////////// views.py  ////////////////////////////////////////////////////////////
+        Hola!!!!!!!!!!!!!!!!!
 
-        entradas = Entrada.objects.filter(etapa_id = etapa, id_area = id)
+        entradas = Entrada.objects.filter(etapa_id = etapa, id_area = id) 
 
         dias_total = []
      
