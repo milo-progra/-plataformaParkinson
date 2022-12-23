@@ -1549,7 +1549,7 @@ class EnviarCorreoView(View):
                 correos = c.email_fonoaudiologo 
                 subject = request.POST['asunto'] 
                 message = request.POST['mensaje'] 
-                send_mail(subject, message, 'vozparkinsonchile@gmail.com',[correos], fail_silently=False) 
+                send_mail(subject, message, 'energyfabian12@gmail.com',[correos], fail_silently=False) 
                 registro_mensaje = RegistroCorreos.objects.create(asunto = subject, mensaje = message, dirigido = "fonoaudiologos") 
                 registro_mensaje.save() 
             messages.success(request, "Correo enviado")
@@ -1563,7 +1563,7 @@ class EnviarCorreoView(View):
                 correos = c.email_enfermera 
                 subject = request.POST['asunto'] 
                 message = request.POST['mensaje'] 
-                send_mail(subject, message, 'vozparkinsonchile@gmail.com',[correos], fail_silently=False) 
+                send_mail(subject, message, 'energyfabian12@gmail.com',[correos], fail_silently=False) 
                 registro_mensaje = RegistroCorreos.objects.create(asunto = subject, mensaje = message, dirigido = "enfermeras") 
                 registro_mensaje.save() 
             messages.success(request, "Correo enviado")
@@ -1576,7 +1576,7 @@ class EnviarCorreoView(View):
                 correos = c.email_paciente 
                 subject = request.POST['asunto'] 
                 message = request.POST['mensaje'] 
-                send_mail(subject, message, 'vozparkinsonchile@gmail.com',[correos], fail_silently=False) 
+                send_mail(subject, message, 'energyfabian12@gmail.com',[correos], fail_silently=False) 
                 registro_mensaje = RegistroCorreos.objects.create(asunto = subject, mensaje = message, dirigido = "pacientes") 
                 registro_mensaje.save() 
             messages.success(request, "Correo enviado")
@@ -1588,7 +1588,7 @@ class EnviarCorreoView(View):
                 correos = c.email_familiar 
                 subject = request.POST['asunto'] 
                 message = request.POST['mensaje'] 
-                send_mail(subject, message, 'vozparkinsonchile@gmail.com',[correos], fail_silently=False)  
+                send_mail(subject, message, 'energyfabian12@gmail.com',[correos], fail_silently=False)  
                 registro_mensaje = RegistroCorreos.objects.create(asunto = subject, mensaje = message, dirigido = "familiares") 
                 registro_mensaje.save()   
             messages.success(request, "Correo enviado")
