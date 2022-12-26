@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 from django.urls import reverse_lazy 
+#bibloteca pip install python-decouple que te permite utilizar variables de entorno
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -93,12 +95,12 @@ WSGI_APPLICATION = 'sitioweb.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'parkinson_bd',
-        'USER': 'root',
-        'PASSWORD': 'admin',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'ENGINE'    : config('ENGINE'),
+        'NAME'      : config('NAME'),
+        'USER'      : config('USER'),
+        'PASSWORD'  : config('PASSWORD'),
+        'HOST'      : config('HOST'),
+        'PORT'      : config('PORT'),
     }
 }
 
@@ -174,8 +176,6 @@ AUTH_USER_MODEL = 'usuario.Usuario'
 
 
 
-#bibloteca pip install python-decouple que te permite utilizar variables de entorno
-from decouple import config
 
 
 

@@ -1,1 +1,4 @@
-telegram_token = '5779277760:AAHzAoJfjdnmHtkZGEWoQy22VzTi78Z1wD4'
+#bibloteca pip install python-decouple que te permite utilizar variables de entorno
+from decouple import config
+
+telegram_token = config('TELEGRAM_TOKEN')

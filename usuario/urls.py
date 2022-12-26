@@ -1,6 +1,6 @@
 from django.urls import path, include
-from .views import registro
+from .views import pre_registro
 
 urlpatterns = [
-        path('preregistro/', registro, name="preregistro"),
+        path('preregistro/', pre_registro, name="preregistro"),
 ]

@@ -248,21 +248,6 @@ def admin_info_fonoaudiologo(request,username_fonoaudiologo_id):
 
 
 
-#registro del usuario preregistrado
-def registro_usuario(request,id):
-    preregistros=Preregistro.objects.all().filter(id=id)
-
-    data= {
-        'form':PreregistroUsuarioForm(),
-        'preregistros' :preregistros
-    }
-    if request.method == 'POST':
-        formulario=PreregistroUsuarioForm(data=request.POST)
-        if formulario.is_valid():
-            formulario.save()
-            return redirect("registro_paciente",id)
-        data['form']=formulario
-    return render(request,'enfermera/registro_usuario_paciente.html',data)
 
 #vinculacion enfermera_paciente
 def enf_pac(request,id):
@@ -295,26 +280,6 @@ def neu_pac(request,id):
         form=FormNeuPac()
     return render(request, 'enfermera/vincular_paciente.html', {'form':form, 'preregistros':preregistros})
 
-#registro del paciente preregistrado
-class Registro_pacienteView(View):
-    usuario =Usuario.objects.filter(tipo_usuario=1)
-    comunas =Comuna.objects.all()
-    diabete=Diabetes.objects.all()
-    hipertensio=Hipertension.objects.all()
-    template_name='enfermera/registro_paciente.html'
-    def get(self,request,id):
-        preregistros=Preregistro.objects.all().filter(id=id)
-        total_pacientes=Paciente.objects.count()
-        id_paciente = total_pacientes+1
-        data={
-            'usuario':self.usuario,
-            'comunas':self.comunas,
-            'diabete':self.diabete,
-            'hipertensio':self.hipertensio,
-            'preregistros':preregistros,
-            'id_paciente':id_paciente,
-        }
-        return render(request,self.template_name,data)
 
     def post(self,request,id):
         id_paciente =request.POST['id']
@@ -1462,20 +1427,88 @@ def vista_graficos(request,username_paciente_id):
 
 
 
+#-------------------------------------------------------- Pre registros -----------------------------------------------------------------------------------------
+
 #preregistros desde enfermera
 def preregistros(request):
-
     current_user=get_object_or_404(Enfermera_neurologo, username_enfermera=request.user.id)
     preregistros=Preregistro.objects.all().filter(neurologo=current_user.username_neurologo)
-    
-
-    
 
     return render(request, 'enfermera/preregistros.html',{'preregistros':preregistros})
 
 
+#registro del usuario preregistrado
+def registro_usuario(request,id):
+    preregistros=Preregistro.objects.all().filter(id=id)
+
+    data= {
+        'form':PreregistroUsuarioForm(),
+        'preregistros' :preregistros
+    }
+    if request.method == 'POST':
+        formulario=PreregistroUsuarioForm(data=request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect("registro_paciente",id)
+        data['form']=formulario
+    return render(request,'enfermera/registro_usuario_paciente.html',data)
 
 
+
+#registro del paciente preregistrado
+class Registro_pacienteView(View):
+    usuario =Usuario.objects.filter(tipo_usuario=1)
+    comunas =Comuna.objects.all()
+    diabete=Diabetes.objects.all()
+    hipertensio=Hipertension.objects.all()
+    template_name='enfermera/registro_paciente.html'
+
+    def get(self,request,id):
+        preregistros=Preregistro.objects.all().filter(id=id)
+        total_pacientes=Paciente.objects.count()
+        id_paciente = total_pacientes+1
+        data={
+            'usuario':self.usuario,
+            'comunas':self.comunas,
+            'diabete':self.diabete,
+            'hipertensio':self.hipertensio,
+            'preregistros':preregistros,
+            'id_paciente':id_paciente,
+        }
+        return render(request,self.template_name,data)
+
+    def post(self,request,id):
+        id_paciente =request.POST['id']
+        username_paciente=request.POST['username_paciente']
+        rut_paciente=request.POST['rut_paciente']
+        nombre_paciente=request.POST['nombre_paciente']
+        apellido_paciente=request.POST['apellido_paciente']
+        diabetes=request.POST['diabetes']
+        hipertension=request.POST['hipertension']
+        direccion_paciente=request.POST['direccion_paciente']
+        comuna=request.POST['comuna']
+        email_paciente=request.POST['email_paciente']
+        telefono_paciente=request.POST['telefono_paciente']
+        whatsaap_paciente=request.POST['whatsaap_paciente']
+        celular_paciente=request.POST['celular_paciente']
+        telegram_paciente=request.POST['telegram_paciente']
+        new_paciente=Paciente.objects.create(id_paciente=id_paciente,
+                                            username_paciente_id=username_paciente,
+                                            rut_paciente=rut_paciente,
+                                            nombre_paciente=nombre_paciente,
+                                            apellido_paciente=apellido_paciente,
+                                            diabetes_id=diabetes,
+                                            hipertension_id=hipertension,
+                                            direccion_paciente=direccion_paciente,
+                                            comuna_id=comuna,
+                                            email_paciente=email_paciente,
+                                            telefono_paciente=telefono_paciente,
+                                            whatsaap_paciente=whatsaap_paciente,
+                                            celular_paciente=celular_paciente,
+                                            telegram_paciente=telegram_paciente
+                                            )
+        new_paciente.save()
+        return redirect("enf_pac", id)
 
 
 #modificar audios

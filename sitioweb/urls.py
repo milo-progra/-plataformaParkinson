@@ -130,8 +130,10 @@ urlpatterns = [
 
     path('enf_pac/<id>', enf_pac, name="enf_pac"),
     path('neu_pac/<id>', neu_pac, name="neu_pac"),
+
     path('registro_usuario/<id>', registro_usuario, name="registro_usuario"),
     path('registro_paciente/<id>', Registro_pacienteView.as_view(), name="registro_paciente"),
+    
     path('preregistros/', preregistros, name="preregistros"),
     path('preregistro_admin/', preregistro_admin, name="preregistro_admin"),
     path('home_enviar_correo/', HomeCorreosView.as_view(), name='home_enviar_correo'),

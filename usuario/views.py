@@ -4,9 +4,9 @@ from django.contrib import messages
 from app.models import Paciente
 
 
-# Create your views here.
+
 #preregistro del paciente
-def registro(request):
+def pre_registro(request):
     data= {
         'form':FormPreregistro()
     }
