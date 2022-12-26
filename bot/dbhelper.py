@@ -106,7 +106,7 @@ class DBHelper:
 #se insertan los audios enviados en la tabla Audios
     def insert_audio(self, timestamp, url_archivo_audio, username_paciente_id):
         cursor = self.mydb.cursor()
-        query = f"INSERT INTO {config('NAME')}.app_audio (timestamp, url_archivo_audio, username_paciente_id) VALUES (%s, %s, %s)"
+        query = f"INSERT INTO {config('NAME')}.fonoaudiologo_audio (timestamp, url_archivo_audio, username_paciente_id) VALUES (%s, %s, %s)"
         # query = "INSERT INTO vozparkinson$default.app_audio (timestamp, url_archivo_audio, username_paciente_id) VALUES (%s, %s, %s)"
         valores = (timestamp, url_archivo_audio, username_paciente_id)
         cursor.execute(query, valores)
@@ -115,7 +115,7 @@ class DBHelper:
 #se actualiza y cambia el nombre de la url guardada
     def update_audio(self,url_archivo_audio ):
         cursor = self.mydb.cursor()
-        query = f"UPDATE {config('NAME')}.app_audio SET url_archivo_audio = SUBSTRING(%s, 7) WHERE url_archivo_audio = %s"
+        query = f"UPDATE {config('NAME')}.fonoaudiologo_audio SET url_archivo_audio = SUBSTRING(%s, 9) WHERE url_archivo_audio = %s"
         # query = "UPDATE vozparkinson$default.app_audio SET url_archivo_audio = SUBSTRING(%s, 45) WHERE url_archivo_audio = %s"
         valores = (url_archivo_audio,url_archivo_audio)
         cursor.execute(query, valores)

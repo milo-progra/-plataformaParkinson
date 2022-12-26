@@ -105,7 +105,7 @@ def voice_processing(message):
 
     downloaded_file = bot.download_file(file_info.file_path)
 
-    with open(f'media/audios/{token}new_file2.ogg', 'wb') as new_file:
+    with open(f'../media/audios/{token}new_file2.ogg', 'wb') as new_file:
         new_file.write(downloaded_file)
 
 
