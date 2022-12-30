@@ -16,6 +16,7 @@
 		<form action="" method=post>
 			{% csrf_token %}
 			{{form}}
+			<a href="{% url 'pdf_conciciones_de_uso' %}">ver terminos de uso</a>
 			<br>
 			<br>
 		<button type="submit" style="border-radius: 1.25rem;" class="btn btn-primary btn-block">Enviar</button>
@@ -31,7 +32,7 @@
 		<a href="{% url 'index' %}"><input class="button_input_volver" type="submit" value="Volver"></a>
 		
 
-		<p><a href="#">¿Olvidaste tu Contraseña?</a></p>
+		
 	</section>
 
 

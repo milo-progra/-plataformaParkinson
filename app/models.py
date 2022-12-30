@@ -70,18 +70,14 @@ class Enfermera(models.Model):
     id_enfermera          = models.IntegerField('Id Enfermera')
     username_enfermera    = models.OneToOneField(Usuario,on_delete=models.CASCADE, null=False, blank=False, primary_key=True)
     rut_enfermera         = models.CharField('Rut Enfermera', max_length=10)
-    nombre_enfermera      = models.CharField('Nombre Enfermera', max_length=100)
-    apellido_enfermera    = models.CharField('Apellido Enfermera', max_length=100)
     direccion_enfermera   = models.CharField('Direccion Enfermera', max_length=100)
     comuna      = models.ForeignKey(Comuna, on_delete=models.CASCADE, verbose_name="Comuna", null=True)
-    email_enfermera       = models.EmailField('Email Enfermera', max_length=100)
     telefono_enfermera    = models.CharField('Telefono Enfermera', max_length=9, null=True, blank=True)
-    whatsaap_enfermera    = models.CharField('Whatsaap Enfermera', max_length=9)
     celular_enfermera     = models.CharField('Celular Enfermera', max_length=9)
     telegram_enfermera    = models.CharField('Telegram Enfermera', max_length=100, null=True, blank=True)
 
     def __str__(self):
-        return self.nombre_enfermera + ' ' + str(self.apellido_enfermera) 
+        return self.rut_enfermera
 
 
 
@@ -252,12 +248,14 @@ class Preregistro(models.Model):
     email_paciente       = models.EmailField('Email paciente', max_length=100)
     neurologo     = models.ForeignKey(Neurologo, on_delete=models.CASCADE, verbose_name="Neurologo de Referencia", null=True)
     timestamp = models.DateTimeField('Fecha Prere4gistro', auto_now_add=True, null=True, blank=True)
+    terminos_uso    = models.BooleanField('Acepta termino de uso')
 
     def __str__(self):
         return self.nombre_paciente
 
     class Meta:
         ordering = ['-timestamp']
+        constraints = [models.CheckConstraint(check=models.Q(terminos_uso__gte = 1), name = "Debe aceptar los terminos de uso")]
 
 # Modelo para RegistroCorreos
 class RegistroCorreos(models.Model): 

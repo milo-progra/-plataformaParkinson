@@ -17,8 +17,8 @@
 							<h2> Enfermeras </h2>
 							{% for enfermera in enfermeras %}
 								<p>
-									<a href="{% url 'admin_info_enfermera' enfermera.username_enfermera_id %}">
-									{{ enfermera.nombre_enfermera}} {{ enfermera.apellido_enfermera}}
+									<a href="{% url 'admin_info_enfermera' enfermera.username_enfermera.id %}">
+									{{ enfermera.username_enfermera.first_name}} {{ enfermera.username_enfermera.last_name}}
 									</a>
 								</p>
 							{% endfor %}

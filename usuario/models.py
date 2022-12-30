@@ -20,7 +20,7 @@ class Tipo_Usuario(models.Model):
 
 
 class Usuario(AbstractUser):
-    tipo_usuario = models.ForeignKey(Tipo_Usuario, on_delete=models.CASCADE, verbose_name="Tipo Usuario", null=True, default=1)
+    tipo_usuario = models.ForeignKey(Tipo_Usuario, on_delete=models.CASCADE, verbose_name="Tipo Usuario", null=True)
 
     def __str__(self):
         return self.username +' / '+ str(self.tipo_usuario) + ' / '+ self.first_name +' / '+ self.last_name +' / '+ self.email
