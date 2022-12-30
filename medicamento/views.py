@@ -26,3 +26,20 @@ def editar_medicamento(request, id_medicamento):
         formulario.save()
         return redirect('admin_medicamento')
     return render(request, 'administrador/editar_medicamento.html', {'formulario': formulario, 'medicamentos': medicamentos})    
+
+
+
+def agregar_medicamento(request):
+    data = {
+        'form': FormMedicamento
+    }
+    if request.method == 'POST':
+        formulario =FormMedicamento(data=request.POST, files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect(to='admin_medicamento')
+            
+        else:
+            data["form"] = formulario  
+
+    return render(request,'administrador/agregar_medicamento.html',data)
