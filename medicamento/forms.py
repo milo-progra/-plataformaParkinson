@@ -37,3 +37,5 @@ class FormMedicamento(forms.ModelForm):
             'via_ingesta':"Via Ingesta",
             'laboratorio':"Laboratorio",
         }
+
+

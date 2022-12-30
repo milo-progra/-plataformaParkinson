@@ -85,6 +85,8 @@ def post_login(request):
         return render(request, 'enfermera/enfermera.html',{'tipo_usuarios':tipo_usuarios,'pacientes':pacientes})
     elif request.user.is_staff ==1:
         return render(request, 'admin_paciente/admin_paciente.html',{'tipo_usuarios':tipo_usuarios,'pacientes':pacientes})
+    elif request.user.tipo_usuario.nombre_tipo_usuario == "adminEnfermera":
+        return render(request, 'enfermera/enfermera.html',{'tipo_usuarios':tipo_usuarios,'pacientes':pacientes})   
     else: 
         print("holaaaaaaaaaaaaa")
         return render(request, 'error_usuario.html',{'tipo_usuarios':tipo_usuarios,'pacientes':pacientes})

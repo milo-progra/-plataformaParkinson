@@ -60,22 +60,28 @@
 				<!-- Nav -->
 					<nav id="nav">
 						<ul>
-							<li><a href="{% url 'admin_paciente' %}">Pacientes</a></li>
-							<li ><a href="{% url 'preregistro_admin' %}">Preregistros</a></li>
-							<li><a href="{% url 'admin_familiar' %}">Familiares</a></li>
-							<li ><a href="{% url 'admin_neurologo' %}">Neurólogos</a></li>
-							<li ><a href="{% url 'admin_fonoaudiologo' %}">Fonoaudiólogo</a></li>
-							<li><a href="{% url 'admin_enfermera' %}">Enfermera</a></li>
-							<li  class="current"><a href="{% url 'admin_medicamento' %}">Medicamentos</a></li>
-							<li  ><a href="{% url 'home_enviar_correo' %}">Envio Correo</a></li>
-                            
-
-							<li  ><a href="{% url 'grafico_admin' %}">Reportes</a></li>
-							<li ><a href="{% url 'documento_admin' %}">Documentos</a></li>
-							<li><a href="/admin">Admin Django</a></li>
-							<li><a href="/api">Api</a></li>
-							<li><a href="{% url 'logout' %}">Cerrar Sesion</a></li>
-
+							{% if user.tipo_usuario.nombre_tipo_usuario == 'adminEnfermera' %}
+								<li><a href="{% url 'enfermera' %}">Inicio Enfermera</a></li>
+								<li class="current"><a href="{% url 'lista_medicamentos' %}">Medicamentos</a></li>
+								<li><a href="{% url 'preregistros' %}">Preregistro</a></li>	
+							{% else %}
+								<li><a href="{% url 'admin_paciente' %}">Pacientes</a></li>
+								<li ><a href="{% url 'preregistro_admin' %}">Preregistros</a></li>
+								<li><a href="{% url 'admin_familiar' %}">Familiares</a></li>
+								<li ><a href="{% url 'admin_neurologo' %}">Neurólogos</a></li>
+								<li ><a href="{% url 'admin_fonoaudiologo' %}">Fonoaudiólogo</a></li>
+								<li><a href="{% url 'admin_enfermera' %}">Enfermera</a></li>
+								<li  class="current"><a href="{% url 'admin_medicamento' %}">Medicamentos</a></li>
+								<li  ><a href="{% url 'home_enviar_correo' %}">Envio Correo</a></li>
+								
+								
+								<li  ><a href="{% url 'grafico_admin' %}">Reportes</a></li>
+								<li ><a href="{% url 'documento_admin' %}">Documentos</a></li>
+								<li><a href="/admin">Admin Django</a></li>
+								<li><a href="/api">Api</a></li>
+							{% endif %}
+								<li><a href="{% url 'logout' %}">Cerrar Sesion</a></li>
+							
 						</ul>
 					</nav>
 
