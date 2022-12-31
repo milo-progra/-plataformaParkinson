@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Tipo_Usuario, Usuario
+from .models import Tipo_Usuario, Usuario, TerminosDeUso
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from .forms import AdminFormaActualizar, AdminFormaCreacionUsuario
 # Register your models here.
@@ -32,3 +32,4 @@ class UserAdmin(BaseUserAdmin):
 
 admin.site.register(Usuario, UserAdmin)
 admin.site.register(Tipo_Usuario)
+admin.site.register(TerminosDeUso)

@@ -33,3 +33,13 @@ class Usuario(AbstractUser):
 
     class Meta:
         ordering = ['username']
+
+
+
+class TerminosDeUso(models.Model):
+    
+    descripcion = models.CharField(max_length=200)
+    archivo = models.FileField(upload_to="documentos/")
+
+    def __str__(self):
+       return self.descripcion

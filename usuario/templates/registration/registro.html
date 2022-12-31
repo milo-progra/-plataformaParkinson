@@ -16,7 +16,11 @@
 		<form action="" method=post>
 			{% csrf_token %}
 			{{form}}
-			<a href="plataformaParkinson\media\documentos\pdf_condiciones_de_uso.pdf">ver terminos de uso</a>
+			
+			{% for t in terminos_de_uso  %}
+				<a href="/media/{{t.archivo}}">ver terminos de uso</a>
+			{% endfor %}
+				
 			<br>
 			<br>
 		<button type="submit" style="border-radius: 1.25rem;" class="btn btn-primary btn-block">Enviar</button>

@@ -7,13 +7,16 @@ from app.models import Paciente
 import io
 from django.http import FileResponse
 from .utils import render_to_pdf
+from .models import TerminosDeUso
 
 
 
 #preregistro del paciente
 def pre_registro(request):
+    terminos_de_uso = TerminosDeUso.objects.all()
     data= {
-        'form':FormPreregistro()
+        'form':FormPreregistro(),
+        'terminos_de_uso': terminos_de_uso
     }
     if request.method == 'POST':
         formulario=FormPreregistro(data=request.POST)
