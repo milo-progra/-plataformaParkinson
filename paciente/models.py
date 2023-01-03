@@ -67,4 +67,4 @@ class Paciente(models.Model):
     telegram_paciente    = models.CharField('Telegram Paciente', max_length=100, null=True, blank=True)
 
     def __str__(self):
-        return self.nombre_paciente + ' ' + str(self.apellido_paciente) 
+        return self.nombre_paciente + ' ' + str(self.apellido_paciente) + ', rut: ' + self.rut_paciente

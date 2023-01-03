@@ -23,7 +23,7 @@ class Usuario(AbstractUser):
     tipo_usuario = models.ForeignKey(Tipo_Usuario, on_delete=models.CASCADE, verbose_name="Tipo Usuario", null=True)
 
     def __str__(self):
-        return self.username +' / '+ str(self.tipo_usuario) + ' / '+ self.first_name +' / '+ self.last_name +' / '+ self.email
+        return  self.first_name +' '+ self.last_name 
         
     def has_perm(self,perm,obj = None):
         return True
