@@ -7,6 +7,11 @@ from app.models import *
 class AdminPaciente(admin.ModelAdmin):
     list_display = ('nombre_paciente', 'id_paciente', 'rut_paciente', 'telegram_paciente')
 
+#Vista de pacientes
+class AdminPreRegistro(admin.ModelAdmin):
+    list_display = ('nombre_paciente', 'apellido_paciente', 'rut_paciente','terminos_uso', 'timestamp')
+
+
 # Register your models here.
 
 admin.site.register(Receta)
@@ -36,7 +41,7 @@ admin.site.register(Enfermera_paciente)
 admin.site.register(Bitacora)
 admin.site.register(Documento)
 admin.site.register(Paciente_Documento)
-admin.site.register(Preregistro)
+admin.site.register(Preregistro, AdminPreRegistro)
 admin.site.register(Enfermera_neurologo)
 admin.site.register(RegistroCorreos)
 

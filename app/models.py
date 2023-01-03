@@ -217,6 +217,9 @@ class Enfermera_neurologo(models.Model):
     def __str__(self):
         return str(self.username_enfermera) +' | '+ str(self.username_neurologo)
 
+
+
+#Desde esta tabla debe salir el documento terminos de uso
 # Modelo para Documento
 class Documento(models.Model):
     id_documento   = models.AutoField('Id Documento', primary_key=True)
@@ -227,6 +230,9 @@ class Documento(models.Model):
 
     def __str__(self):
         return self.titulo
+
+
+
 
 # Modelo para Paciente_Documento
 class Paciente_Documento(models.Model):
@@ -247,7 +253,7 @@ class Preregistro(models.Model):
     telefono_paciente  = models.CharField('Telefono paciente', max_length=9, null=True, blank=True)
     email_paciente       = models.EmailField('Email paciente', max_length=100)
     neurologo     = models.ForeignKey(Neurologo, on_delete=models.CASCADE, verbose_name="Neurologo de Referencia", null=True)
-    timestamp = models.DateTimeField('Fecha Prere4gistro', auto_now_add=True, null=True, blank=True)
+    timestamp = models.DateTimeField('Fecha Preregistro', auto_now_add=True, null=True, blank=True)
     terminos_uso    = models.BooleanField('Acepta termino de uso')
 
     def __str__(self):
@@ -255,6 +261,7 @@ class Preregistro(models.Model):
 
     class Meta:
         ordering = ['-timestamp']
+        #obliga a que el campo terminos de uso sea true para realizar el registro
         constraints = [models.CheckConstraint(check=models.Q(terminos_uso__gte = 1), name = "Debe aceptar los terminos de uso")]
 
 # Modelo para RegistroCorreos
