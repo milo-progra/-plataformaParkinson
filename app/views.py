@@ -1433,8 +1433,12 @@ def vista_graficos(request,username_paciente_id):
 
 #preregistros desde enfermera
 def preregistros(request):
-    current_user=get_object_or_404(Enfermera_neurologo, username_enfermera=request.user.id)
-    preregistros=Preregistro.objects.all().filter(neurologo=current_user.username_neurologo)
+    print(request.user.tipo_usuario)
+    if request.user.tipo_usuario.nombre_tipo_usuario == 'adminEnfermera':
+        preregistros = Preregistro.objects.all()
+    else:
+        current_user=get_object_or_404(Enfermera_neurologo, username_enfermera=request.user.id)
+        preregistros=Preregistro.objects.all().filter(neurologo=current_user.username_neurologo)
 
     return render(request, 'enfermera/preregistros.html',{'preregistros':preregistros})
 

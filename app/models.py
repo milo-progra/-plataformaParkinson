@@ -50,8 +50,8 @@ class Neurologo(models.Model):
     nombre_neurologo    = models.CharField('Nombre Neurologo', max_length=100)
     apellido_neurologo  = models.CharField('Apellido Neurologo', max_length=100)
     direccion_neurologo = models.CharField('Direccion Neurologo', max_length=100)
-    institucion = models.ForeignKey(Institucion, on_delete=models.CASCADE, verbose_name="Institucion", null=True)
-    comuna = models.ForeignKey(Comuna, on_delete=models.CASCADE, null=True)
+    institucion         = models.ForeignKey(Institucion, on_delete=models.CASCADE, verbose_name="Institucion", null=True)
+    comuna              = models.ForeignKey(Comuna, on_delete=models.CASCADE, null=True)
     email_neurologo     = models.CharField('Email Neurologo', max_length=100)
     telefono_neurologo  = models.CharField('Telefono Neurologo', max_length=9, null=True, blank=True)
     whatsaap_neurologo  = models.CharField('Whatsaap Neurologo', max_length=9) 
@@ -60,7 +60,7 @@ class Neurologo(models.Model):
 
 
     def __str__(self):
-        return self.nombre_neurologo + ' ' + str(self.apellido_neurologo) 
+        return self.nombre_neurologo + ' ' + str(self.apellido_neurologo) + ', rut: ' + self.rut_neurologo
  
 
 
@@ -77,7 +77,7 @@ class Enfermera(models.Model):
     telegram_enfermera    = models.CharField('Telegram Enfermera', max_length=100, null=True, blank=True)
 
     def __str__(self):
-        return self.rut_enfermera
+        return str(self.username_enfermera) + ',  rut: ' + self.rut_enfermera
 
 
 
