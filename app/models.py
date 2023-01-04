@@ -167,7 +167,7 @@ class Descuento(models.Model):
     descuento       = models.DecimalField('Descuento', max_digits=3, decimal_places=1)
     fecha_inicio    = models.DateField('Fecha Inicio', auto_now=False, auto_now_add=False)
     fecha_fin       = models.DateField('Fecha Fin', auto_now=False, auto_now_add=False)
-    ticket_decuento = models.CharField('Direccion Paciente', max_length=100)
+    ticket_decuento = models.CharField('ticket de descuento', max_length=100)
 
     def __str__(self):
         return self.medicamento +' | '+ self.descuento
@@ -223,7 +223,7 @@ class Enfermera_neurologo(models.Model):
 # Modelo para Documento
 class Documento(models.Model):
     id_documento   = models.AutoField('Id Documento', primary_key=True)
-    titulo    = models.CharField('Titulo', max_length=1000)
+    titulo         = models.CharField('Titulo', max_length=1000)
     documento      = models.FileField(upload_to='documentos/')
     descripcion    = models.CharField('Descripcion', max_length=1000)
     qr = models.FileField(upload_to='qr_documento/', null=True, blank=True)
