@@ -16,6 +16,13 @@ class AdminNeurologo(admin.ModelAdmin):
     list_display = ('rut_neurologo', 'nombre_neurologo', 'apellido_neurologo', 'email_neurologo', 'telegram_neurologo')
 
 
+class AdminDocumento(admin.ModelAdmin):
+    list_display = ('titulo', 'documento', 'descripcion')
+
+
+
+ 
+
 
 # Register your models here.
 
@@ -44,7 +51,7 @@ admin.site.register(Estado_animo)
 admin.site.register(Enfermera, AdminEnfermera)
 admin.site.register(Enfermera_paciente)
 admin.site.register(Bitacora)
-admin.site.register(Documento)
+admin.site.register(Documento, AdminDocumento)
 admin.site.register(Paciente_Documento)
 admin.site.register(Preregistro, AdminPreRegistro)
 admin.site.register(Enfermera_neurologo)

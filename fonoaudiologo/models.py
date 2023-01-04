@@ -5,16 +5,15 @@ from django.db import models
 from paciente.models import Paciente
 # Create your models here.
 
-# Modelo para Fonoaudiologo
 class Fonoaudiologo(models.Model):
-    id_fonoaudiologo       = models.IntegerField('Id Usuario')
+    id_fonoaudiologo        = models.IntegerField('Id Usuario')
     username_fonoaudiologo  = models.OneToOneField(Usuario,on_delete=models.CASCADE, null=False, blank=False, primary_key=True) 
     rut_fonoaudiologo       = models.CharField('Rut fonoaudiologo', max_length=10)
     nombre_fonoaudiologo    = models.CharField('Nombre fonoaudiologo', max_length=100)
     apellido_fonoaudiologo  = models.CharField('Apellido fonoaudiologo', max_length=100)
     direccion_fonoaudiologo = models.CharField('Direccion fonoaudiologo', max_length=100)
-    institucion = models.ForeignKey(Institucion, on_delete=models.CASCADE, verbose_name="Institucion", null=True)
-    comuna = models.ForeignKey(to='app.comuna', on_delete=models.CASCADE, verbose_name="Comuna", null=True)
+    institucion             = models.ForeignKey(Institucion, on_delete=models.CASCADE, verbose_name="Institucion", null=True)
+    comuna                  = models.ForeignKey(to='app.comuna', on_delete=models.CASCADE, verbose_name="Comuna", null=True)
     email_fonoaudiologo     = models.CharField('Email fonoaudiologo', max_length=100)
     telefono_fonoaudiologo  = models.CharField('Telefono fonoaudiologo', max_length=9, null=True, blank=True)
     whatsaap_fonoaudiologo  = models.CharField('Whatsaap fonoaudiologo', max_length=9) 
