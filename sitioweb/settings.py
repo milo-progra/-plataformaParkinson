@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'medico_y_enfermera',
     'medicamento',
     'fonoaudiologo',
+    'api',
 ]
 
 MIDDLEWARE = [

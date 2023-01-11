@@ -15,6 +15,7 @@ urlpatterns = [
     path('paciente/', include('paciente.urls')),
     path('medicamento/', include('medicamento.urls')),
     path('fonoaudiologo/', include('fonoaudiologo.urls')),
+    path('apis/', include('api.urls')),
 
     
     path('post_login/', post_login, name="post_login"),

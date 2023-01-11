@@ -1,0 +1,78 @@
+{% extends 'base_admin.html' %}
+
+
+{% block admin_medicamento %}
+
+<header>
+
+    <h2> Medicamentos Full </h2>
+    <a href="{% url 'agregar_medicamento_full' %}"><button>Agregar medicamentos</button></a>
+</header>
+<table>
+    <tr>
+        <th>Laboratorio</th>
+        <th>Marca</th>
+        <th>Medicamento</th>
+        <th>Medida</th>
+        <th>Cantidad Comprimidos</th>
+
+        <th>Tipo Farmaco</th>
+        <th>Recomendacion de consumo</th>
+
+
+
+
+
+        <th>Via Ingesta</th>
+        <th>Forma_Farmaceutica</th>
+        <th>Editar</th>
+
+    </tr>
+
+        {% for medicamento in medicamentos %}
+            <tr>
+                <td>
+                    <p>{{medicamento.laboratorio.laboratorio}}</p>
+                </td>
+                <td>
+                    <p>{{medicamento.marca.marca}}</p>
+                </td>
+                <td>
+                    <p>{{medicamento.nombre_medicamento}}</p>
+                </td>
+                <td>
+                    <p>{{medicamento.medida_medicamento}} mg</p>
+                </td>
+                <td>
+                    <p>{{medicamento.cantidad_comprimidos}}</p>
+                </td>
+                <td>
+                    <p>{{medicamento.tipo_farmaco.tipo_farmaco}}</p>
+                    </td>
+                    <td>
+                        <p>{{medicamento.forma_farmaceutica.forma_farmaceutica}}</p>
+                    </td>
+                    <td>
+                        <p>{{medicamento.via_ingesta.via_ingesta}}</p>
+                    </td>
+                    <td>
+                        <p>{{medicamento.recomendacion.recomendacion}}</p>
+                    </td>
+                    <td>
+                        <a href="{% url 'editar_medicamento_full'  medicamento.id_medicamento%}"><button>Editar</button></a>
+                    </td>
+                    
+                    
+                </tr>
+            {% endfor %}
+
+</table>
+
+<style>
+    #bodega{
+        background-color: rgba(0, 0, 0, 0.15)
+    }
+</style>
+
+{% endblock admin_medicamento %}
+
