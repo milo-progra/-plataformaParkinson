@@ -82,3 +82,23 @@ class Medicamento(models.Model):
 
     class Meta:
         ordering = ['-laboratorio']
+
+
+class MedicamentosFull(models.Model):
+    id_medicamento = models.AutoField('Id Medicamento', primary_key=True)
+    nombre_medicamento = models.CharField('Nombre Medicamento', max_length=100)
+    medida_medicamento = models.IntegerField('Medida Medicamento')
+    cantidad_comprimidos = models.IntegerField('Cantidad Medicamento')
+    tipo_farmaco = models.ForeignKey(Tipo_farmaco, on_delete=models.CASCADE, verbose_name="Tipo_farmaco", null=True)
+    forma_farmaceutica = models.ForeignKey(Forma_farmaceutica, on_delete=models.CASCADE, verbose_name="Forma_farmaceutica", null=True)
+    recomendacion = models.ForeignKey(Recomendacion_consumo, on_delete=models.CASCADE, verbose_name="Recomendacion_consumo", null=True)
+    marca = models.ForeignKey(Marca, on_delete=models.CASCADE, verbose_name="Marca", null=True)
+    via_ingesta = models.ForeignKey(Via_ingesta, on_delete=models.CASCADE, verbose_name="Via_ingesta", null=True)
+    laboratorio = models.ForeignKey(Laboratorio, on_delete=models.CASCADE, verbose_name="Laboratorio", null=True)
+
+
+    def __str__(self):
+        return self.nombre_medicamento +' | '+ str(self.medida_medicamento) + ' mg'+ ' | '  + str(self.via_ingesta) + ' | ' + str(self.marca) + ' | ' + str(self.laboratorio)
+
+    class Meta:
+        ordering = ['-laboratorio']

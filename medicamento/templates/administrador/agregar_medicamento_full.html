@@ -1,0 +1,29 @@
+{% extends 'base_admin.html' %}
+
+
+{% block admin_medicamento %}
+
+
+
+	<header>
+		<h2>Agregar Medicamento full</h2>
+		<br>
+
+
+		<form method="post">
+
+			{%csrf_token%}
+			{{form.as_p}}
+			<button type="submit">Enviar</button>
+
+		</form>
+
+
+	</header>
+
+	<style>
+		#bodega{
+			background-color: rgba(0, 0, 0, 0.15)
+		}
+	</style>
+{% endblock admin_medicamento %}
