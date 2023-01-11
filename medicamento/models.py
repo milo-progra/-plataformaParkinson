@@ -85,16 +85,22 @@ class Medicamento(models.Model):
 
 
 class MedicamentosFull(models.Model):
-    id_medicamento = models.AutoField('Id Medicamento', primary_key=True)
-    nombre_medicamento = models.CharField('Nombre Medicamento', max_length=100)
-    medida_medicamento = models.IntegerField('Medida Medicamento')
-    cantidad_comprimidos = models.IntegerField('Cantidad Medicamento')
-    tipo_farmaco = models.ForeignKey(Tipo_farmaco, on_delete=models.CASCADE, verbose_name="Tipo_farmaco", null=True)
-    forma_farmaceutica = models.ForeignKey(Forma_farmaceutica, on_delete=models.CASCADE, verbose_name="Forma_farmaceutica", null=True)
-    recomendacion = models.ForeignKey(Recomendacion_consumo, on_delete=models.CASCADE, verbose_name="Recomendacion_consumo", null=True)
-    marca = models.ForeignKey(Marca, on_delete=models.CASCADE, verbose_name="Marca", null=True)
-    via_ingesta = models.ForeignKey(Via_ingesta, on_delete=models.CASCADE, verbose_name="Via_ingesta", null=True)
-    laboratorio = models.ForeignKey(Laboratorio, on_delete=models.CASCADE, verbose_name="Laboratorio", null=True)
+    id_medicamento          = models.AutoField('Id Medicamento', primary_key=True)
+    sucursal                = models.CharField('sucursal', max_length=200)
+    sku                     = models.CharField('sku', max_length=200)
+    laboratorio             = models.CharField('laboratorio', max_length= 200)
+    marca                   = models.CharField('marca', max_length= 200)
+    nombre_medicamento      = models.CharField('Nombre Medicamento', max_length=100)
+    medida_medicamento      = models.IntegerField('Medida Medicamento')
+    cantidad_comprimidos    = models.IntegerField('Cantidad Medicamento')
+    tipo_farmaco            = models.CharField('tipo de farmaco', max_length=200)
+    recomendacion           = models.CharField('recomendacion de consumo', max_length=200)
+    via_ingesta             = models.CharField('via de ingesta', max_length= 200)
+    forma_farmaceutica      = models.CharField('forma formaceutica', max_length=200)
+    stockSistema            = models.CharField('stock de sistema', max_length= 200)
+    stockDiario             = models.CharField('stock diario', max_length= 200)
+    #(Solo el stock diario puede ser modificado por la API)
+    timestamp               = models.DateTimeField('Fecha', auto_now_add=True, null=True, blank=True)
 
 
     def __str__(self):

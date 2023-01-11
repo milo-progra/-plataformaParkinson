@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-rom+yn2rgvh7y8oqf4zuhkk3_!hb7tuyal_1dykkbb45q1wwje'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -61,6 +61,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    #logout
+    'django_session_timeout.middleware.SessionTimeoutMiddleware',
 ]
 
 ROOT_URLCONF = 'sitioweb.urls'
@@ -189,3 +191,8 @@ EMAIL_PORT    = config('EMAIL_PORT')
 EMAIL_HOST_USER = config('EMAIL') 
 EMAIL_HOST_PASSWORD = config('EMAIL_PASSWORD')
 SERVER_EMAIL = EMAIL_HOST_USER
+
+#configuracion timeout
+SESSION_EXPIRE_SECONDS = 600  # 10 minutos
+SESSION_TIMEOUT_REDIRECT = '/'
+SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True

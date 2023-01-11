@@ -9,54 +9,68 @@
     <a href="{% url 'agregar_medicamento_full' %}"><button>Agregar medicamentos</button></a>
 </header>
 <table>
-    <tr>
-        <th>Laboratorio</th>
-        <th>Marca</th>
-        <th>Medicamento</th>
-        <th>Medida</th>
-        <th>Cantidad Comprimidos</th>
-
-        <th>Tipo Farmaco</th>
-        <th>Recomendacion de consumo</th>
-
-
-
-
-
-        <th>Via Ingesta</th>
-        <th>Forma_Farmaceutica</th>
-        <th>Editar</th>
-
+    <tr><th>sucursal            </th>
+        <th>sku                 </th>
+        <th>laboratorio         </th>
+        <th>marca               </th>
+        <th>nombre medicamento  </th>
+        <th>medida medicamento  </th>
+        <th>cantidad comprimidos</th>
+        <th>tipo farmaco        </th>
+        <th>recomendacion       </th>
+        <th>via ingesta         </th>
+        <th>forma farmaceutica  </th>
+        <th>stock de sistema        </th>
+        <th>stock diario         </th>
+        <th>timestamp       </th>
+        <th>opciones       </th>
+       
+        
     </tr>
 
         {% for medicamento in medicamentos %}
             <tr>
                 <td>
-                    <p>{{medicamento.laboratorio.laboratorio}}</p>
+                    <p>{{medicamento.sucursal}}</p>
                 </td>
                 <td>
-                    <p>{{medicamento.marca.marca}}</p>
+                    <p>{{medicamento.sku}}</p>
+                </td>
+                <td>
+                    <p>{{medicamento.laboratorio}}</p>
+                </td>
+                <td>
+                    <p>{{medicamento.marca}} mg</p>
                 </td>
                 <td>
                     <p>{{medicamento.nombre_medicamento}}</p>
                 </td>
                 <td>
-                    <p>{{medicamento.medida_medicamento}} mg</p>
-                </td>
-                <td>
-                    <p>{{medicamento.cantidad_comprimidos}}</p>
-                </td>
-                <td>
-                    <p>{{medicamento.tipo_farmaco.tipo_farmaco}}</p>
+                    <p>{{medicamento.medida_medicamento}}</p>
                     </td>
                     <td>
-                        <p>{{medicamento.forma_farmaceutica.forma_farmaceutica}}</p>
+                        <p>{{medicamento.cantidad_comprimidos}}</p>
                     </td>
                     <td>
-                        <p>{{medicamento.via_ingesta.via_ingesta}}</p>
+                        <p>{{medicamento.tipo_farmaco}}</p>
                     </td>
                     <td>
-                        <p>{{medicamento.recomendacion.recomendacion}}</p>
+                        <p>{{medicamento.recomendacion}}</p>
+                    </td>
+                    <td>
+                        <p>{{medicamento.via_ingesta}}</p>
+                    </td>
+                    <td>
+                        <p>{{medicamento.forma_farmaceutica}}</p>
+                    </td>
+                    <td>
+                        <p>{{medicamento.stockSistema}}</p>
+                    </td>
+                    <td>
+                        <p>{{medicamento.stockDiario}}</p>
+                    </td>
+                    <td>
+                        <p>{{medicamento.timestamp}}</p>
                     </td>
                     <td>
                         <a href="{% url 'editar_medicamento_full'  medicamento.id_medicamento%}"><button>Editar</button></a>
