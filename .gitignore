@@ -1,3 +1,4 @@
 #Variables de entorno
 .env
-/migrations
+/respaldo_dba
+.osResplado.py
