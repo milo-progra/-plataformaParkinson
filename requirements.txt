@@ -21,3 +21,4 @@ sqlparse==0.4.3
 tenacity==8.1.0
 tzdata==2022.7
 urllib3==1.26.13
+django-session-timeout==0.1.0
