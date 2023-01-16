@@ -101,6 +101,9 @@ class MedicamentosFull(models.Model):
     stockDiario             = models.CharField('stock diario', max_length= 200)
     #(Solo el stock diario puede ser modificado por la API)
     timestamp               = models.DateTimeField('Fecha', auto_now_add=True, null=True, blank=True)
+    fecha_actu_stock        = models.DateTimeField('fecha actualizacion stock', null=True, blank=True)
+    # Necesito agregar fecha de actualizacion de stock
+    # agregar filtros por surursal 
 
 
     def __str__(self):
