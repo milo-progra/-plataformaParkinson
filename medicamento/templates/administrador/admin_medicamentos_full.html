@@ -23,6 +23,7 @@
         <th>stock de sistema        </th>
         <th>stock diario         </th>
         <th>timestamp       </th>
+        <th>Fecha de actualizacion de stock</th>
         <th>opciones       </th>
        
         
@@ -71,6 +72,9 @@
                     </td>
                     <td>
                         <p>{{medicamento.timestamp}}</p>
+                    </td>
+                    <td>
+                        <p>{{medicamento.fecha_actu_stock}}</p>
                     </td>
                     <td>
                         <a href="{% url 'editar_medicamento_full'  medicamento.id_medicamento%}"><button>Editar</button></a>

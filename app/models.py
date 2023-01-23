@@ -6,7 +6,7 @@ from usuario.models import Usuario
 from paciente.models import Diabetes, Hipertension, Animo, Familiar, Paciente
 from medico_y_enfermera.models import Institucion
 from medicamento.models import Dosis, Medicamento
-from fonoaudiologo.models import  Audio, Vocalizacion, Intensidad
+from fonoaudiologo.models import  Audio, Vocalizacion, Intensidad, Fonoaudiologo
 
 
 # Create your models here.
@@ -278,3 +278,18 @@ class RegistroCorreos(models.Model):
         ordering = ['-timestamp']
 
 
+class Tipo_terapia(models.Model):
+   descripcion = models.CharField(max_length=300)
+
+   def __str__(self):
+       return self.descripcion
+
+
+class Terapias(models.Model):
+    fonoaudiologo = models.ForeignKey(Fonoaudiologo, on_delete=models.CASCADE)
+    paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE)
+    tipo_terapia = models.ForeignKey(Tipo_terapia, on_delete=models.CASCADE)
+    horarios = models.CharField(max_length=300)
+
+    def __str__(self):
+        return self.tipo_terapia

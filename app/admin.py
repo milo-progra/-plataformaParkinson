@@ -56,7 +56,8 @@ admin.site.register(Paciente_Documento)
 admin.site.register(Preregistro, AdminPreRegistro)
 admin.site.register(Enfermera_neurologo)
 admin.site.register(RegistroCorreos)
-
+admin.site.register(Tipo_terapia)
+admin.site.register(Terapias)
 
 
 
