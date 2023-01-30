@@ -5,9 +5,14 @@ from .views import *
 from rest_framework import routers
 
 
-router = routers.DefaultRouter()
-router.register('medicamento_full', MedicamentoFullViewSet, 'medicamento_full')
+# router = routers.DefaultRouter()
+# router.register('medicamento_full', MedicamentoFullViewSet.as_view(), 'medicamento_full'),
+
+urlpatterns = [
+    path('medicamento_full', MedicamentoFullViewSet.as_view(), name='medicamento_full'),
+       
+]
 
 
 #El operador += en x+=1 es equivalente a x=x+1
-urlpatterns = router.urls
+#urlpatterns = router.urls

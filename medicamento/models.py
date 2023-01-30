@@ -56,11 +56,12 @@ class Laboratorio(models.Model):
 
 # Modelo para Via_ingesta
 class Via_ingesta(models.Model):
-    id_via_ingesta = models.AutoField('Id Via Ingesta', primary_key=True)
-    via_ingesta = models.CharField('Via Ingesta', max_length=100)
+    id_via_ingesta = models.AutoField('Id Via Ingesta', primary_key=True) #4
+    via_ingesta = models.CharField('Via Ingesta', max_length=100) #oral
 
     def __str__(self):
-        return self.via_ingesta
+        return self.via_ingesta #oral
+        
 
 
 # Modelo para Medicamento
@@ -91,19 +92,21 @@ class MedicamentosFull(models.Model):
     laboratorio             = models.CharField('laboratorio', max_length= 200)
     marca                   = models.CharField('marca', max_length= 200)
     nombre_medicamento      = models.CharField('Nombre Medicamento', max_length=100)
-    medida_medicamento      = models.IntegerField('Medida Medicamento')
-    cantidad_comprimidos    = models.IntegerField('Cantidad Medicamento')
-    tipo_farmaco            = models.CharField('tipo de farmaco', max_length=200)
-    recomendacion           = models.CharField('recomendacion de consumo', max_length=200)
-    via_ingesta             = models.CharField('via de ingesta', max_length= 200)
-    forma_farmaceutica      = models.CharField('forma formaceutica', max_length=200)
-    stockSistema            = models.CharField('stock de sistema', max_length= 200)
-    stockDiario             = models.CharField('stock diario', max_length= 200)
+    medida_medicamento      = models.IntegerField('Medida Medicamento', null=True, blank=True)
+    cantidad_comprimidos    = models.IntegerField('Cantidad Medicamento',  null=True, blank=True)
+    tipo_farmaco            = models.CharField('tipo de farmaco', max_length=200,  null=True, blank=True)
+    recomendacion           = models.CharField('recomendacion de consumo', max_length=200,  null=True, blank=True)
+    via_ingesta             = models.CharField('via de ingesta', max_length= 200,  null=True, blank=True)
+    forma_farmaceutica      = models.CharField('forma formaceutica', max_length=200,  null=True, blank=True)
+    stockSistema            = models.CharField('stock de sistema', max_length= 200,  null=True, blank=True)
+    stockDiario             = models.CharField('stock diario', max_length= 200,  null=True, blank=True)
     #(Solo el stock diario puede ser modificado por la API)
-    timestamp               = models.DateTimeField('Fecha', auto_now_add=True, null=True, blank=True)
+    timestamp               = models.DateTimeField('Fecha creacion', auto_now_add=True, null=True, blank=True)
     fecha_actu_stock        = models.DateTimeField('fecha actualizacion stock', null=True, blank=True)
+    frecueniaStock          = models.CharField("frecuencia de stock", max_length=200)
     # Necesito agregar fecha de actualizacion de stock
     # agregar filtros por surursal 
+    #frecuencia stock   = S(semanal), m(mensual)
 
 
     def __str__(self):
