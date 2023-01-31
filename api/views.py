@@ -71,11 +71,14 @@ class MedicamentoFullViewSet(APIView):
         medicamentos = MedicamentosFull.objects.filter(sucursal = sucursal) 
         #guardo en la variable el query params del body con el nombre stockDiario
         arrayStockDiario = request.data.get("stockDiario")
+        fecha_actualizacion = request.data.get("fecha_actu_stock")
+        print(fecha_actualizacion)
         print(request.data)
         b = 0
         for medicamento in medicamentos:
             print(arrayStockDiario[b])
             medicamento.stockDiario = arrayStockDiario[b]   
+            medicamento.fecha_actu_stock = fecha_actualizacion
             b = b +1
             medicamento.save()
         # si se definio el parametro sucursal en la url
