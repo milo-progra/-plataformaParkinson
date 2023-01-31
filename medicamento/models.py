@@ -103,7 +103,7 @@ class MedicamentosFull(models.Model):
     #(Solo el stock diario puede ser modificado por la API)
     timestamp               = models.DateTimeField('Fecha creacion', auto_now_add=True, null=True, blank=True)
     fecha_actu_stock        = models.DateTimeField('fecha actualizacion stock', null=True, blank=True)
-    frecueniaStock          = models.CharField("frecuencia de stock", max_length=200)
+    frecueniaStock          = models.CharField("frecuencia de stock", max_length=200, null=True)
     # Necesito agregar fecha de actualizacion de stock
     # agregar filtros por surursal 
     #frecuencia stock   = S(semanal), m(mensual)
