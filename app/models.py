@@ -60,7 +60,7 @@ class Neurologo(models.Model):
 
 
     def __str__(self):
-        return self.nombre_neurologo + ' ' + str(self.apellido_neurologo) + ', rut: ' + self.rut_neurologo
+        return str(self.username_neurologo) + ', rut: ' + self.rut_neurologo
  
 
 
@@ -68,7 +68,7 @@ class Neurologo(models.Model):
 # Modelo para Enfermera
 class Enfermera(models.Model):
     id_enfermera          = models.IntegerField('Id Enfermera')
-    username_enfermera    = models.OneToOneField(Usuario,on_delete=models.CASCADE, null=False, blank=False, primary_key=True)
+    username_enfermera    = models.OneToOneField(Usuario,on_delete=models.CASCADE, null=False, blank=False, primary_key=True, limit_choices_to={'tipo_usuario':5})
     rut_enfermera         = models.CharField('Rut Enfermera', max_length=10)
     direccion_enfermera   = models.CharField('Direccion Enfermera', max_length=100)
     comuna      = models.ForeignKey(Comuna, on_delete=models.CASCADE, verbose_name="Comuna", null=True)
@@ -77,7 +77,7 @@ class Enfermera(models.Model):
     telegram_enfermera    = models.CharField('Telegram Enfermera', max_length=100, null=True, blank=True)
 
     def __str__(self):
-        return str(self.username_enfermera) + ',  rut: ' + self.rut_enfermera
+        return  str(self.username_enfermera) + ',  rut: ' + self.rut_enfermera
 
 
 
@@ -211,7 +211,7 @@ class Enfermera_paciente(models.Model):
 
 # Modelo para Enfermera_neurologo
 class Enfermera_neurologo(models.Model):
-    username_enfermera = models.ForeignKey(Enfermera, on_delete=models.CASCADE, verbose_name="Enfermera", null=True)
+    username_enfermera = models.ForeignKey(Enfermera, on_delete=models.CASCADE, verbose_name="Enfermera", null=True )
     username_neurologo  = models.ForeignKey(Neurologo, on_delete=models.CASCADE, verbose_name="Neurologo", null=True)
 
     def __str__(self):

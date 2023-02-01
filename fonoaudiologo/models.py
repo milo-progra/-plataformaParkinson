@@ -7,7 +7,7 @@ from paciente.models import Paciente
 
 class Fonoaudiologo(models.Model):
     id_fonoaudiologo        = models.IntegerField('Id Usuario')
-    username_fonoaudiologo  = models.OneToOneField(Usuario,on_delete=models.CASCADE, null=False, blank=False, primary_key=True) 
+    username_fonoaudiologo  = models.OneToOneField(Usuario,on_delete=models.CASCADE, null=False, blank=False, primary_key=True, limit_choices_to={'tipo_usuario':4}) 
     rut_fonoaudiologo       = models.CharField('Rut fonoaudiologo', max_length=10)
     nombre_fonoaudiologo    = models.CharField('Nombre fonoaudiologo', max_length=100)
     apellido_fonoaudiologo  = models.CharField('Apellido fonoaudiologo', max_length=100)
@@ -21,7 +21,7 @@ class Fonoaudiologo(models.Model):
     telegram_fonoaudiologo  = models.CharField('Telegram fonoaudiologo', max_length=100, null=True, blank=True)
     
     def __str__(self):
-        return self.nombre_fonoaudiologo + ' ' + str(self.apellido_fonoaudiologo) 
+        return self.id_fonoaudiologo + '/' + self.nombre_fonoaudiologo + ' ' + str(self.apellido_fonoaudiologo) 
 
 
 

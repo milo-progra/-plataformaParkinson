@@ -32,7 +32,7 @@ class Animo(models.Model):
 # Modelo para Familiar
 class Familiar(models.Model):
     id_familiar         = models.IntegerField('Id Familiar')
-    username_familiar   = models.OneToOneField(Usuario,on_delete=models.CASCADE, null=False, blank=False, primary_key=True)
+    username_familiar   = models.OneToOneField(Usuario,on_delete=models.CASCADE, null=False, blank=False, primary_key=True, limit_choices_to={'tipo_usuario':3})
     rut_familiar        = models.CharField('Rut Familiar', max_length=10)
     nombre_familiar     = models.CharField('Nombre Familiar', max_length=100)
     apellido_familiar   = models.CharField('Apellido Familiar', max_length=100)
@@ -45,14 +45,14 @@ class Familiar(models.Model):
     telegram_familiar   = models.CharField('Telegram Familiar', max_length=100, null=True, blank=True)
     
     def __str__(self):
-        return self.nombre_familiar + ' ' + str(self.apellido_familiar) 
+        return str(self.username_familiar) + ' ' + str(self.apellido_familiar) 
 
 
 
 # Modelo para Paciente
 class Paciente(models.Model):
     id_paciente          = models.IntegerField('Id Paciente')
-    username_paciente    = models.OneToOneField(Usuario,on_delete=models.CASCADE, null=False, blank=False, primary_key=True)
+    username_paciente    = models.OneToOneField(Usuario,on_delete=models.CASCADE, null=False, blank=False, primary_key=True, limit_choices_to={'tipo_usuario':1})
     rut_paciente         = models.CharField('Rut Paciente', max_length=10)
     nombre_paciente      = models.CharField('Nombre Paciente', max_length=100)
     apellido_paciente    = models.CharField('Apellido Paciente', max_length=100)
@@ -67,4 +67,4 @@ class Paciente(models.Model):
     telegram_paciente    = models.CharField('Telegram Paciente', max_length=100, null=True, blank=True)
 
     def __str__(self):
-        return self.nombre_paciente + ' ' + str(self.apellido_paciente) + ', rut: ' + self.rut_paciente
+        return str(self.username_paciente) + ', rut: ' + self.rut_paciente
