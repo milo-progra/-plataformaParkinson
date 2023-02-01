@@ -27,6 +27,7 @@ class UserAdmin(BaseUserAdmin):
 
     search_fields = ('email',)
     ordering = ('email',)
+    list_display = ("username", "id","email", "first_name", "last_name", "is_staff")
 
 
 
