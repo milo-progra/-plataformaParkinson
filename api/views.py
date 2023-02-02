@@ -8,10 +8,12 @@ from rest_framework import generics
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.pagination import PageNumberPagination, LimitOffsetPagination
 
 # Create your views here.
 from .models import *
 from rest_framework import viewsets, permissions
+from .pagination import BasicPagination
 
 
 from .serializers import *
@@ -43,24 +45,25 @@ from .serializers import *
 #         return Response(serializer.data)
 #------------ Pruebas  api rest ----------------------------------------------------------------
 
-class MedicamentoFullViewSet(APIView):
-    #permission_classes =[permissions.IsAdminUser]
+class MedicamentoFullViewSet(APIView, PageNumberPagination):
+    pagination_class = PageNumberPagination 
     serializer_class= MedicamentoFullSerializer
-    #funcion para filtrar medicamentos por sucursal
+
     def get(self, request,pk=None):
         #La variable medicamento guardara todo los medicamentos
         medicamentos = MedicamentosFull.objects.all()
         #Guardamos el parametro de la sucursal definida en la url
         sucursal = request.GET.get('sucursal')
-        print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')       
+  
         #imprimo el body
         print(request.data)
-        print(sucursal)
+        results = self.paginate_queryset(medicamentos, request, view=self)
         if sucursal:
             medicamentos = MedicamentosFull.objects.filter(sucursal = sucursal)
+            results = self.paginate_queryset(medicamentos, request, view=self)
         # si se definio el parametro sucursal en la 
         #many = True vendran varios registros
-        return Response(MedicamentoFullSerializer(medicamentos, many = True).data)
+        return Response(MedicamentoFullSerializer(results, many = True).data)
 
     def put(self, request,pk=None):
         #Guardar el parametro ingresado en la url con el nombre /?sucursal
@@ -69,17 +72,31 @@ class MedicamentoFullViewSet(APIView):
         if not sucursal:
             return Response([])
         medicamentos = MedicamentosFull.objects.filter(sucursal = sucursal) 
+        results = self.paginate_queryset(medicamentos, request, view=self)
         #guardo en la variable el query params del body con el nombre stockDiario
         arrayStockDiario = request.data.get("stockDiario")
         fecha_actualizacion = request.data.get("fecha_actu_stock")
         print(fecha_actualizacion)
         print(request.data)
         b = 0
-        for medicamento in medicamentos:
+        for medicamento in results:
             print(arrayStockDiario[b])
             medicamento.stockDiario = arrayStockDiario[b]   
             medicamento.fecha_actu_stock = fecha_actualizacion
             b = b +1
             medicamento.save()
         # si se definio el parametro sucursal en la url
-        return Response(MedicamentoFullSerializer(medicamentos, many = True).data)
+        return Response(MedicamentoFullSerializer(results, many = True).data)
+
+#pagination example
+
+
+# class EventNewsItems(APIView, LimitOffsetPagination):
+
+#     def get(self, request, pk, format=None):
+#         event = Event.objects.get(pk=pk)
+#         news = event.get_news_items().all()
+
+#         results = self.paginate_queryset(news, request, view=self)
+#         serializer = NewsItemSerializer(results, many=True)
+#         return self.get_paginated_response(serializer.data)
