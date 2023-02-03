@@ -115,7 +115,7 @@ class DBHelper:
 #se actualiza y cambia el nombre de la url guardada
     def update_audio(self,url_archivo_audio ):
         cursor = self.mydb.cursor()
-        query = f"UPDATE {config('NAME')}.fonoaudiologo_audio SET url_archivo_audio = SUBSTRING(%s, 9) WHERE url_archivo_audio = %s"
+        query = f"UPDATE {config('NAME')}.fonoaudiologo_audio SET url_archivo_audio = SUBSTRING(%s, 26) WHERE url_archivo_audio = %s"
         # query = "UPDATE vozparkinson$default.app_audio SET url_archivo_audio = SUBSTRING(%s, 45) WHERE url_archivo_audio = %s"
         valores = (url_archivo_audio,url_archivo_audio)
         cursor.execute(query, valores)
