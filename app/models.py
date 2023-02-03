@@ -46,17 +46,17 @@ class Comuna(models.Model):
 class Neurologo(models.Model):
     id_neurologo        = models.IntegerField('Id Usuario')
     username_neurologo  = models.OneToOneField(Usuario,on_delete=models.CASCADE, null=False, blank=False, primary_key=True) 
-    rut_neurologo       = models.CharField('Rut Neurologo', max_length=10)
+    rut_neurologo       = models.CharField('Rut Neurologo', max_length=10, unique=True)
     nombre_neurologo    = models.CharField('Nombre Neurologo', max_length=100)
     apellido_neurologo  = models.CharField('Apellido Neurologo', max_length=100)
     direccion_neurologo = models.CharField('Direccion Neurologo', max_length=100)
     institucion         = models.ForeignKey(Institucion, on_delete=models.CASCADE, verbose_name="Institucion", null=True)
     comuna              = models.ForeignKey(Comuna, on_delete=models.CASCADE, null=True)
-    email_neurologo     = models.CharField('Email Neurologo', max_length=100)
+    email_neurologo     = models.CharField('Email Neurologo', max_length=100, unique=True)
     telefono_neurologo  = models.CharField('Telefono Neurologo', max_length=9, null=True, blank=True)
     whatsaap_neurologo  = models.CharField('Whatsaap Neurologo', max_length=9) 
     celular_neurologo   = models.CharField('Celular Neurologo', max_length=9)
-    telegram_neurologo  = models.CharField('Telegram Neurologo', max_length=100, null=True, blank=True)
+    telegram_neurologo  = models.CharField('Telegram Neurologo', max_length=100, null=True, blank=True, unique=True)
 
 
     def __str__(self):
@@ -69,12 +69,12 @@ class Neurologo(models.Model):
 class Enfermera(models.Model):
     id_enfermera          = models.IntegerField('Id Enfermera')
     username_enfermera    = models.OneToOneField(Usuario,on_delete=models.CASCADE, null=False, blank=False, primary_key=True, limit_choices_to={'tipo_usuario':5})
-    rut_enfermera         = models.CharField('Rut Enfermera', max_length=10)
+    rut_enfermera         = models.CharField('Rut Enfermera', max_length=10, unique=True)
     direccion_enfermera   = models.CharField('Direccion Enfermera', max_length=100)
     comuna      = models.ForeignKey(Comuna, on_delete=models.CASCADE, verbose_name="Comuna", null=True)
     telefono_enfermera    = models.CharField('Telefono Enfermera', max_length=9, null=True, blank=True)
     celular_enfermera     = models.CharField('Celular Enfermera', max_length=9)
-    telegram_enfermera    = models.CharField('Telegram Enfermera', max_length=100, null=True, blank=True)
+    telegram_enfermera    = models.CharField('Telegram Enfermera', max_length=100, null=True, blank=True, unique=True)
 
     def __str__(self):
         return  str(self.username_enfermera) + ',  rut: ' + self.rut_enfermera

@@ -17,7 +17,7 @@ bot = telebot.TeleBot(telegram_token)
 #comandos de ayuda
 @bot.message_handler(commands=['start', 'ayuda', 'help'])
 def cmd_start(message):
-    bot.send_message(message.chat.id, "-Usa el comando /animo para introducir su estado de animo \n\n -Usa el comando /automonitoreo para introducir su estado de Automonitoreo \n\n -Usa el comando /mi_id para saber su id de telegram")
+    bot.send_message(message.chat.id, "-Usa el comando /animo para introducir su estado de animo \n\n -Usa el comando /automonitoreo para introducir su estado de Automonitoreo \n\n -Usa el comando /mi_id para saber su id de telegram \n\n -Usa el comando /audio para subir un audio")
 
 
 #comando para obtener id de telegram
@@ -91,8 +91,6 @@ def cmd_audio(message):
         bot.send_message(message.chat.id, f"Tu ID Telegram: {message.chat.id}, no se encuentra asociado con ningun usuario")
     else:
         msg = bot.send_message(message.chat.id, "Ahora grabe su mensaje de voz.")
-        print(f"Grabando un audio del usuario: {message.chat.id} ")
-
         bot.register_next_step_handler(msg, voice_processing)
 
 
@@ -105,31 +103,28 @@ def voice_processing(message):
 
     downloaded_file = bot.download_file(file_info.file_path)
 
-    with open(f'../media/audios/{token}new_file2.ogg', 'wb') as new_file:
+    with open(f'plataformaParkinson/media/audios/{token}new_file2.ogg', 'wb') as new_file:
+    #with open(f'{token}new_file2.ogg', 'wb') as new_file:
         new_file.write(downloaded_file)
 
 
     username = db.select_username(message.chat.id)
-    user= "".join(map(str,username))
     fecha = datetime.datetime.now()+ datetime.timedelta(seconds=10800)
-
-    db.insert_audio(fecha,new_file.name,int(user[1]))
+    db.insert_audio(fecha,new_file.name,username[0])
     # print(new_file.name)
     db.update_audio(str(new_file.name))
     bot.send_message(message.chat.id, "Su mensaje de voz se a guardado Correctamente. \n\nGracias.")
-    print()
+    
 
-    print(f"Se a guardado correctamente un audio del usuario {message.chat.id}")
     
 
 #se llama a la query para guardar los datos en la tabla automonitoreos
 def guardar_datos_automonitoreo(message):
     username = db.select_username(message.chat.id)
     id_automonitoreo = db.select_id_automonitoreo(message.text)
-    user= "".join(map(str,username))
     automonitoreo= "".join(map(str,id_automonitoreo))
     fecha = datetime.datetime.now()+ datetime.timedelta(seconds=10800)
-    db.insert_automonitoreo(fecha,int(automonitoreo[1]),int(user[1]))
+    db.insert_automonitoreo(fecha,int(automonitoreo[1]), username[0])
     bot.send_message(message.chat.id, f"Su automonitoreo se a guardado como: \n\n {message.text}")
     print()
     print("Datos Guardados")
@@ -139,13 +134,18 @@ def guardar_datos_automonitoreo(message):
 #se llama a la query para guardar los datos en estados de animos
 def guardar_datos_usuario(message):
     username = db.select_username(message.chat.id)
+    print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    print(username)
+    print(type(username))
     id_animo = db.select_id_animo(message.text)
-    user= "".join(map(str,username))
-    animo= "".join(map(str,id_animo))
-    fecha = datetime.datetime.now() + datetime.timedelta(seconds=10800)
-    db.insert_animo(fecha,int(animo[1]),int(user[1]))
+    animo= "".join(map(str,id_animo)) 
+    id_usuario = "".join(map(str,username))
+    print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    print(id_usuario[1])
+    fecha = datetime.datetime.now() + datetime.timedelta(seconds=10800) 
+    db.insert_animo(fecha,int(animo[1]),username[0])
     bot.send_message(message.chat.id, f"Su estado de animo se a guardado como: \n\n {message.text}")
-    print(fecha)
+    #print(fecha)
     print("Datos Guardados")
     print()
 

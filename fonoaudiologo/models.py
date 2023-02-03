@@ -8,17 +8,17 @@ from paciente.models import Paciente
 class Fonoaudiologo(models.Model):
     id_fonoaudiologo        = models.IntegerField('Id Usuario')
     username_fonoaudiologo  = models.OneToOneField(Usuario,on_delete=models.CASCADE, null=False, blank=False, primary_key=True, limit_choices_to={'tipo_usuario':4}) 
-    rut_fonoaudiologo       = models.CharField('Rut fonoaudiologo', max_length=10)
+    rut_fonoaudiologo       = models.CharField('Rut fonoaudiologo', max_length=10, unique=True)
     nombre_fonoaudiologo    = models.CharField('Nombre fonoaudiologo', max_length=100)
     apellido_fonoaudiologo  = models.CharField('Apellido fonoaudiologo', max_length=100)
     direccion_fonoaudiologo = models.CharField('Direccion fonoaudiologo', max_length=100)
     institucion             = models.ForeignKey(Institucion, on_delete=models.CASCADE, verbose_name="Institucion", null=True)
     comuna                  = models.ForeignKey(to='app.comuna', on_delete=models.CASCADE, verbose_name="Comuna", null=True)
-    email_fonoaudiologo     = models.CharField('Email fonoaudiologo', max_length=100)
+    email_fonoaudiologo     = models.CharField('Email fonoaudiologo', max_length=100, unique=True)
     telefono_fonoaudiologo  = models.CharField('Telefono fonoaudiologo', max_length=9, null=True, blank=True)
     whatsaap_fonoaudiologo  = models.CharField('Whatsaap fonoaudiologo', max_length=9) 
     celular_fonoaudiologo   = models.CharField('Celular fonoaudiologo', max_length=9)
-    telegram_fonoaudiologo  = models.CharField('Telegram fonoaudiologo', max_length=100, null=True, blank=True)
+    telegram_fonoaudiologo  = models.CharField('Telegram fonoaudiologo', max_length=100, null=True, blank=True, unique=True)
     
     def __str__(self):
         return self.id_fonoaudiologo + '/' + self.nombre_fonoaudiologo + ' ' + str(self.apellido_fonoaudiologo) 
