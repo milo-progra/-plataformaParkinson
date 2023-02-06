@@ -249,9 +249,9 @@ class Paciente_Documento(models.Model):
 class Preregistro(models.Model):
     nombre_paciente    = models.CharField('Nombre', max_length=100)
     apellido_paciente    = models.CharField('Apellido', max_length=100)
-    rut_paciente    = models.CharField('Rut', max_length=10)
+    rut_paciente    = models.CharField('Rut', max_length=10, unique=True)
     telefono_paciente  = models.CharField('Telefono paciente', max_length=9, null=True, blank=True)
-    email_paciente       = models.EmailField('Email paciente', max_length=100)
+    email_paciente       = models.EmailField('Email paciente', max_length=100, unique=True)
     neurologo     = models.ForeignKey(Neurologo, on_delete=models.CASCADE, verbose_name="Neurologo de Referencia", null=True)
     timestamp = models.DateTimeField('Fecha Preregistro', auto_now_add=True, null=True, blank=True)
     terminos_uso    = models.BooleanField('Acepta termino de uso')

@@ -54,39 +54,36 @@ class MedicamentoFullViewSet(APIView, PageNumberPagination):
         medicamentos = MedicamentosFull.objects.all()
         #Guardamos el parametro de la sucursal definida en la url
         sucursal = request.GET.get('sucursal')
-  
+        frecueciaStock = request.GET.get('frecuencia_stock')
         #imprimo el body
-        print(request.data)
-        results = self.paginate_queryset(medicamentos, request, view=self)
-        if sucursal:
+        #print(request.data)
+        #results = self.paginate_queryset(medicamentos, request, view=self)
+        if sucursal and frecueciaStock:
+            medicamentos = MedicamentosFull.objects.filter(sucursal = sucursal).filter(frecueniaStock = frecueciaStock)
+        elif sucursal:
             medicamentos = MedicamentosFull.objects.filter(sucursal = sucursal)
-            results = self.paginate_queryset(medicamentos, request, view=self)
-        # si se definio el parametro sucursal en la 
-        #many = True vendran varios registros
-        return Response(MedicamentoFullSerializer(results, many = True).data)
+        return Response(MedicamentoFullSerializer(medicamentos, many = True).data)
 
     def put(self, request,pk=None):
         #Guardar el parametro ingresado en la url con el nombre /?sucursal
         sucursal = request.GET.get('sucursal')
-    
-        if not sucursal:
-            return Response([])
-        medicamentos = MedicamentosFull.objects.filter(sucursal = sucursal) 
-        results = self.paginate_queryset(medicamentos, request, view=self)
+        frecueciaStock = request.GET.get('frecuencia_stock')
+        if sucursal and frecueciaStock:
+            medicamentos = MedicamentosFull.objects.filter(sucursal = sucursal).filter(frecueniaStock = frecueciaStock)
+        elif sucursal:
+            medicamentos = MedicamentosFull.objects.filter(sucursal = sucursal)         
         #guardo en la variable el query params del body con el nombre stockDiario
         arrayStockDiario = request.data.get("stockDiario")
         fecha_actualizacion = request.data.get("fecha_actu_stock")
-        print(fecha_actualizacion)
-        print(request.data)
+
         b = 0
-        for medicamento in results:
-            print(arrayStockDiario[b])
+        for medicamento in medicamentos:
             medicamento.stockDiario = arrayStockDiario[b]   
             medicamento.fecha_actu_stock = fecha_actualizacion
             b = b +1
             medicamento.save()
         # si se definio el parametro sucursal en la url
-        return Response(MedicamentoFullSerializer(results, many = True).data)
+        return Response(MedicamentoFullSerializer(medicamentos, many = True).data)
 
 #pagination example
 
