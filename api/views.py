@@ -59,7 +59,7 @@ class MedicamentoFullViewSet(APIView, PageNumberPagination):
         #print(request.data)
         #results = self.paginate_queryset(medicamentos, request, view=self)
         if sucursal and frecueciaStock:
-            medicamentos = MedicamentosFull.objects.filter(sucursal = sucursal).filter(frecueniaStock = frecueciaStock)
+            medicamentos = MedicamentosFull.objects.filter(sucursal = sucursal).filter(frecuenciaStock = frecueciaStock)
         elif sucursal:
             medicamentos = MedicamentosFull.objects.filter(sucursal = sucursal)
         return Response(MedicamentoFullSerializer(medicamentos, many = True).data)
@@ -69,7 +69,7 @@ class MedicamentoFullViewSet(APIView, PageNumberPagination):
         sucursal = request.GET.get('sucursal')
         frecueciaStock = request.GET.get('frecuencia_stock')
         if sucursal and frecueciaStock:
-            medicamentos = MedicamentosFull.objects.filter(sucursal = sucursal).filter(frecueniaStock = frecueciaStock)
+            medicamentos = MedicamentosFull.objects.filter(sucursal = sucursal).filter(frecuenciaStock = frecueciaStock)
         elif sucursal:
             medicamentos = MedicamentosFull.objects.filter(sucursal = sucursal)         
         #guardo en la variable el query params del body con el nombre stockDiario
