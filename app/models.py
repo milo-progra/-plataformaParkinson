@@ -69,7 +69,7 @@ class Neurologo(models.Model):
 class Enfermera(models.Model):
     id_enfermera          = models.IntegerField('Id Enfermera')
     username_enfermera    = models.OneToOneField(Usuario,on_delete=models.CASCADE, null=False, blank=False, primary_key=True, limit_choices_to={'tipo_usuario':5})
-    rut_enfermera         = models.CharField('Rut Enfermera', max_length=10, unique=True)
+    rut_enfermera         = models.CharField('Rut Enfermera', max_length=10)
     direccion_enfermera   = models.CharField('Direccion Enfermera', max_length=100)
     comuna      = models.ForeignKey(Comuna, on_delete=models.CASCADE, verbose_name="Comuna", null=True)
     telefono_enfermera    = models.CharField('Telefono Enfermera', max_length=9, null=True, blank=True)
